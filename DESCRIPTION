@@ -1,0 +1,18 @@
+Package: evalue
+Type: Package
+Title: E-value in the omics data association studies 
+Version: 0.1.1
+Date: 2022-08-24
+Author: Haoyuan Liu, Xiaoqing Pan, Yifan Yang
+Maintainer: Yifan Yang <yfyang.86@hotmail.com>
+Description: In the omics data association studies, it is common to conduct the p-value corrections to control the false significance. Among those p-value correction methods, E-value is recently studied. This package provides e-value calculation for several types of omics data association studies. Currently, four data formats are supported: BiSeq, MDRfinder, methylKit and metilene data. 
+License: Apache License (>= 2)
+RoxygenNote: 7.2.1
+Depends: sqldf, psych, dplyr
+Suggests: 
+    rmarkdown,
+    knitr,
+    ggplot2,
+    methylKit,
+    tidyr
+VignetteBuilder: knitr

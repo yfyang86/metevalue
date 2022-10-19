@@ -1,0 +1,18 @@
+importFrom(sqldf, sqldf)
+importFrom(dplyr, left_join)
+import(psych)
+importFrom("stats", "dnorm", "na.omit", "p.adjust", "sd")
+importFrom("utils", "read.table")
+export(
+ "varevalue.metilene"
+,"evalue.metilene"
+,"evalue.methylKit"
+,"evalue_buildin_sql"
+,"evalue_buildin_var_fmt_nm"
+,"evalue.metilene.chk"
+,"evalue.biseq.chk"
+,"evalue.methylKit.chk"
+,"evalue.DMRfinder.chk"
+,"evalue.biseq"
+,"evalue.DMRfinder"
+)
