@@ -392,4 +392,4 @@ sim_plots <- data.frame(
 print(sim_plots)
 ```
 
-![evalue](figures/evalue-1.png)
+![](metevalue_files/figure-markdown_github/evalue-1.png)

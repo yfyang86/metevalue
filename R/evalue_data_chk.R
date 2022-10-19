@@ -184,7 +184,7 @@ evalue_buildin_var_fmt_nm <- function(a, b, method="metilene"){
 #' ## $ m2         : num  0.126 0.113 0.573 0.538 0.615 ...
 #' ## $ e_value    : num  8.50e+40 2.71e+38 7.20e+05 1.89e+06 5.36e+12 ...
 #'}
-evalue.metilene.chk <- function(input_filename_a, input_filename_b, sep = "\t", bheader = FALSE){
+metevalue.metilene.chk <- function(input_filename_a, input_filename_b, sep = "\t", bheader = FALSE){
 
     a <- read.table(input_filename_a, header=T, sep=sep)
     b <- read.table(input_filename_b, header=bheader, sep=sep)
@@ -229,7 +229,7 @@ return(list(file_a = re$a, file_b = re$b, file_a_b = evalue_buildin_sql(re$a, re
 #' @param sep separator, default is the TAB key.
 #' @param bheader a logical value indicating whether the input_filename_b file contains the names of the variables as its first line. By default, bheader = FALSE.
 #' @return list(file_a, file_b, file_a_b) returns a list with three pr-handled data.frames corresponding to the input_filename_a, input_filename_b file and a A JOIN B file.
-evalue.biseq.chk <- function(input_filename_a, input_filename_b, sep = "\t", bheader = FALSE){
+metevalue.biseq.chk <- function(input_filename_a, input_filename_b, sep = "\t", bheader = FALSE){
   a <- read.table(input_filename_a, header=T, sep=sep)
   b <- read.table(input_filename_b, header=bheader, sep=sep)
   re <- evalue_buildin_var_fmt_nm(a, b, method = "biseq")
@@ -265,7 +265,7 @@ evalue.biseq.chk <- function(input_filename_a, input_filename_b, sep = "\t", bhe
 #' @param sep separator, default is the TAB key.
 #' @param bheader a logical value indicating whether the input_filename_b file contains the names of the variables as its first line. By default, bheader = FALSE.
 #' @return list(file_a, file_b, file_a_b) returns a list with three pr-handled data.frames corresponding to the input_filename_a, input_filename_b file and a A JOIN B file.
-evalue.methylKit.chk <- function(input_filename_a, input_filename_b, sep = "\t", bheader = FALSE){
+metevalue.methylKit.chk <- function(input_filename_a, input_filename_b, sep = "\t", bheader = FALSE){
   a <- read.table(input_filename_a, header=T, sep=sep)
   b <- read.table(input_filename_b, header=bheader, sep=sep)
   re <- evalue_buildin_var_fmt_nm(a, b, method = "methylKit")
@@ -304,7 +304,7 @@ evalue.methylKit.chk <- function(input_filename_a, input_filename_b, sep = "\t",
 #' @param sep separator, default is the TAB key.
 #' @param bheader a logical value indicating whether the input_filename_b file contains the names of the variables as its first line. By default, bheader = FALSE.
 #' @return list(file_a, file_b, file_a_b) returns a list with three pr-handled data.frames corresponding to the input_filename_a, input_filename_b file and a A JOIN B file.
-evalue.DMRfinder.chk <- function(input_filename_a, input_filename_b, sep = "\t", bheader = FALSE){
+metevalue.DMRfinder.chk <- function(input_filename_a, input_filename_b, sep = "\t", bheader = FALSE){
   a <- read.table(input_filename_a, header=T, sep=sep)
   b <- read.table(input_filename_b, header=bheader, sep=sep)
   re <- evalue_buildin_var_fmt_nm(a, b, method = "DMRfinder")
