@@ -7,22 +7,22 @@ evalue_buildin_sql <- function(a, b, method="metilene"){
   if (method == "metilene"){
     result = sqldf("SELECT * FROM b AS g
                  LEFT JOIN a AS f
-                 ON (f.pos <= g.end AND f.pos>=g.start AND f.chr = g.chr)")
+                 ON (f.pos<=g.end AND f.pos>=g.start AND f.chr = g.chr)")
   }
   if (method == "biseq"){
     result = a_b = sqldf("SELECT * FROM b AS g
                  LEFT JOIN a AS f
-                 ON (f.pos <= g.end AND f.pos>=g.start AND f.chr = g.chr)")
+                 ON (f.pos <= g.end AND f.chr = g.chr AND f.chr = g.chr)")
   }
   if (method == "methylKit"){
     result = a_b = sqldf("SELECT * FROM b AS g
                  LEFT JOIN a AS f
-                 ON (f.pos <= g.end AND f.pos>=g.start AND f.chr = g.chr)")
+                 ON (f.pos <= g.end AND f.chr = g.chr AND f.chr = g.chr)")
   }
   if (method == "DMRfinder"){
     result = a_b = sqldf("SELECT * FROM b AS g
                  LEFT JOIN a AS f
-                 ON (f.pos <= g.end AND f.pos>=g.start AND f.chr = g.chr)")
+                 ON (f.pos <= g.end AND f.chr = g.chr AND f.chr = g.chr)")
   }
   return(result);
 }
@@ -49,6 +49,9 @@ evalue_buildin_var_fmt_nm <- function(a, b, method="metilene"){
     b_tab_names <- c("chr", "start", "end", "q-value",
                      "methyl.diff", "CpGs", "p", "p2",
                      "m1", "m2")
+    if(ncol(b) < length(b_tab_names)){
+      stop("File Column Mismatch. Please Check the file format.")
+    }
     names(b) = b_tab_names
   }
   if (method == "biseq"){
@@ -71,6 +74,9 @@ evalue_buildin_var_fmt_nm <- function(a, b, method="metilene"){
     b_tab_names <- c("chr","start","end","range","strand","median.p",
                      "median.meth.group1","median.meth.group2",
                      "median.meth.diff")
+    if(ncol(b) < length(b_tab_names)){
+      stop("File Column Mismatch. Please Check the file format.")
+    }
     names(b)[1:9] = b_tab_names
   }
   if (method == "methylKit"){
@@ -90,6 +96,9 @@ evalue_buildin_var_fmt_nm <- function(a, b, method="metilene"){
     names(a) <- c("chr", "pos", site_1, site_2)
 
     b_tab_names <- c("chr", "start", "end", "strand", "p", "qvalue", "meth.diff")
+    if(ncol(b) < length(b_tab_names)){
+      stop("File Column Mismatch. Please Check the file format.")
+    }
     names(b) = b_tab_names
   }
 
@@ -110,6 +119,9 @@ evalue_buildin_var_fmt_nm <- function(a, b, method="metilene"){
     names(a) <- c("chr", "pos", site_1, site_2)
     b_tab_names <- c("chr", "start", "end", "CpG", "Control_mu",
     "Exptl_mu",	"Control_Exptl_diff", "p")
+    if(ncol(b) < length(b_tab_names)){
+      stop("File Column Mismatch. Please Check the file format.")
+    }
     names(b) = b_tab_names
   }
 
@@ -156,13 +168,13 @@ evalue_buildin_var_fmt_nm <- function(a, b, method="metilene"){
 #'
 #'@examples
 #'\dontrun{
-#' s = evalue.metilene(input_filename_a = "../metilene/metilene_8.input",
-#' input_filename_b = "../metilene/metilene_8.out")
+#' s = evalue.metilene(input_filename_a = "metilene.input",
+#' input_filename_b = "metilene.out")
 #' ## > str(s)
 #' ## data.frame':	723 obs. of  11 variables:
 #' ## $ chr        : chr  "chr21" "chr21" "chr21" "chr21" ...
-#' ## $ start      : int  9437432 9708982 9825467 9825514 9825794 9825882 9826220 9827335 9926563 9963396 ...
-#' ## $ end        : int  9437540 9709189 9825508 9825788 9825876 9826191 9826387 9827356 9927097 9963753 ...
+#' ## $ start      : int  9437432 9708982 9825467 ...
+#' ## $ end        : int  9437540 9709189 9825508 ...
 #' ## $ q-value    : num  2.49e-25 4.62e-29 6.00e-02 3.40e-01 2.82e-07 ...
 #' ## $ methyl.diff: num  0.611 0.476 -0.274 -0.164 -0.261 ...
 #' ## $ CpGs       : int  26 28 12 26 26 31 13 10 73 10 ...
@@ -217,24 +229,6 @@ return(list(file_a = re$a, file_b = re$b, file_a_b = evalue_buildin_sql(re$a, re
 #' @param sep separator, default is the TAB key.
 #' @param bheader a logical value indicating whether the input_filename_b file contains the names of the variables as its first line. By default, bheader = FALSE.
 #' @return list(file_a, file_b, file_a_b) returns a list with three pr-handled data.frames corresponding to the input_filename_a, input_filename_b file and a A JOIN B file.
-#' @examples
-#' \dontrun{
-#' s = evalue.metilene(input_filename_a = "../metilene/metilene_8.input",
-#' input_filename_b = "../metilene/metilene_8.out")
-#' ## > str(s)
-#' ## data.frame':	723 obs. of  11 variables:
-#' ## $ chr        : chr  "chr21" "chr21" "chr21" "chr21" ...
-#' ## $ start      : int  9437432 9708982 9825467 9825514 9825794 9825882 9826220 9827335 9926563 9963396 ...
-#' ## $ end        : int  9437540 9709189 9825508 9825788 9825876 9826191 9826387 9827356 9927097 9963753 ...
-#' ## $ q-value    : num  2.49e-25 4.62e-29 6.00e-02 3.40e-01 2.82e-07 ...
-#' ## $ methyl.diff: num  0.611 0.476 -0.274 -0.164 -0.261 ...
-#' ## $ CpGs       : int  26 28 12 26 26 31 13 10 73 10 ...
-#' ## $ p         : num  3.86e-14 4.34e-14 2.60e-07 2.55e-05 1.23e-11 ...
-#' ## $ p2        : num  2.23e-29 4.13e-33 5.37e-06 3.04e-05 2.52e-11 ...
-#' ## $ m1         : num  0.737 0.589 0.298 0.374 0.353 ...
-#' ## $ m2         : num  0.126 0.113 0.573 0.538 0.615 ...
-#' ## $ e_value    : num  8.50e+40 2.71e+38 7.20e+05 1.89e+06 5.36e+12 ...
-#' }
 evalue.biseq.chk <- function(input_filename_a, input_filename_b, sep = "\t", bheader = FALSE){
   a <- read.table(input_filename_a, header=T, sep=sep)
   b <- read.table(input_filename_b, header=bheader, sep=sep)
@@ -271,24 +265,6 @@ evalue.biseq.chk <- function(input_filename_a, input_filename_b, sep = "\t", bhe
 #' @param sep separator, default is the TAB key.
 #' @param bheader a logical value indicating whether the input_filename_b file contains the names of the variables as its first line. By default, bheader = FALSE.
 #' @return list(file_a, file_b, file_a_b) returns a list with three pr-handled data.frames corresponding to the input_filename_a, input_filename_b file and a A JOIN B file.
-#' @examples
-#' \dontrun{
-#' s = evalue.metilene(input_filename_a = "../metilene/metilene_8.input",
-#' input_filename_b = "../metilene/metilene_8.out")
-#' ## > str(s)
-#' ## data.frame':	723 obs. of  11 variables:
-#' ## $ chr        : chr  "chr21" "chr21" "chr21" "chr21" ...
-#' ## $ start      : int  9437432 9708982 9825467 9825514 9825794 9825882 9826220 9827335 9926563 9963396 ...
-#' ## $ end        : int  9437540 9709189 9825508 9825788 9825876 9826191 9826387 9827356 9927097 9963753 ...
-#' ## $ q-value    : num  2.49e-25 4.62e-29 6.00e-02 3.40e-01 2.82e-07 ...
-#' ## $ methyl.diff: num  0.611 0.476 -0.274 -0.164 -0.261 ...
-#' ## $ CpGs       : int  26 28 12 26 26 31 13 10 73 10 ...
-#' ## $ p         : num  3.86e-14 4.34e-14 2.60e-07 2.55e-05 1.23e-11 ...
-#' ## $ p2        : num  2.23e-29 4.13e-33 5.37e-06 3.04e-05 2.52e-11 ...
-#' ## $ m1         : num  0.737 0.589 0.298 0.374 0.353 ...
-#' ## $ m2         : num  0.126 0.113 0.573 0.538 0.615 ...
-#' ## $ e_value    : num  8.50e+40 2.71e+38 7.20e+05 1.89e+06 5.36e+12 ...
-#' }
 evalue.methylKit.chk <- function(input_filename_a, input_filename_b, sep = "\t", bheader = FALSE){
   a <- read.table(input_filename_a, header=T, sep=sep)
   b <- read.table(input_filename_b, header=bheader, sep=sep)
@@ -328,24 +304,6 @@ evalue.methylKit.chk <- function(input_filename_a, input_filename_b, sep = "\t",
 #' @param sep separator, default is the TAB key.
 #' @param bheader a logical value indicating whether the input_filename_b file contains the names of the variables as its first line. By default, bheader = FALSE.
 #' @return list(file_a, file_b, file_a_b) returns a list with three pr-handled data.frames corresponding to the input_filename_a, input_filename_b file and a A JOIN B file.
-#' @examples
-#' \dontrun{
-#' s = evalue.metilene(input_filename_a = "../metilene/metilene_8.input",
-#' input_filename_b = "../metilene/metilene_8.out")
-#' ## > str(s)
-#' ## data.frame':	723 obs. of  11 variables:
-#' ##   $ chr        : chr  "chr21" "chr21" "chr21" "chr21" ...
-#' ## $ start      : int  9437432 9708982 9825467 9825514 9825794 9825882 9826220 9827335 9926563 9963396 ...
-#' ## $ end        : int  9437540 9709189 9825508 9825788 9825876 9826191 9826387 9827356 9927097 9963753 ...
-#' ## $ q-value    : num  2.49e-25 4.62e-29 6.00e-02 3.40e-01 2.82e-07 ...
-#' ## $ methyl.diff: num  0.611 0.476 -0.274 -0.164 -0.261 ...
-#' ## $ CpGs       : int  26 28 12 26 26 31 13 10 73 10 ...
-#' ## $ p         : num  3.86e-14 4.34e-14 2.60e-07 2.55e-05 1.23e-11 ...
-#' ## $ p2        : num  2.23e-29 4.13e-33 5.37e-06 3.04e-05 2.52e-11 ...
-#' ## $ m1         : num  0.737 0.589 0.298 0.374 0.353 ...
-#' ## $ m2         : num  0.126 0.113 0.573 0.538 0.615 ...
-#' ## $ e_value    : num  8.50e+40 2.71e+38 7.20e+05 1.89e+06 5.36e+12 ...
-#' }
 evalue.DMRfinder.chk <- function(input_filename_a, input_filename_b, sep = "\t", bheader = FALSE){
   a <- read.table(input_filename_a, header=T, sep=sep)
   b <- read.table(input_filename_b, header=bheader, sep=sep)

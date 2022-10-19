@@ -13,15 +13,15 @@ evalue.methylKit(
 )
 }
 \arguments{
+\item{methyrate}{is the output file of methylKit}
+
+\item{methylKit.output}{is the output data with e-value of each region}
+
+\item{adjust.methods}{is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'}
+
 \item{sep}{seperator, default is the TAB key.}
 
 \item{bheader}{a logical value indicating whether the input_filename_b file contains the names of the variables as its first line. By default, bheader = FALSE.}
-
-\item{methylKit.output'}{is the output file of methylKit}
-
-\item{outputfile'}{is the output data with e-value of each region}
-
-\item{adjust.methods'}{is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'}
 }
 \description{
 Perform the Evaluation for the BiSeq data.

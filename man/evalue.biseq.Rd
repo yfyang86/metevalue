@@ -13,15 +13,16 @@ evalue.biseq(
 )
 }
 \arguments{
+\item{methyrate}{is the methyrate file.}
+
+\item{BiSeq.output}{is the output file of BiSeq}
+
+\item{adjust.methods}{is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'}
+
 \item{sep}{seperator, default is the TAB key.}
 
 \item{bheader}{a logical value indicating whether the BiSeq.output file contains the names of the variables as its first line. By default, bheader = FALSE.}
-
-\item{BiSeq.output'}{is the output file of BiSeq}
-
-\item{adjust.methods'}{is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'}
 }
 \description{
 Perform the Evaluation for the BiSeq data.
-#' @param methyrate is the methyrate file.
 }

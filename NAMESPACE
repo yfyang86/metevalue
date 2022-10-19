@@ -1,5 +1,8 @@
 importFrom(sqldf, sqldf)
 importFrom(dplyr, left_join)
+import(psych)
+importFrom("stats", "dnorm", "na.omit", "p.adjust", "sd")
+importFrom("utils", "read.table")
 export(
  "varevalue.metilene"
 ,"evalue.metilene"

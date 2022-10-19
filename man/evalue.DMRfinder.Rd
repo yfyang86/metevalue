@@ -15,13 +15,13 @@ evalue.DMRfinder(
 \arguments{
 \item{methyrate}{is the methyrate file.}
 
+\item{DMRfinder.output}{is the output file of DMRfinder.}
+
+\item{adjust.methods}{is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'}
+
 \item{sep}{seperator, default is the TAB key.}
 
 \item{bheader}{a logical value indicating whether the DMRfinder.output file contains the names of the variables as its first line. By default, bheader = FALSE.}
-
-\item{DMRfinder.output'}{is the output file of DMRfinder.}
-
-\item{adjust.methods'}{is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'}
 }
 \description{
 Perform the Evaluation for the BiSeq data.
