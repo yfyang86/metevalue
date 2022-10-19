@@ -58,7 +58,7 @@
 #'     - e_value: The e-value of the corresponding region
 #' @examples
 #' \dontrun{
-#' s = evalue.metilene(input_filename_a = "../metilene/metilene_8.input",
+#' s = metevalue.metilene(input_filename_a = "../metilene/metilene_8.input",
 #'                     input_filename_b = "../metilene/metilene_8.out")
 #' ## > str(s)
 #' ## data.frame':	723 obs. of  11 variables:
@@ -74,8 +74,8 @@
 #' ## $ m2         : num  0.126 0.113 0.573 0.538 0.615 ...
 #' ## $ e_value    : num  8.50e+40 2.71e+38 7.20e+05 1.89e+06 5.36e+12 ...
 #' }
-evalue.metilene <- function(input_filename_a, input_filename_b, adjust.methods='BH', sep = "\t", bheader = FALSE){
-    re = evalue.metilene.chk (input_filename_a, input_filename_b, sep, bheader)
+metevalue.metilene <- function(input_filename_a, input_filename_b, adjust.methods='BH', sep = "\t", bheader = FALSE){
+    re = metevalue.metilene.chk (input_filename_a, input_filename_b, sep, bheader)
 return(varevalue.metilene(re$file_a, re$file_b, re$file_a_b, adjust.methods=adjust.methods));
 }
 
