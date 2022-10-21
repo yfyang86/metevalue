@@ -52,24 +52,21 @@
 #'     - m2:  The absolute mean methylation level for the corresponding segment of group 2
 #'
 #'     - e_value: The e-value of the corresponding region
-#'@examples
-#'\dontrun{
-#' s = evalue.metilene(input_filename_a = "metilene.input",
-#' input_filename_b = "metilene.out")
-#' ## > str(s)
-#' ## data.frame':	723 obs. of  11 variables:
-#' ## $ chr        : chr  "chr21" "chr21" "chr21" "chr21" ...
-#' ## $ start      : int  9437432 9708982 9825467 ...
-#' ## $ end        : int  9437540 9709189 9825508 ...
-#' ## $ q-value    : num  2.49e-25 4.62e-29 6.00e-02 3.40e-01 2.82e-07 ...
-#' ## $ methyl.diff: num  0.611 0.476 -0.274 -0.164 -0.261 ...
-#' ## $ CpGs       : int  26 28 12 26 26 31 13 10 73 10 ...
-#' ## $ p         : num  3.86e-14 4.34e-14 2.60e-07 2.55e-05 1.23e-11 ...
-#' ## $ p2        : num  2.23e-29 4.13e-33 5.37e-06 3.04e-05 2.52e-11 ...
-#' ## $ m1         : num  0.737 0.589 0.298 0.374 0.353 ...
-#' ## $ m2         : num  0.126 0.113 0.573 0.538 0.615 ...
-#' ## $ e_value    : num  8.50e+40 2.71e+38 7.20e+05 1.89e+06 5.36e+12 ...
-#'}
+#' @examples
+#' \donttest{
+#' #### methylKit example ####
+#' data(methyrate)
+#' data(met_all)
+#' example_tempfiles = tempfile(c("rate_combine", "methylKit_DMR_raw"))
+#' tempdir()
+#' write.table(methyrate, file=example_tempfiles[1],
+#'       row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
+#' write.table (met_all, file=example_tempfiles[2],
+#'       sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
+#' result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2],
+#'       bheader = TRUE)
+#' str(result)
+#' }
 varevalue.metilene <- function(a, b, a_b, adjust.methods='BH'){
   innerf = Vectorize(function(x, innermu=0., innersig=1.){
     vector_temp = na.omit(x)
@@ -126,6 +123,53 @@ varevalue.metilene <- function(a, b, a_b, adjust.methods='BH'){
   data_withe = cbind(data_withe, e_adjust)
   return(data_withe);
 }
+
+#' Methyrate Dataset
+#'
+#' The methyrate dataset samples "myCpG" data from the methylKit (a bioconductor package) for illustrating purpose.
+#'
+#' The data includes 6 columns.
+#'
+#' - chr: string Chromosome
+#'
+#' - pos: int Position
+#'
+#' - g1~g2: metilene data in pairs (4 columns)
+#'
+#' Please check the vignette "metevalue" for details.
+#' @name methyrate
+#' @docType data
+#' @references \url{https://www.bioconductor.org/packages/release/bioc/html/methylKit.html}
+#' @keywords metevalue
+NULL
+
+#' Methyrate output dataset from methylKit
+#'
+#' The methyrate dataset samples "myCpG" data from the methylKit (a bioconductor package) for illustrating purpose.
+#'
+#' The data includes 7 columns:
+#'
+#'  - chr:   Chromosome
+#'
+#'  - start: The positions of the start sites of the corresponding region
+#'
+#'  - end: The positions of the end sites of the corresponding region
+#'
+#'  - strand: Strand
+#'
+#'  - pvalue: The adjusted p-value based on BH method in MWU-test
+#'
+#'  - qvalue: cutoff for qvalue of differential methylation statistic
+#'
+#'  - methyl.diff: The difference between the group means of methylation level
+#'
+#' Please check the vignette "metevalue" for details.
+#' @name met_all
+#' @docType data
+#' @references \url{https://www.bioconductor.org/packages/release/bioc/html/methylKit.html}
+#' @keywords metevalue
+NULL
+
 
 ## #' General Purpose E-value for Metilene Data with 3 dimensions
 ## #' @param value vector (dimension must be 3)

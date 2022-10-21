@@ -2,17 +2,20 @@
 % Please edit documentation in R/evalue_data_chk.R
 \name{evalue_buildin_sql}
 \alias{evalue_buildin_sql}
-\title{Buildin data process function}
+\title{Build-in data process function}
 \usage{
 evalue_buildin_sql(a, b, method = "metilene")
 }
 \arguments{
-\item{a}{filename}
+\item{a}{data frame of the methylation rate}
 
-\item{b}{filenmae}
+\item{b}{data frame of output data corresponding to the "method" option}
 
-\item{method}{"metilene" or "biseq" or "methylKit"}
+\item{method}{"metilene" or "biseq", "DMRfinder" or "methylKit"}
+}
+\value{
+a data frame combines data frame a and b corresponding to the "method" option
 }
 \description{
-Buildin data process function
+Build-in data process function
 }

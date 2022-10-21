@@ -2,17 +2,22 @@
 % Please edit documentation in R/evalue_data_chk.R
 \name{evalue_buildin_var_fmt_nm}
 \alias{evalue_buildin_var_fmt_nm}
-\title{Buildin check file format function}
+\title{Build-in check file format function
+Perform the format check and data clean for the  "metilene" or "biseq", "DMRfinder" or "methylKit" method correspondingly.}
 \usage{
 evalue_buildin_var_fmt_nm(a, b, method = "metilene")
 }
 \arguments{
-\item{a}{filename}
+\item{a}{data frame of the methylation rate}
 
-\item{b}{filenmae}
+\item{b}{data frame of output data corresponding to the "method" option}
 
-\item{method}{"metilene" or "biseq" or "methylKit"}
+\item{method}{"metilene" or "biseq", "DMRfinder" or "methylKit"}
+}
+\value{
+list(a, b) which contains the cleaned data correspondingly
 }
 \description{
-Buildin check file format function
+Build-in check file format function
+Perform the format check and data clean for the  "metilene" or "biseq", "DMRfinder" or "methylKit" method correspondingly.
 }

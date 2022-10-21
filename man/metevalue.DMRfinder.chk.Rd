@@ -20,7 +20,7 @@ chrom    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2  
 chrom and pos are keys;
 g1 g1 g2 g2 must be stored in pairs.}
 
-\item{input_filename_b}{the output file of DMRfinder. xxxxxxxxxxxxxx
+\item{input_filename_b}{the output file of DMRfinder.
 The columns are (in order):
 
     - chr:   Chromosome
