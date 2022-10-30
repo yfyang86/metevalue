@@ -21,3 +21,11 @@ list(a, b) which contains the cleaned data correspondingly
 Build-in check file format function
 Perform the format check and data clean for the  "metilene" or "biseq", "DMRfinder" or "methylKit" method correspondingly.
 }
+\examples{
+\donttest{
+data("demo_metilene_out")
+data("demo_metilene_input")
+evalue_buildin_var_fmt_nm(demo_metilene_input,
+                          demo_metilene_out, method="metilene")
+}
+}

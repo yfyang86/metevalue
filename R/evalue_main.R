@@ -5,7 +5,7 @@
 #'
 #' chrom	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
-#' i.e two key columns (chrom, pos) with several value columns in pairs.
+#' i.e two key columns (chrom, pos) with several value columns in groups.
 #' @param b A data.frame object stores the data, the columns are (in order):
 #'
 #'     - chr:   Chromosome
@@ -53,20 +53,18 @@
 #'
 #'     - e_value: The e-value of the corresponding region
 #' @examples
-#' \donttest{
 #' #### methylKit example ####
-#' data(methyrate)
-#' data(met_all)
+#' data(demo_methylkit_methyrate)
+#' data(demo_methylkit_met_all)
 #' example_tempfiles = tempfile(c("rate_combine", "methylKit_DMR_raw"))
 #' tempdir()
-#' write.table(methyrate, file=example_tempfiles[1],
+#' write.table(demo_methylkit_methyrate, file=example_tempfiles[1],
 #'       row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
-#' write.table (met_all, file=example_tempfiles[2],
+#' write.table (demo_methylkit_met_all, file=example_tempfiles[2],
 #'       sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
 #' result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2],
 #'       bheader = TRUE)
 #' str(result)
-#' }
 varevalue.metilene <- function(a, b, a_b, adjust.methods='BH'){
   innerf = Vectorize(function(x, innermu=0., innersig=1.){
     vector_temp = na.omit(x)
@@ -134,12 +132,12 @@ varevalue.metilene <- function(a, b, a_b, adjust.methods='BH'){
 #'
 #' - pos: int Position
 #'
-#' - g1~g2: metilene data in pairs (4 columns)
+#' - g1~g2: methylation rate data in groups (4 columns)
 #'
 #' Please check the vignette "metevalue" for details.
-#' @name methyrate
+#' @name demo_methylkit_methyrate
 #' @docType data
-#' @references \url{https://www.bioconductor.org/packages/release/bioc/html/methylKit.html}
+#' @references Akalin, Altuna, et al. "methylKit: a comprehensive R package for the analysis of genome-wide DNA methylation profiles." Genome biology 13.10 (2012): 1-9. \doi{10.1186/gb-2012-13-10-r87}
 #' @keywords metevalue
 NULL
 
@@ -164,12 +162,162 @@ NULL
 #'  - methyl.diff: The difference between the group means of methylation level
 #'
 #' Please check the vignette "metevalue" for details.
-#' @name met_all
+#' @name demo_methylkit_met_all
 #' @docType data
-#' @references \url{https://www.bioconductor.org/packages/release/bioc/html/methylKit.html}
+#' @references Akalin, Altuna, et al. "methylKit: a comprehensive R package for the analysis of genome-wide DNA methylation profiles." Genome biology 13.10 (2012): 1-9. \doi{10.1186/gb-2012-13-10-r87}
 #' @keywords metevalue
 NULL
 
+#' DMR BiSeq Demo Dataset
+#'
+#' The BiSeq dataset for demo purpose. The data are dummy data. It includes 9 columns:
+#'
+#'
+#' - seqnames: Chromosome
+#'
+#'  - start: The positions of the start sites of the corresponding region
+#'
+#'  - end: The positions of the end sites of the corresponding region
+#'
+#'  - strand: Strand
+#'
+#'  - median.p
+#'
+#'  - median.meth.group1
+#'
+#'  - median.meth.group2
+#'
+#'  - median.meth.diff
+#' @name demo_biseq_DMR
+#' @docType data
+#' @keywords metevalue
+NULL
+
+#' BiSeq Methyrate Demo Dataset
+#'
+#' The methyrate for BiSeq illustrating purpose. It is dummy.
+#'
+#' The data includes 12 columns.
+#'
+#' - chr: string Chromosome
+#'
+#' - pos: int Position
+#'
+#' - g1~g2: methylation rate data in groups, repeat 5 times.
+#' Notice that there are "NaN" within the feature columns.
+#'
+#' Please check the vignette "metevalue" for details.
+#' @name demo_biseq_methyrate
+#' @docType data
+#' @keywords metevalue
+NULL
+
+#' BiSeq Output Demo Dataset
+#'
+#' The dummy output for BiSeq illustrating purpose. It is dummy.
+#'
+#' - seqnames
+#'
+#' - start
+#'
+#' - end
+#'
+#' - width
+#'
+#' - strand
+#'
+#' - median.p
+#'
+#' - median.meth.group1
+#'
+#' - median.meth.group2
+#'
+#' - median.meth.diff
+#'
+#' Notice that there are "NaN" within the feature columns.
+#'
+#' Please check the vignette "metevalue" for details.
+#' @name demo_biseq_DMR
+#' @docType data
+#' @keywords metevalue
+NULL
+
+#' DMRfinder Methyrate Demo Dataset
+#'
+#' The methyrate for BiSeq illustrating purpose. It is dummy.
+#'
+#' The data includes 6 columns.
+#'
+#' - chr: string Chromosome
+#'
+#' - pos: int Position
+#'
+#' - g1~g2: methylation rate data in groups, repeat 2 times.
+#' Notice that there are "NaN" within the feature columns.
+#'
+#' Please check the vignette "metevalue" for details.
+#' @name demo_DMRfinder_rate_combine
+#' @docType data
+#' @keywords metevalue
+NULL
+
+#' DMRfinder Output Demo Dataset
+#'
+#' The output dummy dataset for DMRfinder illustrating purpose.
+#'
+#' The data includes 6 columns.
+#'
+#' - chr: string Chromosome
+#'
+#' - pos: int Position
+#'
+#' - g1~g2: methylation rate data in groups, repeat 2 times.
+#' Notice that there are "NaN" within the feature columns.
+#'
+#' Please check the vignette "metevalue" for details.
+#' @name demo_DMRfinder_DMRs
+#' @docType data
+#' @keywords metevalue
+NULL
+
+#' Metilene Methyrate Demo Dataset
+#'
+#' The methyrate for metilene illustrating purpose. It is dummy.
+#'
+#' The data includes 18 columns.
+#'
+#' - chr: string Chromosome
+#'
+#' - pos: int Position
+#'
+#' - g1~g2: methylation rate data in groups, repeat 8 times.
+#' Notice that there are "NaN" within the feature columns.
+#'
+#' Please check the vignette "metevalue" for details.
+#' @name demo_metilene_input
+#' @docType data
+#' @keywords metevalue
+NULL
+
+#' Metilene Demo Output Dataset
+#'
+#' The output dummy data for "metilene" meythod illustrating purpose.
+#'
+#' The data includes 10 columns.
+#'
+#' - V1: string Chromosome
+#'
+#' - V2: The positions of the start sites of the corresponding region
+#'
+#' - V3: The positions of the end sites of the corresponding region
+#'
+#' - V4- V10: data value.
+#'
+#' Please check the vignette "metevalue" for details.
+#' @name demo_metilene_out
+#' @docType data
+#' @keywords metevalue
+NULL
 
 ## #' General Purpose E-value for Metilene Data with 3 dimensions
 ## #' @param value vector (dimension must be 3)

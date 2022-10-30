@@ -51,3 +51,7 @@ list(file_a, file_b, file_a_b) returns a list with three pr-handled data.frames 
 \description{
 Check the BiSeq data format
 }
+\examples{
+data("demo_biseq_DMR")
+data("demo_biseq_methyrate")
+}

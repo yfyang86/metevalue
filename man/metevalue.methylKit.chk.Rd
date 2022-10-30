@@ -47,3 +47,8 @@ list(file_a, file_b, file_a_b) returns a list with three pr-handled data.frames 
 \description{
 Check the methylKit data format
 }
+\examples{
+#### methylKit example ####
+data(demo_methylkit_methyrate)
+data(demo_methylkit_met_all)
+}

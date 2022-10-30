@@ -53,3 +53,7 @@ list(file_a, file_b, file_a_b) returns a list with three pr-handled data.frames 
 \description{
 Check the Metilene data format
 }
+\examples{
+data("demo_metilene_out")
+data("demo_metilene_input")
+}
