@@ -19,12 +19,12 @@ For exampe:
 chrom    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    g2    g2    g2    g2    g2
 
 chrom and pos are keys;
-g1 g1 g2 g2 must be stored in pairs.}
+g1 g1 g2 g2 must be stored in groups.}
 
 \item{input_filename_b}{metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
 The columns are (in order):
 
-    - chr:   Chromosome
+    - chr: Chromosome
 
     - start: The positions of the start sites of the corresponding region
 
@@ -79,18 +79,7 @@ a dataframe, the columns are (in order):
 Evalue of the Metilene data format
 }
 \examples{
-\donttest{
-#### methylKit example ####
-data(methyrate)
-data(met_all)
-example_tempfiles = tempfile(c("rate_combine", "methylKit_DMR_raw"))
-tempdir()
-write.table(methyrate, file=example_tempfiles[1],
-      row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
-write.table (met_all, file=example_tempfiles[2],
-      sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
-result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2],
-      bheader = TRUE)
-str(result)
-}
+#### metilene example ####'
+data(demo_metilene_input)
+data(demo_metilene_out)
 }

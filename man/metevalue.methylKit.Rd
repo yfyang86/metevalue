@@ -13,9 +13,27 @@ metevalue.methylKit(
 )
 }
 \arguments{
-\item{methyrate}{is the output file of methylKit}
+\item{methyrate}{is the output file of methylKit, the columns are (in order):
+    - chr: Chromosome
 
-\item{methylKit.output}{is the output data with e-value of each region}
+    - pos: int Position
+
+    - g1~g2: methylation rate data in groups}
+
+\item{methylKit.output}{is the output data with e-value of each region
+    - chr: Chromosome
+
+    - start: The positions of the start sites of the corresponding region
+
+    - end: The positions of the end sites of the corresponding region
+
+    - strand: Strand
+
+    - pvalue: The adjusted p-value based on BH method in MWU-test
+
+    - qvalue: cutoff for qvalue of differential methylation statistic
+
+    - methyl.diff: The difference between the group means of methylation level}
 
 \item{adjust.methods}{is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'}
 
@@ -26,7 +44,7 @@ metevalue.methylKit(
 \value{
 a dataframe, the columns are (in order):
 
-    - chr:   Chromosome
+    - chr: Chromosome
 
     - start: The positions of the start sites of the corresponding region
 
@@ -50,4 +68,18 @@ a dataframe, the columns are (in order):
 }
 \description{
 Perform the Evaluation for the BiSeq data.
+}
+\examples{
+#### methylKit example ####
+data(demo_methylkit_methyrate)
+data(demo_methylkit_met_all)
+example_tempfiles = tempfile(c("rate_combine", "methylKit_DMR_raw"))
+tempdir()
+write.table(demo_methylkit_methyrate, file=example_tempfiles[1],
+      row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
+write.table (demo_methylkit_met_all, file=example_tempfiles[2],
+      sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
+result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2],
+      bheader = TRUE)
+str(result)
 }

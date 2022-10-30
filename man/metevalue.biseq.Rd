@@ -13,9 +13,31 @@ metevalue.biseq(
 )
 }
 \arguments{
-\item{methyrate}{is the methyrate file.}
+\item{methyrate}{is the methyrate file. The columns are (in order):
+    - chr: Chromosome
 
-\item{BiSeq.output}{is the output file of BiSeq}
+    - pos: int Position
+
+    - g1~g2: methylation rate data in groups}
+
+\item{BiSeq.output}{is the output file of BiSeq. The columns are (in order):
+    - seqnames: Chromosome
+
+    - start: The positions of the start sites of the corresponding region
+
+    - end: The positions of the end sites of the corresponding region
+
+    - width: The number of CpG sites within the corresponding region
+
+    - strand: Strand
+
+    - median.p: The median p-value among CpG sites within the corresponding region
+
+    - median.meth.group1: The median methylation rate in the first group among CpG sites within the corresponding region
+
+    - median.meth.group2: The median methylation rate in the second group among CpG sites within the corresponding region
+
+    - median.meth.diff: The median methylation difference between groups among CpG sites within the corresponding region}
 
 \item{adjust.methods}{is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'}
 
@@ -50,4 +72,20 @@ a dataframe, the columns are (in order):
 }
 \description{
 Perform the Evaluation for the BiSeq data. Please check vignette "metevalue" for details.
+}
+\examples{
+\donttest{
+data("demo_biseq_methyrate")
+data("demo_biseq_DMR")
+example_tempfiles = tempfile(c("demo_biseq_methyrate", "demo_biseq_DMR"))
+tempdir()
+#### write to temp file ####
+write.table(demo_biseq_methyrate, file=example_tempfiles[1],row.names=FALSE,
+            col.names=TRUE, quote=FALSE, sep='\t')
+write.table (demo_biseq_DMR, file=example_tempfiles[2],
+             sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
+#### compute e-value and its adjustment ####
+result = metevalue.biseq(example_tempfiles[1],
+                         example_tempfiles[2], bheader = TRUE)
+}
 }

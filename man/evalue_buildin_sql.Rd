@@ -19,3 +19,12 @@ a data frame combines data frame a and b corresponding to the "method" option
 \description{
 Build-in data process function
 }
+\examples{
+\donttest{
+data("demo_metilene_out")
+data("demo_metilene_input")
+result = evalue_buildin_var_fmt_nm(demo_metilene_input,
+                                   demo_metilene_out, method="metilene")
+result_sql = evalue_buildin_sql(result$a, result$b, method="metilene")
+}
+}

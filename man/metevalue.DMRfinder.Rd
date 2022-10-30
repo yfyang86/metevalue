@@ -13,9 +13,29 @@ metevalue.DMRfinder(
 )
 }
 \arguments{
-\item{methyrate}{is the methyrate file.}
+\item{methyrate}{is the methyrate file.
+    - chr: Chromosome
 
-\item{DMRfinder.output}{is the output file of DMRfinder.}
+    - pos: int Position
+
+    - g1~g2: methylation rate data in groups}
+
+\item{DMRfinder.output}{is the output file of DMRfinder.
+    - chr: Chromosome
+
+    - start: The positions of the start sites of the corresponding region
+
+    - end: The positions of the end sites of the corresponding region
+
+    - CpG: The number of CpG sites within the corresponding region
+
+    - Control.mu: The average methylation rate in control group
+
+    - Expt1.mu: The average methylation rate in experiment group
+
+    - Control.Expt1.diff: The methylation difference between control and experiment groups
+
+    - Control.Expt1.pval: P-value based on Wald-test.}
 
 \item{adjust.methods}{is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'}
 
@@ -26,7 +46,7 @@ metevalue.DMRfinder(
 \value{
 a dataframe, the columns are (in order):
 
-    - chr:   Chromosome
+    - chr: Chromosome
 
     - start: The positions of the start sites of the corresponding region
 
@@ -49,5 +69,10 @@ a dataframe, the columns are (in order):
     - e_value: The e-value of the corresponding region
 }
 \description{
-Perform the Evaluation for the BiSeq data.
+Perform the Evaluation for the DMRfinder data.
+}
+\examples{
+#### DMRfinder example ####'
+data(demo_DMRfinder_rate_combine)
+data(demo_DMRfinder_DMRs)
 }

@@ -11,7 +11,7 @@ varevalue.metilene(a, b, a_b, adjust.methods = "BH")
 
 chrom    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    g2    g2    g2    g2    g2
 
-i.e two key columns (chrom, pos) with several value columns in pairs.}
+i.e two key columns (chrom, pos) with several value columns in groups.}
 
 \item{b}{A data.frame object stores the data, the columns are (in order):
 
@@ -68,18 +68,16 @@ a dataframe, the columns are (in order):
 Perform the Evaluation for the Metilene data. The data file could be pre-handled by the evalue.metilene.chk function.
 }
 \examples{
-\donttest{
 #### methylKit example ####
-data(methyrate)
-data(met_all)
+data(demo_methylkit_methyrate)
+data(demo_methylkit_met_all)
 example_tempfiles = tempfile(c("rate_combine", "methylKit_DMR_raw"))
 tempdir()
-write.table(methyrate, file=example_tempfiles[1],
+write.table(demo_methylkit_methyrate, file=example_tempfiles[1],
       row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
-write.table (met_all, file=example_tempfiles[2],
+write.table (demo_methylkit_met_all, file=example_tempfiles[2],
       sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
 result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2],
       bheader = TRUE)
 str(result)
-}
 }
