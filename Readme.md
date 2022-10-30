@@ -8,6 +8,16 @@ DMRfinder) and general purpose.
 -   Metilene
 -   General purpose
 
+## INSTALL
+
+The `metevalue` pakcage is available on CRAN now, one could visit [metevalue](https://cran.r-project.org/web/packages/metevalue/) to get the CRAN version.
+
+```R
+install.package('metevalue')
+``` 
+
+Or use the `devtools` to install the development version on github. If you come across any problem when using this package, please file an issue/PR in this git project.
+
 ## MethylKit Example
 
 methylKit is a R package for DNA methylation analysis and annotation
