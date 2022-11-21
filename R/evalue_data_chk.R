@@ -17,22 +17,22 @@ evalue_buildin_sql <- function(a, b, method="metilene"){
   if (method == "metilene"){
     result = sqldf("SELECT * FROM b AS g
                  LEFT JOIN a AS f
-                 ON (f.pos<=g.end AND f.pos>=g.start AND f.chr = g.chr)")
+                 ON f.chr = g.chr where f.pos<=g.end AND f.pos>=g.start")
   }
   if (method == "biseq"){
     result = a_b = sqldf("SELECT * FROM b AS g
                  LEFT JOIN a AS f
-                 ON (f.pos <= g.end AND f.chr = g.chr AND f.chr = g.chr)")
+                 ON f.chr = g.chr where f.pos<=g.end AND f.pos>=g.start")
   }
   if (method == "methylKit"){
     result = a_b = sqldf("SELECT * FROM b AS g
                  LEFT JOIN a AS f
-                 ON (f.pos <= g.end AND f.chr = g.chr AND f.chr = g.chr)")
+                 ON f.chr = g.chr where f.pos<=g.end AND f.pos>=g.start")
   }
   if (method == "DMRfinder"){
     result = a_b = sqldf("SELECT * FROM b AS g
                  LEFT JOIN a AS f
-                 ON (f.pos <= g.end AND f.chr = g.chr AND f.chr = g.chr)")
+                 ON f.chr = g.chr where f.pos<=g.end AND f.pos>=g.start")
   }
   return(result);
 }
