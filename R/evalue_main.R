@@ -66,13 +66,12 @@
 #'       bheader = TRUE)
 #' str(result)
 varevalue.metilene <- function(a, b, a_b, adjust.methods='BH'){
-  innerf = Vectorize(function(x, innermu=0., innersig=1.){
-    vector_temp = na.omit(x)
+  innerf = function(x, innermu=0., innersig=1.){
+    vector_temp = na.omit(as.numeric(x))
     n = length(vector_temp)
     value = mean(vector_temp)
-    dnorm((value-innermu)*sqrt(n)/innersig)
-  }, vectorize.args = 'x'
-  )
+    dnorm(x=value, mean = innermu, sd = innersig/sqrt(n))
+  }
 
   innerlog = function(x){
     log(x[!is.na(x)])
@@ -117,7 +116,7 @@ varevalue.metilene <- function(a, b, a_b, adjust.methods='BH'){
     withe[i,3] = e_value
   }
   data_withe = left_join(b, withe)
-  e_adjust= 1 / p.adjust(1/data_withe$e_value, method=adjust.methods)
+  e_adjust= 1 / p.adjust(1/(data_withe$e_value), method=adjust.methods)
   data_withe = cbind(data_withe, e_adjust)
   return(data_withe);
 }
