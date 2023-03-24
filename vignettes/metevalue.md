@@ -86,7 +86,7 @@ Replace `[DMR]` to one of `methylKit`, `biseq`, `DMRfinder` or `metilene` accord
 
 methylKit is a R package for DNA methylation analysis and annotation from high-throughput bisulfite sequencing. The package is designed to deal with sequencing data from RRBS and its variants, but also target-capture methods and whole genome bisulfite sequencing.
 
-Currently, `evalue` package supports the e-value analytics of the `methylKit` output file.
+Currently, `metevalue` package supports the e-value analytics of the `methylKit` output file.
 
 
 ```r
@@ -372,54 +372,64 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 
 **methyrate Example**
 
-      chr     pos         g1        g1        g2        g2
-    chr21 9853296 0.58823529 0.8048048 0.8888889 0.8632911
-    chr21 9853326 0.70588235 0.7591463 0.8750000 0.7493404
+|chr   |     pos|        g1|        g1|        g2|        g2|
+|:-----|-------:|---------:|---------:|---------:|---------:|
+|chr21 | 9853296| 0.5882353| 0.8048048| 0.8888889| 0.8632911|
+|chr21 | 9853326| 0.7058824| 0.7591463| 0.8750000| 0.7493404|
+
 
 **methylKit.output Example**
 
-     chr    start      end  strand       pvalue       qvalue meth.diff
-    chr21  9927001  9928000      * 2.470354e-10 3.237155e-10 -34.07557
-    chr21  9944001  9945000      * 2.569844e-21 9.584500e-21 -40.19089
+|chr| start|     end| strand | pvalue| qvalue|meth.diff|
+|:-----|-------:|-------:|:------|------:|------:|---------:|
+|chr21 | 9927001| 9928000|*      |      0|      0| -34.07557|
+|chr21 | 9944001| 9945000|*      |      0|      0| -40.19089|
 
 ### Input Data Examples: BiSeq
 
 **methyrate Example**
 
-    chr    pos        g1        g1        g1  g1   g1         g2        g2        g2         g2         g2
-    chr1 870425 0.8205128 1.0000000 0.7000000 NaN  NaN 0.31250000 0.7419355 0.2461538 0.17948718 0.24137931
-    chr1 870443 0.8461538 1.0000000 0.7000000 NaN  NaN 0.37500000 0.3225806 0.2923077 0.05128205 0.24137931
+|chr  |    pos|        g1| g1|  g1|  g1|  g1|     g2|        g2|        g2|        g2|        g2|
+|:----|------:|---------:|--:|---:|---:|---:|------:|---------:|---------:|---------:|---------:|
+|chr1 | 870425| 0.8205128|  1| 0.7| NaN| NaN| 0.3125| 0.7419355| 0.2461538| 0.1794872| 0.2413793|
+|chr1 | 870443| 0.8461538|  1| 0.7| NaN| NaN| 0.3750| 0.3225806| 0.2923077| 0.0512821| 0.2413793|
+
 
 **biseq.output Example**
 
-    seqnames  start    end width strand     median.p median.meth.group1 median.meth.group2 median.meth.diff
-        chr1 872369 872616   248      * 7.535588e-02         0.93854625         0.86669896       0.07105241
-        chr1 875227 875470   244      * 2.587694e-06         0.51363149
+|seqnames |  start|    end| width|strand |  median.p| median.meth.group1| median.meth.group2| median.meth.diff|
+|:--------|------:|------:|-----:|:------|---------:|------------------:|------------------:|----------------:|
+|chr1     | 872369| 872616|   248|*      | 0.0753559|          0.9385462|          0.8666990|        0.0710524|
+|chr1     | 875227| 875470|   244|*      | 0.0000026|          0.5136315|          0.1991452|        0.2942668|
 
 ### Input Data Examples: DMRfinder
 
 **methyrate Example**
 
-     chr       pos        g1      g1.1        g2      g2.1
-    chr1 202833315 0.0000000 0.0000000 0.0000000 0.0000000
-    chr1 202833323 1.0000000 0.8095238 1.0000000 1.0000000
+|chr  |       pos| g1|      g1.1| g2| g2.1|
+|:----|---------:|--:|---------:|--:|----:|
+|chr1 | 202833315|  0| 0.0000000|  0|    0|
+|chr1 | 202833323|  1| 0.8095238|  1|    1|
 
 **DMRfinder.output Example**
 
-      chr    start      end CpG Control.mu  Exptl.mu Control..Exptl.diff Control..Exptl.pval
-     chr8 25164078 25164102   3  0.9241646 0.7803819          -0.1437827           0.0333849
-    chr21  9437432  9437538  14  0.7216685 0.1215506          -0.6001179
+|chr   |    start|      end| CpG| Control.mu|  Exptl.mu| Control..Exptl.diff| Control..Exptl.pval|
+|:-----|--------:|--------:|---:|----------:|---------:|-------------------:|-------------------:|
+|chr8  | 25164078| 25164102|   3|  0.9241646| 0.7803819|          -0.1437827|           0.0333849|
+|chr21 |  9437432|  9437538|  14|  0.7216685| 0.1215506|          -0.6001179|           0.0000000|
 
 ### Input Data Examples: DMRfinder
 
 **methyrate Example**
 
-    chrom     pos        g1 g1.1      g1.2      g1.3      g1.4      g1.5 g1.6        g1.7        g2 g2.1 g2.2 g2.3      g2.4      g2.5 g2.6 g2.7
-    chr21 9437433 0.9285714   NA 0.7222222 0.7500000 1.0000000 0.6666667  1.0   0.8695652 0.0000000 0.00    0 0.00 0.0000000 0.0000000   NA 0.00
-    chr21 9437445 1.0000000   NA 0.9444444 0.7500000 1.0000000 0.6666667  0.0   0.8695652 0.6111111 0.00    0 0.00 0.7333333 0.6000000   NA 0.75
+|chrom |     pos|        g1| g1.1|      g1.2| g1.3| g1.4|      g1.5| g1.6|      g1.7|        g2| g2.1| g2.2| g2.3|      g2.4| g2.5| g2.6| g2.7|
+|:-----|-------:|---------:|----:|---------:|----:|----:|---------:|----:|---------:|---------:|----:|----:|----:|---------:|----:|----:|----:|
+|chr21 | 9437433| 0.9285714|   NA| 0.7222222| 0.75|    1| 0.6666667|    1| 0.8695652| 0.0000000|    0|    0|    0| 0.0000000|  0.0|   NA| 0.00|
+|chr21 | 9437445| 1.0000000|   NA| 0.9444444| 0.75|    1| 0.6666667|    0| 0.8695652| 0.6111111|    0|    0|    0| 0.7333333|  0.6|   NA| 0.75|
 
 **metilene.output Example**
 
-         chr   start     end    q-value  methyl.diff       CpGs          p      p2       m1
-    1  chr21 9437432 9437540 2.4918e-25  0.610989 26 3.8636e-14 2.2290e-29 0.73705 0.126060
-    2  chr21 9708982 9709189 4.6189e-29  0.475630 28 4.3410e-14 4.1318e-33 0.58862 0.112990
+| chr  | start  |  end  |  q-value | methyl.diff  |  CpGs  |  p | p2  | m1 | m2 |
+|:-----|-------:|-------:|--:|--------:|--:|--:|--:|-------:|-------:|
+|chr21 | 9437432| 9437540|  0| 0.610989| 26|  0|  0| 0.73705| 0.12606|
+|chr21 | 9708982| 9709189|  0| 0.475630| 28|  0|  0| 0.58862| 0.11299|
