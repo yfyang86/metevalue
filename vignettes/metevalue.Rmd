@@ -26,7 +26,7 @@ For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calc
 
 | DMR | Method | methyrate Example | Method.output Example |
 |:-----|:-----|:-----|:-----|
-| MethylKit | `metevalue.methylKit` | `data(demo_methylkit_methyrate)` |  ` data(demo_methylkit_met_all)` | 
+| MethylKit | `metevalue.methylKit` | `data(demo_methylkit_methyrate)` |  `data(demo_methylkit_met_all)` | 
 | BiSeq | `metevalue.biseq` | `data(demo_biseq_methyrate)` | `data(demo_biseq_DMR)` |
 | DMRfinder | `metevalue.DMRfinder`|  `data(demo_DMRfinder_rate_combine)` | `data(demo_DMRfinder_DMRs)` |
 | Metilene | `metevalue.metilene` | `data(demo_metilene_input)` | `data(demo_metilene_out)` |
@@ -58,24 +58,25 @@ Here  `[DMR]` coudle be one of `methylKit`, `biseq`, `DMRfinder` or `metilene`.
 
 ## Call by R data frames
 
-We provide the `evalue_buildin_var_fmt_nm` and `varevalue.metilene` function to handle the general purpose e-value alculation in DNA methylation studiesc:
+We provide the `evalue_buildin_var_fmt_nm` and `varevalue.metilene` function to handle the general DMR e-value alculation in DNA methylation studiesc:
 
 ```{r eval=FALSE}
 # Here  `[DMR]` coudle be one of `methylKit`, `biseq`, `DMRfinder` or `metilene`.
 method_in_use = "[DMR]"
 result = evalue_buildin_var_fmt_nm(
-              methyrate,
-              DMR_evalue_output,
-              method = method_in_use)
-result = list(a = result$a, 
-              b = result$b, 
+          methyrate,              # Data frame of the methylation rate
+          DMR_evalue_output,      # Data frame of output data corresponding to the
+                                  # "method" option
+          method = method_in_use) # DMR: "metilene", "biseq", "DMRfinder" or "methylKit"
+result = list(a = result$a,
+              b = result$b,
               a_b = evalue_buildin_sql(result$a, result$b, method = method_in_use))
 result = varevalue.metilene(result$a, result$b, result$a_b)
 ```
 
 Replace `[DMR]` to one of `methylKit`, `biseq`, `DMRfinder` or `metilene` accordingly.
 
-> Note: for different `[DMR]`, the `data.frame` schemas are **different**!!! Check the R help document for details. 
+> !Notice: for different `[DMR]`, the `data.frame` schemas are **different**!!! Check the R help document for details. 
 
 ## MethylKit Example
 
