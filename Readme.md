@@ -30,7 +30,7 @@ Details are as follows.
 
 We design the `metevalue.[DMR]` function to accept similar parameter patterns:
 
-```{r eval=FALSE}
+``` r
 metevalue.[DMR](
   methyrate,                # Output file name of [DMR]
   [DMR].output,             # Output file name of [DMR] with e-value of each region
@@ -47,7 +47,7 @@ Here  `[DMR]` coudle be one of `methylKit`, `biseq`, `DMRfinder` or `metilene`.
 
 We provide the `evalue_buildin_var_fmt_nm` and `varevalue.metilene` function to handle the general DMR e-value alculation in DNA methylation studiesc:
 
-```{r eval=FALSE}
+``` r
 # Here  `[DMR]` coudle be one of `methylKit`, `biseq`, `DMRfinder` or `metilene`.
 method_in_use = "[DMR]"
 result = evalue_buildin_var_fmt_nm(
