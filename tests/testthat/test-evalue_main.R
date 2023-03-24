@@ -31,7 +31,6 @@ UNITEST_evalue_main_biseq <- function(){
   return(sprintf('%0.5f', result[1,"e_adjust"]));
 }
 
-
 test_that("Metevalue works", {
   expect_equal(UNITEST_evalue_main_methylkit(), "18.74770")
   expect_equal(UNITEST_evalue_main_biseq(), "28077.12788")

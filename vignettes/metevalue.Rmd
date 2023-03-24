@@ -1,8 +1,6 @@
 ---
 title: "E-value in DNA methylation studies"
-output: 
-  md_document:
-    variant: markdown_github
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{E-value in DNA methylation studies}
   %\VignetteEngine{knitr::rmarkdown}
@@ -30,19 +28,13 @@ methylKit is a R package for DNA methylation analysis and annotation from high-t
 
 Currently, `evalue` package supports the e-value analytics of the `methylKit` output file.
 
-```{r setup}
+```{r eval=FALSE}
 library(metevalue)
 
 ####Simulation Data ####
 set.seed(1234)
 
-simu_g_value <- function(n, r = 0.1){
-  x = runif(n)
-  x[runif(n) <= r] = 0
-  return(x);
-}
-
-
+# methylKit is a Bioconductor package
 library(methylKit)
 file.list=list( system.file("extdata", 
                             "test1.myCpG.txt", package = "methylKit"),
@@ -82,14 +74,14 @@ write.table (met_all, file=example_tempfiles[2], sep ="\t", row.names =F, col.na
 
 `evalue.methylKit` function could be used to tackle the problem.
 
-```{r methylkit}
+```{r eval=FALSE}
 result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2], bheader = T)
 str(result)
 ```
 
 Alternatively, one could use the build-in functions to derive functions which avoid the file operation:
 
-```{r methylkit-function}
+```{r eval=FALSE}
 result = evalue_buildin_var_fmt_nm(methyrate, met_all, method="methylKit")
 result = list(a = result$a, 
               b = result$b, 
