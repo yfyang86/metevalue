@@ -13,7 +13,7 @@ License: Apache License (>= 2)
 RoxygenNote: 7.2.1
 Depends: sqldf, psych, dplyr, R (>= 3.5.0)
 Encoding: UTF-8
-Suggests: rmarkdown, knitr, ggplot2, tidyr, testthat (>= 3.0.0)
+Suggests: rmarkdown, prettydoc, knitr, ggplot2, tidyr, testthat (>= 3.0.0)
 VignetteBuilder: knitr
 LazyData: true
 Config/testthat/edition: 3

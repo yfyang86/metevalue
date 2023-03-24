@@ -18,9 +18,10 @@ knitr::opts_chunk$set(
 #  # Here  `[DMR]` coudle be one of `methylKit`, `biseq`, `DMRfinder` or `metilene`.
 #  method_in_use = "[DMR]"
 #  result = evalue_buildin_var_fmt_nm(
-#                methyrate,
-#                DMR_evalue_output,
-#                method = method_in_use)
+#            methyrate,              # Data frame of the methylation rate
+#            DMR_evalue_output,      # Data frame of output data corresponding to the
+#                                    # "method" option
+#            method = method_in_use) # DMR: "metilene", "biseq", "DMRfinder" or "methylKit"
 #  result = list(a = result$a,
 #                b = result$b,
 #                a_b = evalue_buildin_sql(result$a, result$b, method = method_in_use))
