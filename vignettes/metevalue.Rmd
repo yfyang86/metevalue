@@ -421,7 +421,7 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 
 **metilene.output Example**
 
-|chr   |start   |  end  |  q-value |methyl.diff  |     CpGs    |      p   |   p2  |     m1|
+| chr  | start  |  end  |  q-value | methyl.diff  |  CpGs  |  p | p2  | m1 |
 |:-----|-------:|-------:|--:|--------:|--:|--:|--:|-------:|-------:|
-|chr21 | 9437432| 9437540|  0| 0.610989| 26|  0|  0| 0.73705| 0.12606|
-|chr21 | 9708982| 9709189|  0| 0.475630| 28|  0|  0| 0.58862| 0.11299|
+| chr21 | 9437432| 9437540|  0| 0.610989| 26|  0|  0| 0.73705| 0.12606|
+| chr21 | 9708982| 9709189|  0| 0.475630| 28|  0|  0| 0.58862| 0.11299|
