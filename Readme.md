@@ -72,7 +72,7 @@ from high-throughput bisulfite sequencing. The package is designed to
 deal with sequencing data from RRBS and its variants, but also
 target-capture methods and whole genome bisulfite sequencing.
 
-Currently, `evalue` package supports the e-value analytics of the
+Currently, `metevalue` package supports the e-value analytics of the
 `methylKit` output file.
 
 ``` r
