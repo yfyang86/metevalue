@@ -77,24 +77,9 @@ Currently, `evalue` package supports the e-value analytics of the
 
 ``` r
 library(metevalue)
-#> Loading required package: sqldf
-#> Loading required package: gsubfn
-#> Loading required package: proto
-#> Loading required package: RSQLite
-#> Loading required package: psych
-#> Loading required package: dplyr
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 
 ####Simulation Data ####
 set.seed(1234)
-
 simu_g_value <- function(n, r = 0.1){
   x = runif(n)
   x[runif(n) <= r] = 0
@@ -103,49 +88,6 @@ simu_g_value <- function(n, r = 0.1){
 
 
 library(methylKit)
-#> Loading required package: GenomicRanges
-#> Loading required package: stats4
-#> Loading required package: BiocGenerics
-#> 
-#> Attaching package: 'BiocGenerics'
-#> The following objects are masked from 'package:dplyr':
-#> 
-#>     combine, intersect, setdiff, union
-#> The following objects are masked from 'package:stats':
-#> 
-#>     IQR, mad, sd, var, xtabs
-#> The following objects are masked from 'package:base':
-#> 
-#>     anyDuplicated, append, as.data.frame, basename, cbind, colnames,
-#>     dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
-#>     grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
-#>     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
-#>     rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
-#>     union, unique, unsplit, which.max, which.min
-#> Loading required package: S4Vectors
-#> 
-#> Attaching package: 'S4Vectors'
-#> The following objects are masked from 'package:dplyr':
-#> 
-#>     first, rename
-#> The following objects are masked from 'package:base':
-#> 
-#>     expand.grid, I, unname
-#> Loading required package: IRanges
-#> 
-#> Attaching package: 'IRanges'
-#> The following objects are masked from 'package:dplyr':
-#> 
-#>     collapse, desc, slice
-#> The following objects are masked from 'package:psych':
-#> 
-#>     distance, reflect
-#> Loading required package: GenomeInfoDb
-#> 
-#> Attaching package: 'methylKit'
-#> The following object is masked from 'package:dplyr':
-#> 
-#>     select
 file.list=list( system.file("extdata", 
                             "test1.myCpG.txt", package = "methylKit"),
                 system.file("extdata",
@@ -163,14 +105,8 @@ myobj=methRead(file.list,
                treatment=c(1,1,0,0),
                context="CpG"
 )
-#> Received list of locations.
-#> Reading file.
-#> Reading file.
-#> Reading file.
-#> Reading file.
 
 meth=unite(myobj, destrand=FALSE)
-#> uniting...
 meth.C <- getData(meth)[,seq(6,ncol(meth),3)]
 meth.T <- getData(meth)[,seq(7,ncol(meth),3)]
 mr <- meth.C/(meth.C + meth.T)
@@ -179,16 +115,14 @@ methyrate = data.frame(chr_pos,mr)
 names(methyrate) = c('chr', 'pos', rep('g1',2), rep('g2',2))
 region<-tileMethylCounts(myobj)
 meth<-unite(region,destrand=F)
-#> uniting...
 myDiff<-calculateDiffMeth(meth)
 #> two groups detected:
-#>  will calculate methylation difference as the difference of
-#> treatment (group: 1) - control (group: 0)
+#>    will calculate methylation difference as the difference of
+#>    treatment (group: 1) - control (group: 0)
 met_all<-getMethylDiff(myDiff,type="all")
 
 example_tempfiles = tempfile(c("rate_combine", "methylKit_DMR_raw"))
 tempdir()
-#> [1] "/var/folders/5_/cwswxkd94mncymd3qw_wv2b40000gn/T//Rtmpl3zM21"
 write.table(methyrate, file=example_tempfiles[1], row.names=F, col.names=T, quote=F, sep='\t')
 write.table (met_all, file=example_tempfiles[2], sep ="\t", row.names =F, col.names =T, quote =F)
 ```
