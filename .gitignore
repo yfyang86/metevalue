@@ -49,3 +49,5 @@ Thumbs.db
 *.so
 *.o
 *.dylib
+/doc/
+/Meta/

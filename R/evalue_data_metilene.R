@@ -1,5 +1,5 @@
 #' Evalue of the Metilene data format
-#' @param input_filename_a metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
+#' @param methyrate metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
 #' For exampe:
 #'
 #' chrom	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
@@ -7,7 +7,7 @@
 #' chrom and pos are keys;
 #' g1 g1 g2 g2 must be stored in groups.
 #'
-#' @param input_filename_b  metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
+#' @param metilene.output  metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
 #' The columns are (in order):
 #'
 #'     - chr: Chromosome
@@ -32,7 +32,7 @@
 #'
 #' @param adjust.methods is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'
 #' @param sep seperator, default is the TAB key.
-#' @param bheader a logical value indicating whether the input_filename_b file contains the names of the variables as its first line. By default, bheader = FALSE.
+#' @param bheader a logical value indicating whether the metilene.output file contains the names of the variables as its first line. By default, bheader = FALSE.
 #' @return a dataframe, the columns are (in order):
 #'
 #'     - chr:   Chromosome
@@ -60,8 +60,8 @@
 #' #### metilene example ####'
 #' data(demo_metilene_input)
 #' data(demo_metilene_out)
-metevalue.metilene <- function(input_filename_a, input_filename_b, adjust.methods='BH', sep = "\t", bheader = FALSE){
-    re = metevalue.metilene.chk (input_filename_a, input_filename_b, sep, bheader)
+metevalue.metilene <- function(methyrate, metilene.output, adjust.methods='BH', sep = "\t", bheader = FALSE){
+    re = metevalue.metilene.chk (methyrate, metilene.output, sep, bheader)
 return(varevalue.metilene(re$file_a, re$file_b, re$file_a_b, adjust.methods=adjust.methods));
 }
 
