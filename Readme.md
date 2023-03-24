@@ -18,6 +18,70 @@ install.package('metevalue')
 
 Or use the `devtools` to install the development version on github. If you come across any problem when using this package, please file an issue/PR in this git project.
 
+In this package, we provide e-value for four DMR (differentially methylated region) detection tools (MethylKit, Metilene, BiSeq and DMRfinder) and general purpose.
+
+-   MethylKit
+-   BiSeq
+-   DMRfinder
+-   Metilene
+-   General purpose
+
+For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calculation is conducted by the `metevalue.[DMR]` function. 
+
+| DMR | Method | methyrate Example | Method.output Example |
+|:-----|:-----|:-----|:-----|
+| MethylKit | `metevalue.methylKit` | `data(demo_methylkit_methyrate)` |  ` data(demo_methylkit_met_all)` | 
+| BiSeq | `metevalue.biseq` | `data(demo_biseq_methyrate)` | `data(demo_biseq_DMR)` |
+| DMRfinder | `metevalue.DMRfinder`|  `data(demo_DMRfinder_rate_combine)` | `data(demo_DMRfinder_DMRs)` |
+| Metilene | `metevalue.metilene` | `data(demo_metilene_input)` | `data(demo_metilene_out)` |
+
+Two routines are supported to calculate the combined e-value:
+
+- Call by **files**: Here the `files` include the outputs of given `DMR` packages and its corresponding e-value of each regions;
+- Call by **R data frames**: Here the `R data frames` are corresponding `data.frame` objects.
+
+Details are as follows.
+
+
+## Call by files
+
+We design the `metevalue.[DMR]` function to accept similar parameter patterns:
+
+```R
+metevalue.[DMR](
+  methyrate,                # Output file name of [DMR]
+  [DMR].output,             # Output file name of [DMR] with e-value of each region
+  adjust.methods = "BH",    # Adjust methods of e-value
+  sep = "\t",               # seperator, default is the TAB key.
+  bheader = FALSE           # A logical value indicating whether the [DMR].output file
+                            # contains the names of the variables as its first line
+)
+```
+
+Here  `[DMR]` coudle be one of `methylKit`, `biseq`, `DMRfinder` or `metilene`.
+
+## Call by R data frames
+
+We provide the `evalue_buildin_var_fmt_nm` and `varevalue.metilene` function to handle the general purpose e-value alculation in DNA methylation studiesc:
+
+```R
+# Here  `[DMR]` coudle be one of `methylKit`, `biseq`, `DMRfinder` or `metilene`.
+method_in_use = "[DMR]"
+result = evalue_buildin_var_fmt_nm(
+              methyrate,
+              DMR_evalue_output,
+              method = method_in_use)
+result = list(a = result$a, 
+              b = result$b, 
+              a_b = evalue_buildin_sql(result$a, result$b, method = method_in_use))
+result = varevalue.metilene(result$a, result$b, result$a_b)
+```
+
+Replace `[DMR]` to one of `methylKit`, `biseq`, `DMRfinder` or `metilene` accordingly.
+
+> Note: for different `[DMR]`, the `data.frame` schemas are **different**!!! Check the R help document for details. 
+
+
 ## MethylKit Example
 
 methylKit is a R package for DNA methylation analysis and annotation
