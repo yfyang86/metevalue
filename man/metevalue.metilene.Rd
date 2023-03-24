@@ -5,15 +5,15 @@
 \title{Evalue of the Metilene data format}
 \usage{
 metevalue.metilene(
-  input_filename_a,
-  input_filename_b,
+  methyrate,
+  metilene.output,
   adjust.methods = "BH",
   sep = "\\t",
   bheader = FALSE
 )
 }
 \arguments{
-\item{input_filename_a}{metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
+\item{methyrate}{metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
 For exampe:
 
 chrom    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    g2    g2    g2    g2    g2
@@ -21,7 +21,7 @@ chrom    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2  
 chrom and pos are keys;
 g1 g1 g2 g2 must be stored in groups.}
 
-\item{input_filename_b}{metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
+\item{metilene.output}{metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
 The columns are (in order):
 
     - chr: Chromosome
@@ -48,7 +48,7 @@ The columns are (in order):
 
 \item{sep}{seperator, default is the TAB key.}
 
-\item{bheader}{a logical value indicating whether the input_filename_b file contains the names of the variables as its first line. By default, bheader = FALSE.}
+\item{bheader}{a logical value indicating whether the metilene.output file contains the names of the variables as its first line. By default, bheader = FALSE.}
 }
 \value{
 a dataframe, the columns are (in order):

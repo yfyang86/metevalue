@@ -1,8 +1,8 @@
 ---
-title: "E-value Adjustment in the methylation analysis"
+title: "E-value in DNA methylation studies"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{E-value Adjustment in the methylation analysis}
+  %\VignetteIndexEntry{E-value in DNA methylation studies}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,25 +14,82 @@ knitr::opts_chunk$set(
 )
 ```
 
-## methylKit Example
+In this package, we provide e-value for four DMR (differentially methylated region) detection tools (MethylKit, Metilene, BiSeq and DMRfinder) and general purpose.
+
+-   MethylKit
+-   BiSeq
+-   DMRfinder
+-   Metilene
+-   General purpose
+
+For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calculation is conducted by the `metevalue.[DMR]` function. 
+
+| DMR | Method | methyrate Example | Method.output Example |
+|:-----|:-----|:-----|:-----|
+| MethylKit | `metevalue.methylKit` | `data(demo_methylkit_methyrate)` |  ` data(demo_methylkit_met_all)` | 
+| BiSeq | `metevalue.biseq` | `data(demo_biseq_methyrate)` | `data(demo_biseq_DMR)` |
+| DMRfinder | `metevalue.DMRfinder`|  `data(demo_DMRfinder_rate_combine)` | `data(demo_DMRfinder_DMRs)` |
+| Metilene | `metevalue.metilene` | `data(demo_metilene_input)` | `data(demo_metilene_out)` |
+
+Two routines are supported to calculate the combined e-value:
+
+- Call by **files**: Here the `files` include the outputs of given `DMR` packages and its corresponding e-value of each regions;
+- Call by **R data frames**: Here the `R data frames` are corresponding `data.frame` objects.
+
+Details are as follows.
+
+
+## Call by files
+
+We design the `metevalue.[DMR]` function to accept similar parameter patterns:
+
+```{r eval=FALSE}
+metevalue.[DMR](
+  methyrate,                # Output file name of [DMR]
+  [DMR].output,             # Output file name of [DMR] with e-value of each region
+  adjust.methods = "BH",    # Adjust methods of e-value
+  sep = "\t",               # seperator, default is the TAB key.
+  bheader = FALSE           # A logical value indicating whether the [DMR].output file
+                            # contains the names of the variables as its first line
+)
+```
+
+Here  `[DMR]` coudle be one of `methylKit`, `biseq`, `DMRfinder` or `metilene`.
+
+## Call by R data frames
+
+We provide the `evalue_buildin_var_fmt_nm` and `varevalue.metilene` function to handle the general purpose e-value alculation in DNA methylation studiesc:
+
+```{r eval=FALSE}
+# Here  `[DMR]` coudle be one of `methylKit`, `biseq`, `DMRfinder` or `metilene`.
+method_in_use = "[DMR]"
+result = evalue_buildin_var_fmt_nm(
+              methyrate,
+              DMR_evalue_output,
+              method = method_in_use)
+result = list(a = result$a, 
+              b = result$b, 
+              a_b = evalue_buildin_sql(result$a, result$b, method = method_in_use))
+result = varevalue.metilene(result$a, result$b, result$a_b)
+```
+
+Replace `[DMR]` to one of `methylKit`, `biseq`, `DMRfinder` or `metilene` accordingly.
+
+> Note: for different `[DMR]`, the `data.frame` schemas are **different**!!! Check the R help document for details. 
+
+## MethylKit Example
 
 methylKit is a R package for DNA methylation analysis and annotation from high-throughput bisulfite sequencing. The package is designed to deal with sequencing data from RRBS and its variants, but also target-capture methods and whole genome bisulfite sequencing.
 
 Currently, `evalue` package supports the e-value analytics of the `methylKit` output file.
 
-```{r setup}
-library(evalue)
+```{r eval=FALSE}
+library(metevalue)
 
 ####Simulation Data ####
 set.seed(1234)
 
-simu_g_value <- function(n, r = 0.1){
-  x = runif(n)
-  x[runif(n) <= r] = 0
-  return(x);
-}
-
-
+# methylKit is a Bioconductor package
 library(methylKit)
 file.list=list( system.file("extdata", 
                             "test1.myCpG.txt", package = "methylKit"),
@@ -72,14 +129,14 @@ write.table (met_all, file=example_tempfiles[2], sep ="\t", row.names =F, col.na
 
 `evalue.methylKit` function could be used to tackle the problem.
 
-```{r methylkit}
-result = evalue.methylKit(example_tempfiles[1], example_tempfiles[2], bheader = T)
+```{r eval=FALSE}
+result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2], bheader = T)
 str(result)
 ```
 
 Alternatively, one could use the build-in functions to derive functions which avoid the file operation:
 
-```{r methylkit-function}
+```{r eval=FALSE}
 result = evalue_buildin_var_fmt_nm(methyrate, met_all, method="methylKit")
 result = list(a = result$a, 
               b = result$b, 
@@ -88,7 +145,133 @@ result = varevalue.metilene(result$a, result$b, result$a_b)
 str(result)
 ```
 
-## General purpose of E-value
+## BiSeq Example
+
+First, we load the methylation data at CpG site levels from 'BiSeq' package. Then we clustered CpG sites into DMRs using 'BiSeq'.
+
+```{r eval=FALSE}
+library(BiSeq)
+library(dplyr)
+data(rrbs)
+rrbs.rel <- rawToRel(rrbs)
+methyrate <- methLevel(rrbs.rel)
+methyrate <- data.frame(methyrate)
+methyrateq = cbind(rows = as.numeric(row.names(methyrate)), methyrate)
+methypos = data.frame(rows = as.numeric(row.names(methyrate)), rowRanges(rrbs))
+methyrate = left_join(methypos, methyrateq)
+methyrate = methyrate[,c(2,3,7:16)]
+names(methyrate) <- c('chr','pos',rep('g1',5),rep('g2',5))
+
+rrbs.clust.unlim <- clusterSites(object = rrbs,perc.samples = 3/4,min.sites = 20,max.dist = 100)
+
+clusterSitesToGR(rrbs.clust.unlim)
+ind.cov <- totalReads(rrbs.clust.unlim) > 0
+
+quant <- quantile(totalReads(rrbs.clust.unlim)[ind.cov])
+rrbs.clust.lim <- limitCov(rrbs.clust.unlim, maxCov = quant)
+predictedMeth <- predictMeth(object = rrbs.clust.lim)
+
+test<- predictedMeth[, colData(predictedMeth)$group == "test"]
+control <- predictedMeth[, colData(predictedMeth)$group == "control"]
+mean.test <- rowMeans(methLevel(test))
+mean.control <- rowMeans(methLevel(control))
+
+betaResults <- betaRegression(formula = ~group,link = "probit",object = predictedMeth,type = "BR")
+vario <- makeVariogram(betaResults)
+vario.sm <- smoothVariogram(vario, sill = 0.9)
+
+locCor <- estLocCor(vario.sm)
+clusters.rej <- testClusters(locCor)
+clusters.trimmed <- trimClusters(clusters.rej)
+DMRs <- findDMRs(clusters.trimmed,max.dist = 100,diff.dir = TRUE)
+
+
+example_tempfiles = tempfile(c('rate_combine', 'BiSeq_DMR'))
+write.table(methyrate, example_tempfiles[1], row.names=F, col.names=T, quote=F, sep='\t')
+write.table(DMRs, example_tempfiles[2], quote=F, row.names = F,col.names = F, sep = '\t')
+```
+
+Finally, we added E-values and adjusted E-values as additional columns to the output file of 'BiSeq'.`BiSeq_evalue` function could be used to tackle the problem.
+
+```{r eval=FALSE}
+hh <- data.frame(DMRs)
+result = evalue_buildin_var_fmt_nm(rate_combine, hh, method="biseq")
+result = list(a = result$a,  b = result$b, 
+              a_b = evalue_buildin_sql(result$a, result$b,method="biseq"))
+result = varevalue.metilene(result$a, result$b, result$a_b)
+str(result)
+```
+
+## DMRfinder Example
+
+Given the input file
+
+-   `rate_combine_DMRfinder`: a file containing methylation rates at each CpG site
+
+-   `DMRfinder_DMR`: the output file from 'DMRfinder'
+
+```{r eval=FALSE}
+rate_combine <- read.table("rate_combine_DMRfinder", header = T)
+head(rate_combine)
+
+DMRs <- read.table("DMRfinder_DMR", header = T)
+head(DMRs)
+
+```
+
+Adding E-values and adjusted E-values as additional columns to file 'DMRfinder_DMR'
+
+```{r eval=FALSE}
+result <- evalue.DMRfinder('rate_combine_DMRfinder', 'DMRfinder_DMR')
+head(result)
+```
+
+Alternatively, function `varevalue.metilene` can also provides e-value and adjusted e-value.
+
+```{r eval=FALSE}
+result = evalue_buildin_var_fmt_nm(rate_combine, DMRs, method="DMRfinder")
+result = list(a = result$a, 
+              b = result$b, 
+              a_b = evalue_buildin_sql(result$a, result$b, method="DMRfinder"))
+result = varevalue.metilene(result$a, result$b, result$a_b)
+head(result)
+```
+
+## Metilene Example
+
+Given
+
+-   `metilene.input`: the input file of `Metilene` containing methylation rates at each CpG site
+-   `metilene.out`: the output file of `Metilene`
+
+```{r eval=FALSE}
+input <- read.table("metilene.input", header = T)
+head(input)
+
+out <- read.table("metilene.out", header = F)
+head(out)
+
+```
+
+Adding E-values and adjusted E-values as additional columns to `metilene.out`
+
+```{r eval=FALSE}
+result <- evalue.metilene('metilene.input', 'metilene.out')
+head(result)
+```
+
+Alternatively, function `varevalue.metilene` can also provides e-value and adjusted e-value.
+
+```{r eval=FALSE}
+result = evalue_buildin_var_fmt_nm(input, out, method="metilene")
+result = list(a = result$a, 
+              b = result$b, 
+              a_b = evalue_buildin_sql(result$a, result$b, method="metilene"))
+result = varevalue.metilene(result$a, result$b, result$a_b)
+head(result)
+```
+
+## General purpose
 
 The following program implement the Figure 1 in `Combining e-values and p-values` by Vovk and Wang. We modified the original `python` code to reproduce the result. The same vectorization is implemented in the R function `varevalue.metilene`. General purpose e-value calculation could use this program to archieve better performances.
 
