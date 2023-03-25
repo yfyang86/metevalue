@@ -370,10 +370,9 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 |chr21 | 9853326| 0.7058824| 0.7591463| 0.8750000| 0.7493404|
 
 
--- chr: string Chromosome
--- pos: int Position
--- g1~g2: methylation rate data in groups, repeat 8 times. Notice that there are "NaN" within the
-feature columns.
+- chr: string Chromosome
+- pos: int Position
+- g1~g2: methylation rate data in groups, repeat 8 times. Notice that there are "NaN" within the feature columns.
 
 
 **methylKit.output Example**
@@ -383,6 +382,16 @@ feature columns.
 |chr21 | 9927001| 9928000|*      |      0|      0| -34.07557|
 |chr21 | 9944001| 9945000|*      |      0|      0| -40.19089|
 
+
+- chr: Chromosome
+- start: The positions of the start sites of the corresponding region
+- end: The positions of the end sites of the corresponding region
+- strand: Strand
+- pvalue: The adjusted p-value based on BH method in MWU-test
+- qvalue: cutoff for qvalue of differential methylation statistic
+- methyl.diff: The difference between the group means of methylation level
+
+
 ### Input Data Examples: BiSeq
 
 **methyrate Example**
@@ -391,6 +400,11 @@ feature columns.
 |:----|------:|---------:|--:|---:|---:|---:|------:|---------:|---------:|---------:|---------:|
 |chr1 | 870425| 0.8205128|  1| 0.7| NaN| NaN| 0.3125| 0.7419355| 0.2461538| 0.1794872| 0.2413793|
 |chr1 | 870443| 0.8461538|  1| 0.7| NaN| NaN| 0.3750| 0.3225806| 0.2923077| 0.0512821| 0.2413793|
+
+
+- chr: Chromosome
+- pos: int Position
+- g1~g2: methylation rate data in groups
 
 
 **biseq.output Example**
@@ -409,12 +423,28 @@ feature columns.
 |chr1 | 202833315|  0| 0.0000000|  0|    0|
 |chr1 | 202833323|  1| 0.8095238|  1|    1|
 
+
+- chr: Chromosome
+- pos: int Position
+- g1~g2: methylation rate data in groups
+
 **DMRfinder.output Example**
 
-|chr   |    start|      end| CpG| Control.mu|  Exptl.mu| Control..Exptl.diff| Control..Exptl.pval|
+|chr   |    start|      end| CpG| Control.mu|  Exptl.mu| Control.Exptl.diff| Control.Exptl.pval|
 |:-----|--------:|--------:|---:|----------:|---------:|-------------------:|-------------------:|
 |chr8  | 25164078| 25164102|   3|  0.9241646| 0.7803819|          -0.1437827|           0.0333849|
 |chr21 |  9437432|  9437538|  14|  0.7216685| 0.1215506|          -0.6001179|           0.0000000|
+
+
+- chr: Chromosome
+- start: The positions of the start sites of the corresponding region
+- end: The positions of the end sites of the corresponding region
+- CpG: The number of CpG sites within the corresponding region
+- Control.mu: The average methylation rate in control group
+- Expt1.mu: The average methylation rate in experiment group
+- Control.Expt1.diff: The methylation difference between control and experiment groups
+- Control.Expt1.pval: P-value based on Wald-test
+
 
 ### Input Data Examples: DMRfinder
 
@@ -425,9 +455,26 @@ feature columns.
 |chr21 | 9437433| 0.9285714|   NA| 0.7222222| 0.75|    1| 0.6666667|    1| 0.8695652| 0.0000000|    0|    0|    0| 0.0000000|  0.0|   NA| 0.00|
 |chr21 | 9437445| 1.0000000|   NA| 0.9444444| 0.75|    1| 0.6666667|    0| 0.8695652| 0.6111111|    0|    0|    0| 0.7333333|  0.6|   NA| 0.75|
 
+
+- chr: Chromosome
+- pos: int Position
+- g1~g2: methylation rate data in groups
+
+
 **metilene.output Example**
 
 | chr  | start  |  end  |  q-value | methyl.diff  |  CpGs  |  p | p2  | m1 | m2 |
 |:-----|-------:|-------:|--:|--------:|--:|--:|--:|-------:|-------:|
 |chr21 | 9437432| 9437540|  0| 0.610989| 26|  0|  0| 0.73705| 0.12606|
 |chr21 | 9708982| 9709189|  0| 0.475630| 28|  0|  0| 0.58862| 0.11299|
+
+- chr: Chromosome
+- start: The positions of the start sites of the corresponding region
+- end: The positions of the end sites of the corresponding region
+- q-value: The adjusted p-value based on BH method in MWU-test
+- methyl.diff: The difference between the group means of methylation level
+- CpGs: The number of CpG sites within the corresponding region
+- p : p-value based on MWU-test
+- p2: p-value based on 2D KS-test
+- m1: The absolute mean methylation level for the corresponding segment of group 1
+- m2: The absolute mean methylation level for the corresponding segment of group 2
