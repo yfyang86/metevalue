@@ -157,7 +157,7 @@ evalue_buildin_var_fmt_nm <- function(a, b, method="metilene"){
 #' chrom	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
 #' chrom and pos are keys;
-#' g1 g1 g2 g2 must be stored in pairs.
+#' g1 g1 g2 g2 are samples in two experiment groups.
 
 #' @param input_filename_b  metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
 #' The columns are (in order):
@@ -206,7 +206,7 @@ return(list(file_a = re$a, file_b = re$b, file_a_b = evalue_buildin_sql(re$a, re
 #' chrom	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
 #' chrom and pos are keys;
-#' g1 g1 g2 g2 must be stored in pairs.
+#' g1 g1 g2 g2 are samples in two experiment groups.
 
 #' @param input_filename_b  metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
 #' The columns are (in order):
@@ -250,7 +250,7 @@ metevalue.biseq.chk <- function(input_filename_a, input_filename_b, sep = "\t", 
 #' chrom	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
 #' chrom and pos are keys;
-#' g1 g1 g2 g2 must be stored in pairs.
+#' g1 g1 g2 g2 are samples in two experiment groups.
 #' @param input_filename_b  the output file of methylKit. a methylDiff or methylDiffDB object containing the differential methylated locations satisfying the criteria.
 #' The columns are (in order):
 #'
@@ -290,7 +290,7 @@ metevalue.methylKit.chk <- function(input_filename_a, input_filename_b, sep = "\
 #' chrom	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
 #' chrom and pos are keys;
-#' g1 g1 g2 g2 must be stored in pairs.
+#' g1 g1 g2 g2 are samples in two experiment groups.
 
 #' @param input_filename_b  the output file of DMRfinder.
 #' The columns are (in order):
