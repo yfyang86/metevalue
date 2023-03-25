@@ -72,7 +72,7 @@ metevalue.[DMR](
 )
 ```
 
-Here `[DMR]` coudle be one of `methylKit`, `biseq`, `DMRfinder` or `metilene`.
+Here `[DMR]` could be one of `methylKit`, `biseq`, `DMRfinder` or `metilene`.
 
 ## Call by R data frames
 
@@ -413,6 +413,19 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 |:--------|------:|------:|-----:|:------|---------:|------------------:|------------------:|----------------:|
 |chr1     | 872369| 872616|   248|*      | 0.0753559|          0.9385462|          0.8666990|        0.0710524|
 |chr1     | 875227| 875470|   244|*      | 0.0000026|          0.5136315|          0.1991452|        0.2942668|
+
+
+- seqnames: Chromosome
+- start: The positions of the start sites of the corresponding region
+- end: The positions of the end sites of the corresponding region
+- width: The range of the corresponding region
+- strand: Strand
+- median.p: The median of p-values in the corresponding region
+- median.meth.group1 : The median of methylation level for the corresponding segment of group 1
+- median.meth.group2 : The median of methylation level for the corresponding segment of group 2
+- median.meth.diff: The median of the difference between the methylation level
+
+
 
 ### Input Data Examples: DMRfinder
 
