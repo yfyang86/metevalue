@@ -370,6 +370,12 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 |chr21 | 9853326| 0.7058824| 0.7591463| 0.8750000| 0.7493404|
 
 
+-- chr: string Chromosome
+-- pos: int Position
+-- g1~g2: methylation rate data in groups, repeat 8 times. Notice that there are "NaN" within the
+feature columns.
+
+
 **methylKit.output Example**
 
 |chr| start|     end| strand | pvalue| qvalue|meth.diff|
