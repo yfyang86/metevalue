@@ -151,7 +151,7 @@ evalue_buildin_var_fmt_nm <- function(a, b, method="metilene"){
 
 
 #' Check the Metilene data format
-#' @param input_filename_a metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
+#' @param input_filename_a metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
 #' For exampe:
 #'
 #' chrom	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
@@ -200,7 +200,7 @@ return(list(file_a = re$a, file_b = re$b, file_a_b = evalue_buildin_sql(re$a, re
 }
 
 #' Check the BiSeq data format
-#' @param input_filename_a metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
+#' @param input_filename_a metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
 #' For exampe:
 #'
 #' chrom	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
@@ -244,7 +244,7 @@ metevalue.biseq.chk <- function(input_filename_a, input_filename_b, sep = "\t", 
 }
 
 #' Check the methylKit data format
-#' @param input_filename_a the combined data of methylation rate file. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
+#' @param input_filename_a the combined data of methylation rate file. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
 #' For exampe:
 #'
 #' chrom	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
@@ -284,7 +284,7 @@ metevalue.methylKit.chk <- function(input_filename_a, input_filename_b, sep = "\
 
 
 #' Check the DMRfinder data format
-#' @param input_filename_a the combined data of methylation rate file. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
+#' @param input_filename_a the combined data of methylation rate file. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
 #' For exampe:
 #'
 #' chrom	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
