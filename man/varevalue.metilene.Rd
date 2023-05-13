@@ -8,7 +8,7 @@ varevalue.metilene(
   a,
   b,
   a_b,
-  groupnames = c("g1", "g2"),
+  groupnames = c("^g1", "^g2"),
   adjust.methods = "BH"
 )
 }

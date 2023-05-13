@@ -66,7 +66,7 @@
 #' result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2],
 #'       bheader = TRUE)
 #' str(result)
-varevalue.metilene <- function(a, b, a_b, groupnames = c('g1', 'g2'), adjust.methods='BH'){
+varevalue.metilene <- function(a, b, a_b, groupnames = c('^g1', '^g2'), adjust.methods='BH'){
   innerf = function(x, innermu=0., innersig=1.){
     vector_temp = na.omit(as.numeric(x))
     n = length(vector_temp)
