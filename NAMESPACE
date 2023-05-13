@@ -15,4 +15,5 @@ export(
 ,"metevalue.DMRfinder.chk"
 ,"metevalue.biseq"
 ,"metevalue.DMRfinder"
+,"varevalue.signle_general"
 )
