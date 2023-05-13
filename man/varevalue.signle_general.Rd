@@ -11,6 +11,8 @@ varevalue.signle_general(a_b, chr, start, end)
 
 \item{chr}{charactor: The Chromosome name. Typically, it is a string like "chr21" and so on.}
 
+\item{start}{integer:  The position of the start site of the corresponding region}
+
 \item{end}{integer: The position of the end site of the corresponding region}
 }
 \value{

@@ -133,7 +133,7 @@ varevalue.metilene <- function(a, b, a_b, groupnames = c('^g1', '^g2'), adjust.m
 #' The  Chromosome name, start and end sits shoule be specified.
 #' @param a_b data.frame: A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details.
 #' @param chr charactor: The Chromosome name. Typically, it is a string like "chr21" and so on.
-#' @oaram start integer:  The position of the start site of the corresponding region
+#' @param start integer:  The position of the start site of the corresponding region
 #' @param end integer: The position of the end site of the corresponding region
 #' @return evalue
 #' @examples
