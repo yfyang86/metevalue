@@ -43,7 +43,7 @@ i.e two key columns (chrom, pos) with several value columns in groups.}
 
 \item{a_b}{A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details.}
 
-\item{groupnames}{A vector of group names, the default value is groupnames = c('g1', 'g2').}
+\item{groupnames}{A vector of group names, the default value is groupnames = c('^g1', '^g2').}
 
 \item{adjust.methods}{is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'. The default value is 'BH'.}
 }

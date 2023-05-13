@@ -28,7 +28,7 @@
 #'
 #'     - m2:  The absolute mean methylation level for the corresponding segment of group 2
 #' @param a_b A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details.
-#' @param groupnames A vector of group names, the default value is groupnames = c('g1', 'g2').
+#' @param groupnames A vector of group names, the default value is groupnames = c('^g1', '^g2').
 #' @param adjust.methods is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'. The default value is 'BH'.
 #' @return a dataframe, the columns are (in order):
 #'
@@ -164,8 +164,8 @@ varevalue.signle_general = function(a_b, chr, start, end){
     log(x[!is.na(x)])
   }
   
-  site_1 = grep('g1', names(a_b), value=T)
-  site_2 = grep('g2', names(a_b), value=T)
+  site_1 = grep('^g1', names(a_b), value=T)
+  site_2 = grep('^g2', names(a_b), value=T)
   
   start_temp = start
   end_temp = end
