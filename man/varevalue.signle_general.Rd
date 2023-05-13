@@ -25,7 +25,7 @@ data("demo_metilene_out")
 data("demo_metilene_input")
 result = evalue_buildin_var_fmt_nm(demo_metilene_input,
          demo_metilene_out, method="metilene")
-a_b = evalue_buildin_sql(result$a, result$b, method = method_in_use)
+a_b = evalue_buildin_sql(result$a, result$b, method = 'metilene')
 varevalue.signle_general(a_b, "chr21", 9437432, 9437540)
 # [1] 2.626126e+43
 
