@@ -4,7 +4,13 @@
 \alias{varevalue.metilene}
 \title{Evalue of the Metilene data}
 \usage{
-varevalue.metilene(a, b, a_b, adjust.methods = "BH")
+varevalue.metilene(
+  a,
+  b,
+  a_b,
+  groupnames = c("g1", "g2"),
+  adjust.methods = "BH"
+)
 }
 \arguments{
 \item{a}{A data.frame object, the columns should be (in order):
@@ -36,6 +42,8 @@ i.e two key columns (chrom, pos) with several value columns in groups.}
     - m2:  The absolute mean methylation level for the corresponding segment of group 2}
 
 \item{a_b}{A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details.}
+
+\item{groupnames}{A vector of group names, the default value is groupnames = c('g1', 'g2').}
 
 \item{adjust.methods}{is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'. The default value is 'BH'.}
 }

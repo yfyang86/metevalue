@@ -34,5 +34,5 @@ Perform the Evaluation for the RNA data.
 }
 \examples{
 data("demo_desq_out")
-evalue = evalue_RNA(demo_desq_out, 'treated','untreated')
+evalue = metevalue.RNA_general(demo_desq_out, 'treated','untreated')
 }

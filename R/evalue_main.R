@@ -28,6 +28,7 @@
 #'
 #'     - m2:  The absolute mean methylation level for the corresponding segment of group 2
 #' @param a_b A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details.
+#' @param groupnames A vector of group names, the default value is groupnames = c('g1', 'g2').
 #' @param adjust.methods is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'. The default value is 'BH'.
 #' @return a dataframe, the columns are (in order):
 #'
@@ -65,7 +66,7 @@
 #' result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2],
 #'       bheader = TRUE)
 #' str(result)
-varevalue.metilene <- function(a, b, a_b, adjust.methods='BH'){
+varevalue.metilene <- function(a, b, a_b, groupnames = c('g1', 'g2'), adjust.methods='BH'){
   innerf = function(x, innermu=0., innersig=1.){
     vector_temp = na.omit(as.numeric(x))
     n = length(vector_temp)
@@ -80,15 +81,18 @@ varevalue.metilene <- function(a, b, a_b, adjust.methods='BH'){
   uid = unique(data.frame(start=a_b$start, end=a_b$end))
   g_count = (ncol(a) - 2) / 2
 
-  site_1 <- 'g1'
-  site_2 <- 'g2'
 
-  if (g_count > 1){
-    g_count = g_count - 1
-    site_1 = c(site_1, paste("g1.", 1:g_count, sep = ''))
-    site_2 = c(site_2, paste("g2.", 1:g_count, sep = ''))
-  }
+  ##site_1 <- 'g1'
+  ##site_2 <- 'g2'
+  ##if (g_count > 1){
+  ##  g_count = g_count - 1
+  ##  site_1 = c(site_1, paste("g1.", 1:g_count, sep = ''))
+  ##  site_2 = c(site_2, paste("g2.", 1:g_count, sep = ''))
+  ##}
 
+  site_1 = grep(groupnames[1], names(a_b), value=T)
+  site_2 = grep(groupnames[2], names(a_b), value=T)
+  
   withe = cbind(uid,e_value=0)
 
   for(i in seq_len(nrow(uid))){
@@ -210,7 +214,7 @@ varevalue.signle_general = function(a_b, chr, start, end){
 #' @return evalue 
 #' @examples
 #' data("demo_desq_out")
-#' evalue = evalue_RNA(demo_desq_out, 'treated','untreated')
+#' evalue = metevalue.RNA_general(demo_desq_out, 'treated','untreated')
 metevalue.RNA_general = function(a_b, group1_name, group2_name){
   a_b = data.frame(a_b)
   innerf = function(x, innermu=0., innersig=1.){
