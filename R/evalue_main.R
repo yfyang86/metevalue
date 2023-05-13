@@ -145,9 +145,9 @@ varevalue.metilene <- function(a, b, a_b, adjust.methods='BH'){
 #' # resultx = list(a = result$a,
 #' #           b = result$b,
 #' #           a_b = evalue_buildin_sql(result$a, result$b, method = method_in_use))
-#' result_met = varevalue.metilene(resultx$a, resultx$b, resultx$a_b)
-#' result_met[with(result_met, chr == 'chr21' & start == '9437432' & end == '9437540'), ]
-#' [1] 2.626126e+43
+#' # result_met = varevalue.metilene(resultx$a, resultx$b, resultx$a_b)
+#' # result_met[with(result_met, chr == 'chr21' & start == '9437432' & end == '9437540'), ]
+#' # [1] 2.626126e+43
 varevalue.signle_general = function(a_b, chr, start, end){
   innerf = function(x, innermu=0., innersig=1.){
     vector_temp = na.omit(as.numeric(x))
@@ -194,6 +194,7 @@ varevalue.signle_general = function(a_b, chr, start, end){
 #' @param a_b data.frame: A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details. 
 #' Notice, this data frame only contains the value in pairs, for example:
 #' 
+#' 
 #'      treated1fb treated2fb untreated1fb untreated2fb
 #' 
 #' TAG1   4.449648   4.750104     4.392285     4.497514
@@ -201,6 +202,7 @@ varevalue.signle_general = function(a_b, chr, start, end){
 #' TAG2   8.241116   8.302852     8.318125     8.488796
 #' 
 #' ...
+#' 
 #' 
 #' Row names (TAG1 and TAG2 in the above example) is also suggested.
 #' @param group1_name charactor: The name of the first group. For example, "treated" in the above example.
@@ -261,10 +263,18 @@ metevalue.RNA_general = function(a_b, group1_name, group2_name){
 #' The data includes 10 columns.
 #'
 #' - treated1fb:
+#' 
 #' - treated2fb:
+#' 
 #' - treated3fb:
+#' 
 #' - untreated1fb:
+#' 
 #' - untreated2fb:
+#' 
+#' - untreated3fb:
+#'  
+#' - untreated4fb:
 #' 
 #' This data contains 8166 rows and 7 columns.
 #'

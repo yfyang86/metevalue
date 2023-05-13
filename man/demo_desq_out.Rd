@@ -11,10 +11,18 @@ The output dummy data for "RNA" meythod illustrating purpose.
 The data includes 10 columns.
 
 - treated1fb:
+
 - treated2fb:
+
 - treated3fb:
+
 - untreated1fb:
+
 - untreated2fb:
+
+- untreated3fb:
+ 
+- untreated4fb:
 
 This data contains 8166 rows and 7 columns.
 

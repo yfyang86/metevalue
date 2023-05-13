@@ -33,7 +33,7 @@ varevalue.signle_general(a_b, "chr21", 9437432, 9437540)
 # resultx = list(a = result$a,
 #           b = result$b,
 #           a_b = evalue_buildin_sql(result$a, result$b, method = method_in_use))
-result_met = varevalue.metilene(resultx$a, resultx$b, resultx$a_b)
-result_met[with(result_met, chr == 'chr21' & start == '9437432' & end == '9437540'), ]
-[1] 2.626126e+43
+# result_met = varevalue.metilene(resultx$a, resultx$b, resultx$a_b)
+# result_met[with(result_met, chr == 'chr21' & start == '9437432' & end == '9437540'), ]
+# [1] 2.626126e+43
 }

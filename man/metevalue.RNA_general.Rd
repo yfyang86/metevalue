@@ -10,6 +10,7 @@ metevalue.RNA_general(a_b, group1_name, group2_name)
 \item{a_b}{data.frame: A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details. 
 Notice, this data frame only contains the value in pairs, for example:
 
+
      treated1fb treated2fb untreated1fb untreated2fb
 
 TAG1   4.449648   4.750104     4.392285     4.497514
@@ -17,6 +18,7 @@ TAG1   4.449648   4.750104     4.392285     4.497514
 TAG2   8.241116   8.302852     8.318125     8.488796
 
 ...
+
 
 Row names (TAG1 and TAG2 in the above example) is also suggested.}
 
