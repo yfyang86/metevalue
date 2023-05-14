@@ -3,7 +3,7 @@
 #' Perform the Evaluation for the Metilene data. The data file could be pre-handled by the evalue.metilene.chk function.
 #' @param a A data.frame object, the columns should be (in order):
 #'
-#' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
+#' chrom	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
 #' i.e two key columns (chrom, pos) with several value columns in groups.
 #' @param b A data.frame object stores the data, the columns are (in order):
