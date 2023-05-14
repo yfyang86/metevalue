@@ -3,7 +3,7 @@
 #' Perform the Evaluation for the Metilene data. The data file could be pre-handled by the evalue.metilene.chk function.
 #' @param a A data.frame object, the columns should be (in order):
 #'
-#' chrom	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
+#' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
 #' i.e two key columns (chrom, pos) with several value columns in groups.
 #' @param b A data.frame object stores the data, the columns are (in order):
@@ -131,7 +131,10 @@ varevalue.metilene <- function(a, b, a_b, groupnames = c('^g1', '^g2'), adjust.m
 #'
 #' Perform the Evaluation for the Metilene data. The data file could be pre-handled by the metevalue.[types].chk function.
 #' The  Chromosome name, start and end sits shoule be specified.
-#' @param a_b data.frame: A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details.
+#' @param methyrate data.frame: A data.frame object of methylation rates, the columns should be(name of groups can be self-defined)
+#'
+#' chr	pos	group1_name group1_name ... group1_name group2_name group2_name
+#'
 #' @param chr charactor: The Chromosome name. Typically, it is a string like "chr21" and so on.
 #' @param start integer:  The position of the start site of the corresponding region
 #' @param end integer: The position of the end site of the corresponding region
@@ -152,7 +155,7 @@ varevalue.metilene <- function(a, b, a_b, groupnames = c('^g1', '^g2'), adjust.m
 #' # result_met = varevalue.metilene(resultx$a, resultx$b, resultx$a_b)
 #' # result_met[with(result_met, chr == 'chr21' & start == '9437432' & end == '9437540'), ]
 #' # [1] 2.626126e+43
-varevalue.signle_general = function(a_b, chr, start, end){
+varevalue.signle_general = function(methyrate, group1_name, group2_name, chr, start, end){
   innerf = function(x, innermu=0., innersig=1.){
     vector_temp = na.omit(as.numeric(x))
     n = length(vector_temp)
@@ -163,9 +166,9 @@ varevalue.signle_general = function(a_b, chr, start, end){
   innerlog = function(x){
     log(x[!is.na(x)])
   }
-  
-  site_1 = grep('^g1', names(a_b), value=T)
-  site_2 = grep('^g2', names(a_b), value=T)
+  a_b = methyrate
+  site_1 = grep(paste0('^',group1_name), names(a_b), value=T)
+  site_2 = grep(paste0('^',group2_name), names(a_b), value=T)
   
   start_temp = start
   end_temp = end
