@@ -39,6 +39,8 @@ In this package, we provide e-value for four DMR (differentially methylated regi
 -   BiSeq
 -   DMRfinder
 -   Metilene
+-   General case
+-   RNAseq
 -   General purpose
 
 For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calculation is conducted by the `metevalue.[DMR]` function.
@@ -289,6 +291,35 @@ result = list(a = result$a,
 result = varevalue.metilene(result$a, result$b, result$a_b)
 head(result)
 ```
+## General case example
+
+Given
+
+-   `metilene.input`: the input file of `Metilene` containing methylation rates at each CpG site
+
+By changing the group name, start site and end site, function `varevalue.signle_general` can calculate e-value of any site or region using a general methylation rates data. Take `metilene.input` as example.
+
+```{r eval=FALSE}
+input <- read.table("metilene.input", header = T)
+e_value <- varevalue.signle_general(methyrate=input, group1_name='g1', group2_name='g2', chr='chr21', start=9439679, end=9439679)
+head(e_value)
+```
+
+## RNAseq example
+
+Given
+
+-   `desq_out`: the RNA data
+
+function `varevalue.signle_general` can provides e-values for each row of the RNA data.
+
+```{r eval=FALSE}
+input <- read.table("desq_out", header = T)
+data_e <- metevalue.RNA_general(input, group1_name='treated', group2_name='untreated')
+head(data_e)
+```
+
+
 
 ## General purpose
 
@@ -425,3 +456,11 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 |:-----|-------:|-------:|--:|--------:|--:|--:|--:|-------:|-------:|
 |chr21 | 9437432| 9437540|  0| 0.610989| 26|  0|  0| 0.73705| 0.12606|
 |chr21 | 9708982| 9709189|  0| 0.475630| 28|  0|  0| 0.58862| 0.11299|
+
+### Input Data Examples: DMRfinder
+**desq_out Example**
+| treated1fb| treated2fb| treated3fb| untreated1fb| untreated2fb| untreated3fb| untreated4fb|
+|----------:|----------:|----------:|------------:|------------:|------------:|------------:|
+|   4.449648|   4.750104|   4.431634|     4.392285|     4.497514|     4.762213|     4.533928|
+|   6.090031|   5.973211|   5.913239|     6.238684|     6.050743|     5.932738|     6.022005|
+
