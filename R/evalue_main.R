@@ -198,7 +198,7 @@ varevalue.signle_general = function(methyrate, group1_name, group2_name, chr, st
 #' A general method to calculate the e-value for RNA data.
 #'
 #' Perform the Evaluation for the RNA data.
-#' @param a_b data.frame: A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details. 
+#' @param rna data.frame: A data.frame object of RNAseq data 
 #' Notice, this data frame only contains the value in pairs, for example:
 #' 
 #' 
@@ -218,8 +218,8 @@ varevalue.signle_general = function(methyrate, group1_name, group2_name, chr, st
 #' @examples
 #' data("demo_desq_out")
 #' evalue = metevalue.RNA_general(demo_desq_out, 'treated','untreated')
-metevalue.RNA_general = function(a_b, group1_name, group2_name){
-  a_b = data.frame(a_b)
+metevalue.RNA_general = function(rna, group1_name, group2_name){
+  a_b = data.frame(rna)
   innerf = function(x, innermu=0., innersig=1.){
     vector_temp = na.omit(as.numeric(x))
     n = length(vector_temp)
