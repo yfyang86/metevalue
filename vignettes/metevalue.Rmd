@@ -382,7 +382,7 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 |chr8  | 25164078| 25164102|   3|  0.9241646| 0.7803819|          -0.1437827|           0.0333849|
 |chr21 |  9437432|  9437538|  14|  0.7216685| 0.1215506|          -0.6001179|           0.0000000|
 
-### Input Data Examples: DMRfinder
+### Input Data Examples: metilene
 
 **methyrate Example**
 
@@ -398,7 +398,7 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 |chr21 | 9437432| 9437540|  0| 0.610989| 26|  0|  0| 0.73705| 0.12606|
 |chr21 | 9708982| 9709189|  0| 0.475630| 28|  0|  0| 0.58862| 0.11299|
 
-### Input Data Examples: DMRfinder
+### Input Data Examples: RNAseq
 **desq_out Example**
 | treated1fb| treated2fb| treated3fb| untreated1fb| untreated2fb| untreated3fb| untreated4fb|
 |----------:|----------:|----------:|------------:|------------:|------------:|------------:|
