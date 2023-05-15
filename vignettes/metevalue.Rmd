@@ -309,8 +309,8 @@ head(e_value)
 ```
 
 ## General case for RNA-seq data
-The framework of E-value calculate presented in this project would also be extended to other genomic data including RNA-seq. 
-Here is an example to introduce the E-value calculate in RNA-seq. 
+The framework of E-value calculation presented in this project is also able to be extended to other genomic data including RNA-seq. 
+Here is an example to introduce the E-value calculation in RNA-seq. 
 
 
 -   `desq_out`: the RNA data
