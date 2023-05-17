@@ -8,14 +8,15 @@ varevalue.metilene(
   a,
   b,
   a_b,
-  groupnames = c("^g1", "^g2"),
+  group1_name = "g1",
+  group2_name = "g2",
   adjust.methods = "BH"
 )
 }
 \arguments{
 \item{a}{A data.frame object, the columns should be (in order):
 
-chrom    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    g2    g2    g2    g2    g2
+chr    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    g2    g2    g2    g2    g2
 
 i.e two key columns (chrom, pos) with several value columns in groups.}
 
@@ -43,7 +44,9 @@ i.e two key columns (chrom, pos) with several value columns in groups.}
 
 \item{a_b}{A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details.}
 
-\item{groupnames}{A vector of group names, the default value is groupnames = c('^g1', '^g2').}
+\item{group1_name}{charactor: The name of the first group. For example, "g1" in the above example.}
+
+\item{group2_name}{charactor: The name of the second group. For example, "g2" in the above example.}
 
 \item{adjust.methods}{is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'. The default value is 'BH'.}
 }

@@ -4,10 +4,23 @@
 \alias{varevalue.signle_general}
 \title{A general method to calculate the e-value for the Metilene alike gene data with specified start and end sits}
 \usage{
-varevalue.signle_general(a_b, chr, start, end)
+varevalue.signle_general(
+  methyrate,
+  group1_name = "g1",
+  group2_name = "g2",
+  chr,
+  start,
+  end
+)
 }
 \arguments{
-\item{a_b}{data.frame: A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details.}
+\item{methyrate}{data.frame: A data.frame object of methylation rates, the columns should be(name of groups can be self-defined)
+
+chr    pos    group1_name group1_name ... group1_name group2_name group2_name}
+
+\item{group1_name}{charactor: The name of the first group. For example, "treated" in the above example.}
+
+\item{group2_name}{charactor: The name of the second group. For example, "untreated" in the above example.}
 
 \item{chr}{charactor: The Chromosome name. Typically, it is a string like "chr21" and so on.}
 
@@ -28,7 +41,7 @@ data("demo_metilene_input")
 result = evalue_buildin_var_fmt_nm(demo_metilene_input,
          demo_metilene_out, method="metilene")
 a_b = evalue_buildin_sql(result$a, result$b, method = 'metilene')
-varevalue.signle_general(a_b, "chr21", 9437432, 9437540)
+varevalue.signle_general(a_b, chr = "chr21", start = 9437432, end = 9437540)
 # [1] 2.626126e+43
 
 #### Compare to `varevalue.metilene`  ####

@@ -28,7 +28,8 @@
 #'
 #'     - m2:  The absolute mean methylation level for the corresponding segment of group 2
 #' @param a_b A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details.
-#' @param groupnames A vector of group names, the default value is groupnames = c('^g1', '^g2').
+#' @param group1_name charactor: The name of the first group. For example, "g1" in the above example.
+#' @param group2_name charactor: The name of the second group. For example, "g2" in the above example.
 #' @param adjust.methods is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'. The default value is 'BH'.
 #' @return a dataframe, the columns are (in order):
 #'
@@ -66,7 +67,7 @@
 #' result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2],
 #'       bheader = TRUE)
 #' str(result)
-varevalue.metilene <- function(a, b, a_b, groupnames = c('^g1', '^g2'), adjust.methods='BH'){
+varevalue.metilene <- function(a, b, a_b, group1_name = 'g1', group2_name = 'g2', adjust.methods='BH'){
   innerf = function(x, innermu=0., innersig=1.){
     vector_temp = na.omit(as.numeric(x))
     n = length(vector_temp)
@@ -81,17 +82,8 @@ varevalue.metilene <- function(a, b, a_b, groupnames = c('^g1', '^g2'), adjust.m
   uid = unique(data.frame(start=a_b$start, end=a_b$end))
   g_count = (ncol(a) - 2) / 2
 
-
-  ##site_1 <- 'g1'
-  ##site_2 <- 'g2'
-  ##if (g_count > 1){
-  ##  g_count = g_count - 1
-  ##  site_1 = c(site_1, paste("g1.", 1:g_count, sep = ''))
-  ##  site_2 = c(site_2, paste("g2.", 1:g_count, sep = ''))
-  ##}
-
-  site_1 = grep(groupnames[1], names(a_b), value=T)
-  site_2 = grep(groupnames[2], names(a_b), value=T)
+  site_1 = grep(paste0('^',group1_name), names(a_b), value=T)
+  site_2 = grep(paste0('^',group2_name), names(a_b), value=T)
   
   withe = cbind(uid,e_value=0)
 
@@ -134,7 +126,9 @@ varevalue.metilene <- function(a, b, a_b, groupnames = c('^g1', '^g2'), adjust.m
 #' @param methyrate data.frame: A data.frame object of methylation rates, the columns should be(name of groups can be self-defined)
 #'
 #' chr	pos	group1_name group1_name ... group1_name group2_name group2_name
-#'
+#' 
+#' @param group1_name charactor: The name of the first group. For example, "treated" in the above example.
+#' @param group2_name charactor: The name of the second group. For example, "untreated" in the above example.
 #' @param chr charactor: The Chromosome name. Typically, it is a string like "chr21" and so on.
 #' @param start integer:  The position of the start site of the corresponding region
 #' @param end integer: The position of the end site of the corresponding region
@@ -145,7 +139,7 @@ varevalue.metilene <- function(a, b, a_b, groupnames = c('^g1', '^g2'), adjust.m
 #' result = evalue_buildin_var_fmt_nm(demo_metilene_input,
 #'          demo_metilene_out, method="metilene")
 #' a_b = evalue_buildin_sql(result$a, result$b, method = 'metilene')
-#' varevalue.signle_general(a_b, "chr21", 9437432, 9437540)
+#' varevalue.signle_general(a_b, chr = "chr21", start = 9437432, end = 9437540)
 #' # [1] 2.626126e+43
 #' 
 #' #### Compare to `varevalue.metilene`  ####
@@ -155,7 +149,7 @@ varevalue.metilene <- function(a, b, a_b, groupnames = c('^g1', '^g2'), adjust.m
 #' # result_met = varevalue.metilene(resultx$a, resultx$b, resultx$a_b)
 #' # result_met[with(result_met, chr == 'chr21' & start == '9437432' & end == '9437540'), ]
 #' # [1] 2.626126e+43
-varevalue.signle_general = function(methyrate, group1_name, group2_name, chr, start, end){
+varevalue.signle_general = function(methyrate, group1_name='g1', group2_name='g2', chr, start, end){
   innerf = function(x, innermu=0., innersig=1.){
     vector_temp = na.omit(as.numeric(x))
     n = length(vector_temp)
@@ -212,8 +206,8 @@ varevalue.signle_general = function(methyrate, group1_name, group2_name, chr, st
 #' 
 #' 
 #' Row names (TAG1 and TAG2 in the above example) is also suggested.
-#' @param group1_name charactor: The name of the first group. For example, "treated" in the above example.
-#' @param group2_name charactor: The name of the second group. For example, "untreated" in the above example.
+#' @param group1_name charactor: The name of the first group. For example, "treated" in the example.
+#' @param group2_name charactor: The name of the second group. For example, "untreated" in the example.
 #' @return evalue 
 #' @examples
 #' data("demo_desq_out")
@@ -290,7 +284,7 @@ metevalue.RNA_general = function(rna, group1_name, group2_name){
 #' @docType data
 #' @keywords metevalue
 #' The data is a simulation data:
-#' @example 
+#' @examples
 #' # library("pasilla")
 #' # pasCts <- system.file("extdata",
 #' #                       "pasilla_gene_counts.tsv",

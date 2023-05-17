@@ -15,9 +15,9 @@ metevalue.biseq.chk(
 \item{input_filename_a}{metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
 For exampe:
 
-chrom    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    g2    g2    g2    g2    g2
+chr    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    g2    g2    g2    g2    g2
 
-chrom and pos are keys;
+chr and pos are keys;
 g1 g1 g2 g2 must be stored in pairs.}
 
 \item{input_filename_b}{metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:

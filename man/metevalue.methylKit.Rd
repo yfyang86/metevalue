@@ -13,7 +13,7 @@ metevalue.methylKit(
 )
 }
 \arguments{
-\item{methyrate}{is the output file of methylKit, the columns are (in order):
+\item{methyrate}{is the data of methylation rates of each sites and group, the columns are (in order):
     - chr: Chromosome
 
     - pos: int Position

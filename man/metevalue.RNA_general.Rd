@@ -4,10 +4,10 @@
 \alias{metevalue.RNA_general}
 \title{A general method to calculate the e-value for RNA data.}
 \usage{
-metevalue.RNA_general(a_b, group1_name, group2_name)
+metevalue.RNA_general(rna, group1_name, group2_name)
 }
 \arguments{
-\item{a_b}{data.frame: A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details. 
+\item{rna}{data.frame: A data.frame object of RNAseq data 
 Notice, this data frame only contains the value in pairs, for example:
 
 
@@ -22,9 +22,9 @@ TAG2   8.241116   8.302852     8.318125     8.488796
 
 Row names (TAG1 and TAG2 in the above example) is also suggested.}
 
-\item{group1_name}{charactor: The name of the first group. For example, "treated" in the above example.}
+\item{group1_name}{charactor: The name of the first group. For example, "treated" in the example.}
 
-\item{group2_name}{charactor: The name of the second group. For example, "untreated" in the above example.}
+\item{group2_name}{charactor: The name of the second group. For example, "untreated" in the example.}
 }
 \value{
 evalue
