@@ -39,6 +39,8 @@ In this package, we provide e-value for four DMR (differentially methylated regi
 -   BiSeq
 -   DMRfinder
 -   Metilene
+-   General case
+-   RNAseq
 -   General purpose
 
 For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calculation is conducted by the `metevalue.[DMR]` function.
@@ -289,70 +291,40 @@ result = list(a = result$a,
 result = varevalue.metilene(result$a, result$b, result$a_b)
 head(result)
 ```
+## General case for DNA methylation data
 
-## General purpose
+In above examples, we have already provided examples to calculate E-values directly from DMR detection tools including BiSeq, DMRfinder, MethylKit and Metilene. 
+However, users may wonder how to calculate the E-values directly from CpG sites or other DMR detection tools not presented above.
+We then facilitate the purpose in the following example.
 
-The following program implement the Figure 1 in `Combining e-values and p-values` by Vovk and Wang. We modified the original `python` code to reproduce the result. The same vectorization is implemented in the R function `varevalue.metilene`. General purpose e-value calculation could use this program to archieve better performances.
 
-```{r evalue}
-#### Initialization ####
-n_seeds = 100  # how many seeds to consider
-N = 10000      # the number of trials
-delta = -0.1   # the parameter of the alternative hypothesis
-# e_x are the e-values and iE are the cumulative e-values
-e_x = rep(0, N)
-# p_x are the p-values and FP are Fisher's overall p-values
-p_x = rep(0, N)
-iE_all   = matrix(1, nrow = N+1, ncol = n_seeds) # product
-uni_all  = iE_all                                # universal
-FP_all   = iE_all                                # Fisher
-F_VS_all = iE_all                                # Fisher-VS
+-   `metilene.input`: the input file of `Metilene` containing methylation rates at each CpG site
 
-#### Calculation ####
-for(seed in 1:n_seeds){
-  set.seed(seed * 1e3 + 1)
-  x = rnorm(N) + delta
-  e_x = exp(delta * x - delta^2/2)
-  iE_all[, seed] = cumprod(c(1, e_x))
-  S = cumsum(x)
-  nn = 1:N
-  uni_all[-1,seed] = exp(S^2/2/nn) / sqrt(nn)
-  p_x = pnorm(x)
-  FF = -2 * cumsum(log(p_x))
-  FP_all[-1, seed] = exp(pchisq(FF, df=2*nn, lower.tail = F, log.p = T))
-  SELR_ = (FP_all[, seed] < exp(-1))
-  F_VS_all[ SELR_, seed] = 1/(-exp(1)*FP_all[ SELR_, seed]*log(FP_all[ SELR_, seed]))   
-}
+By changing the group name, start site and end site, function `varevalue.signle_general` can calculate e-value of any site or region using a general methylation rates data. Take `metilene.input` as example.
 
-iE = apply(iE_all, 1, median)
-uni = apply(uni_all, 1, median)
-FP = apply(FP_all, 1, median)
-F_VS = apply(F_VS_all,1, median)
-
-#### Plot ####
-library(ggplot2)
-library(tidyr)
-library(dplyr)
-
-sim_plots <- data.frame(
-  x = 1:(N+1),
-  product = iE,
-  universal = uni,
-  Fisher = 1/(FP),
-  FisherVS = F_VS
-) %>% 
-  gather(key = "Method", value = "E_value", -x) %>%
-  ggplot(aes(x = x, y = E_value)) + 
-  geom_line(aes(color = Method), size = 1) + 
-  scale_y_continuous(trans='log') +
-  theme_grey() +  # Default
-  theme(legend.position = "top") + 
-  scale_color_brewer(palette="Dark2") +
-  xlab("Numer of Observations") + 
-  ylab("e-Value")
-  
-print(sim_plots)
+```{r eval=FALSE}
+input <- read.table("metilene.input", header = T)
+e_value <- varevalue.signle_general(methyrate=input, group1_name='g1', group2_name='g2', chr='chr21', start=9439679, end=9439679)
+head(e_value)
 ```
+
+## General case for RNA-seq data
+The framework of E-value calculation presented in this project is also able to be extended to other genomic data including RNA-seq. 
+Here is an example to introduce the E-value calculation in RNA-seq. 
+
+
+-   `desq_out`: the RNA data
+
+function `varevalue.signle_general` can provides e-values for each row of the normalized expression level of RNA-seq data.
+
+```{r eval=FALSE}
+input <- read.table("desq_out", header = T)
+data_e <- metevalue.RNA_general(input, group1_name='treated', group2_name='untreated')
+head(data_e)
+```
+
+
+
 
 # Misc
 
@@ -410,11 +382,11 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 |chr8  | 25164078| 25164102|   3|  0.9241646| 0.7803819|          -0.1437827|           0.0333849|
 |chr21 |  9437432|  9437538|  14|  0.7216685| 0.1215506|          -0.6001179|           0.0000000|
 
-### Input Data Examples: DMRfinder
+### Input Data Examples: metilene
 
-**methyrate Example**
+**metilene.input Example**
 
-|chrom |     pos|        g1| g1.1|      g1.2| g1.3| g1.4|      g1.5| g1.6|      g1.7|        g2| g2.1| g2.2| g2.3|      g2.4| g2.5| g2.6| g2.7|
+|chr |     pos|        g1| g1.1|      g1.2| g1.3| g1.4|      g1.5| g1.6|      g1.7|        g2| g2.1| g2.2| g2.3|      g2.4| g2.5| g2.6| g2.7|
 |:-----|-------:|---------:|----:|---------:|----:|----:|---------:|----:|---------:|---------:|----:|----:|----:|---------:|----:|----:|----:|
 |chr21 | 9437433| 0.9285714|   NA| 0.7222222| 0.75|    1| 0.6666667|    1| 0.8695652| 0.0000000|    0|    0|    0| 0.0000000|  0.0|   NA| 0.00|
 |chr21 | 9437445| 1.0000000|   NA| 0.9444444| 0.75|    1| 0.6666667|    0| 0.8695652| 0.6111111|    0|    0|    0| 0.7333333|  0.6|   NA| 0.75|
@@ -425,3 +397,18 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 |:-----|-------:|-------:|--:|--------:|--:|--:|--:|-------:|-------:|
 |chr21 | 9437432| 9437540|  0| 0.610989| 26|  0|  0| 0.73705| 0.12606|
 |chr21 | 9708982| 9709189|  0| 0.475630| 28|  0|  0| 0.58862| 0.11299|
+
+### Input Data Examples: RNAseq
+
+**desq_out Example**
+
+| treated1fb| treated2fb| treated3fb| untreated1fb| untreated2fb| untreated3fb| untreated4fb|
+|:----------|:----------|:----------|:------------|:------------|:------------|:------------|
+|   4.449648|   4.750104|   4.431634|     4.392285|     4.497514|     4.762213|     4.533928|
+|   6.090031|   5.973211|   5.913239|     6.238684|     6.050743|     5.932738|     6.022005|
+
+
+# Other Demos
+
+Please vist the [metevalue-emo](https://github.com/yfyang86/metevalue-demos/tree/main/simulation) project for more demos.
+

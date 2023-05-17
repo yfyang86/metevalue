@@ -3,7 +3,7 @@
 #' Perform the Evaluation for the Metilene data. The data file could be pre-handled by the evalue.metilene.chk function.
 #' @param a A data.frame object, the columns should be (in order):
 #'
-#' chrom	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
+#' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
 #' i.e two key columns (chrom, pos) with several value columns in groups.
 #' @param b A data.frame object stores the data, the columns are (in order):
@@ -28,6 +28,8 @@
 #'
 #'     - m2:  The absolute mean methylation level for the corresponding segment of group 2
 #' @param a_b A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details.
+#' @param group1_name charactor: The name of the first group. For example, "g1" in the above example.
+#' @param group2_name charactor: The name of the second group. For example, "g2" in the above example.
 #' @param adjust.methods is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'. The default value is 'BH'.
 #' @return a dataframe, the columns are (in order):
 #'
@@ -65,7 +67,7 @@
 #' result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2],
 #'       bheader = TRUE)
 #' str(result)
-varevalue.metilene <- function(a, b, a_b, adjust.methods='BH'){
+varevalue.metilene <- function(a, b, a_b, group1_name = 'g1', group2_name = 'g2', adjust.methods='BH'){
   innerf = function(x, innermu=0., innersig=1.){
     vector_temp = na.omit(as.numeric(x))
     n = length(vector_temp)
@@ -80,18 +82,12 @@ varevalue.metilene <- function(a, b, a_b, adjust.methods='BH'){
   uid = unique(data.frame(start=a_b$start, end=a_b$end))
   g_count = (ncol(a) - 2) / 2
 
-  site_1 <- 'g1'
-  site_2 <- 'g2'
-
-  if (g_count > 1){
-    g_count = g_count - 1
-    site_1 = c(site_1, paste("g1.", 1:g_count, sep = ''))
-    site_2 = c(site_2, paste("g2.", 1:g_count, sep = ''))
-  }
-
+  site_1 = grep(paste0('^',group1_name), names(a_b), value=T)
+  site_2 = grep(paste0('^',group2_name), names(a_b), value=T)
+  
   withe = cbind(uid,e_value=0)
 
-  for(i in 1:nrow(uid)){
+  for(i in seq_len(nrow(uid))){
     uid_temp = uid[i,]
     start_temp = uid_temp[1,1]
     end_temp = uid_temp[1,2]
@@ -120,6 +116,203 @@ varevalue.metilene <- function(a, b, a_b, adjust.methods='BH'){
   data_withe = cbind(data_withe, e_adjust)
   return(data_withe);
 }
+
+
+
+#' A general method to calculate the e-value for the Metilene alike gene data with specified start and end sits
+#'
+#' Perform the Evaluation for the Metilene data. The data file could be pre-handled by the metevalue.[types].chk function.
+#' The  Chromosome name, start and end sits shoule be specified.
+#' @param methyrate data.frame: A data.frame object of methylation rates, the columns should be(name of groups can be self-defined)
+#'
+#' chr	pos	group1_name group1_name ... group1_name group2_name group2_name
+#' 
+#' @param group1_name charactor: The name of the first group. For example, "treated" in the above example.
+#' @param group2_name charactor: The name of the second group. For example, "untreated" in the above example.
+#' @param chr charactor: The Chromosome name. Typically, it is a string like "chr21" and so on.
+#' @param start integer:  The position of the start site of the corresponding region
+#' @param end integer: The position of the end site of the corresponding region
+#' @return evalue
+#' @examples
+#' data("demo_metilene_out")
+#' data("demo_metilene_input")
+#' result = evalue_buildin_var_fmt_nm(demo_metilene_input,
+#'          demo_metilene_out, method="metilene")
+#' a_b = evalue_buildin_sql(result$a, result$b, method = 'metilene')
+#' varevalue.signle_general(a_b, chr = "chr21", start = 9437432, end = 9437540)
+#' # [1] 2.626126e+43
+#' 
+#' #### Compare to `varevalue.metilene`  ####
+#' # resultx = list(a = result$a,
+#' #           b = result$b,
+#' #           a_b = evalue_buildin_sql(result$a, result$b, method = method_in_use))
+#' # result_met = varevalue.metilene(resultx$a, resultx$b, resultx$a_b)
+#' # result_met[with(result_met, chr == 'chr21' & start == '9437432' & end == '9437540'), ]
+#' # [1] 2.626126e+43
+varevalue.signle_general = function(methyrate, group1_name='g1', group2_name='g2', chr, start, end){
+  innerf = function(x, innermu=0., innersig=1.){
+    vector_temp = na.omit(as.numeric(x))
+    n = length(vector_temp)
+    value = mean(vector_temp)
+    dnorm(x=value, mean = innermu, sd = innersig/sqrt(n))
+  }
+  
+  innerlog = function(x){
+    log(x[!is.na(x)])
+  }
+  a_b = methyrate
+  site_1 = grep(paste0('^',group1_name), names(a_b), value=T)
+  site_2 = grep(paste0('^',group2_name), names(a_b), value=T)
+  
+  start_temp = start
+  end_temp = end
+  chr_temp = chr
+  a_b_temp = a_b[(a_b$pos>=start_temp & a_b$pos<=end_temp & a_b$'chr'==chr_temp), ]
+  vector_1 = unlist(a_b_temp[, site_1])
+  vector_2 = unlist(a_b_temp[, site_2])
+  vector = c(vector_1, vector_2)
+  miu_1 = mean(vector_1, na.rm=T)
+  sigma_1 = sd(vector_1, na.rm=T)
+  miu_2 = mean(vector_2, na.rm=T)
+  sigma_2 = sd(vector_2, na.rm=T)
+  miu = mean(vector, na.rm=T)
+  sigma = sd(vector, na.rm=T)
+    
+  norm_value_up_1 = apply(a_b_temp[, site_1], 2, function(x)innerf(x=x,innermu=miu_1, innersig=sigma_1))
+  norm_value_down_1 = apply(a_b_temp[, site_1], 2, function(x)innerf(x=x, innermu=miu, innersig=sigma))
+  norm_value_up_2 = apply(a_b_temp[, site_2], 2,  function(x)innerf(x=x, innermu=miu_2, innersig=sigma_2))
+  norm_value_down_2 = apply(a_b_temp[, site_2], 2,  function(x)innerf(x=x, innermu=miu, innersig=sigma))
+
+  e_value = exp(sum(innerlog(c(norm_value_up_1,norm_value_up_2))) -
+                    sum(innerlog(c(norm_value_down_1,norm_value_down_2))))
+  # print(chr_temp)
+  return(e_value)
+}
+
+#' A general method to calculate the e-value for RNA data.
+#'
+#' Perform the Evaluation for the RNA data.
+#' @param rna data.frame: A data.frame object of RNAseq data 
+#' Notice, this data frame only contains the value in pairs, for example:
+#' 
+#' 
+#'      treated1fb treated2fb untreated1fb untreated2fb
+#' 
+#' TAG1   4.449648   4.750104     4.392285     4.497514
+#' 
+#' TAG2   8.241116   8.302852     8.318125     8.488796
+#' 
+#' ...
+#' 
+#' 
+#' Row names (TAG1 and TAG2 in the above example) is also suggested.
+#' @param group1_name charactor: The name of the first group. For example, "treated" in the example.
+#' @param group2_name charactor: The name of the second group. For example, "untreated" in the example.
+#' @return evalue 
+#' @examples
+#' data("demo_desq_out")
+#' evalue = metevalue.RNA_general(demo_desq_out, 'treated','untreated')
+metevalue.RNA_general = function(rna, group1_name, group2_name){
+  a_b = data.frame(rna)
+  innerf = function(x, innermu=0., innersig=1.){
+    vector_temp = na.omit(as.numeric(x))
+    n = length(vector_temp)
+    value = mean(vector_temp)
+    dnorm(x=value, mean = innermu, sd = innersig/sqrt(n))
+  }
+  
+  innerlog = function(x){
+    log(x[!is.na(x)])
+  }
+  
+  site_1 = grep(paste0('^',group1_name),colnames(a_b),value=T)
+  site_2 = grep(paste0('^',group2_name),colnames(a_b),value=T)
+  
+  evalue_all = c()
+  for(i in rownames(a_b)){
+  
+    a_b_temp = a_b[i, ]
+  
+    vector_1 = unlist(a_b_temp[, site_1])
+    vector_2 = unlist(a_b_temp[, site_2])
+    vector = c(vector_1, vector_2)
+    miu_1 = mean(vector_1, na.rm=T)
+    sigma_1 = sd(vector_1, na.rm=T)
+    miu_2 = mean(vector_2, na.rm=T)
+    sigma_2 = sd(vector_2, na.rm=T)
+    miu = mean(vector, na.rm=T)
+    sigma = sd(vector, na.rm=T)
+  
+    norm_value_up_1 = apply(a_b_temp[, site_1], 2, function(x)innerf(x=x,innermu=miu_1, innersig=sigma_1))
+    norm_value_down_1 = apply(a_b_temp[, site_1], 2, function(x)innerf(x=x, innermu=miu, innersig=sigma))
+    norm_value_up_2 = apply(a_b_temp[, site_2], 2,  function(x)innerf(x=x, innermu=miu_2, innersig=sigma_2))
+    norm_value_down_2 = apply(a_b_temp[, site_2], 2,  function(x)innerf(x=x, innermu=miu, innersig=sigma))
+  
+    e_value = exp(sum(innerlog(c(norm_value_up_1,norm_value_up_2))) -
+                    sum(innerlog(c(norm_value_down_1,norm_value_down_2))))
+    evalue_all = c(evalue_all,e_value)
+  }
+  return(cbind(a_b,evalue_all))
+}
+
+
+
+#' DESeq Output Dataset
+#'
+#' The output dummy data for "RNA" meythod illustrating purpose.
+#'
+#' The data includes 10 columns.
+#'
+#' - treated1fb:
+#' 
+#' - treated2fb:
+#' 
+#' - treated3fb:
+#' 
+#' - untreated1fb:
+#' 
+#' - untreated2fb:
+#' 
+#' - untreated3fb:
+#'  
+#' - untreated4fb:
+#' 
+#' This data contains 8166 rows and 7 columns.
+#'
+#' Please check the vignette "metevalue" for details.
+#' @name demo_desq_out
+#' @docType data
+#' @keywords metevalue
+#' The data is a simulation data:
+#' @examples
+#' # library("pasilla")
+#' # pasCts <- system.file("extdata",
+#' #                       "pasilla_gene_counts.tsv",
+#' #                       package="pasilla", mustWork=TRUE)
+#' # pasAnno <- system.file("extdata",
+#' #                        "pasilla_sample_annotation.csv",
+#' #                        package="pasilla", mustWork=TRUE)
+#' # cts <- as.matrix(read.csv(pasCts,sep="\t",row.names="gene_id"))
+#' # coldata <- read.csv(pasAnno, row.names=1)
+#' # coldata <- coldata[,c("condition","type")]
+#' # coldata$condition <- factor(coldata$condition)
+#' # coldata$type <- factor(coldata$type)
+#' # 
+#' # library("DESeq2")
+#' # colnames(cts)=paste0(colnames(cts),'fb')
+#' # cts = cts[,rownames(coldata)]
+#' # dds <- DESeqDataSetFromMatrix(countData = cts,
+#' #                               colData = coldata,
+#' #                               design = ~ condition)
+#' # dds <- DESeq(dds)
+#' # 
+#' # 
+#' # dat <- t(t(cts)/(dds$sizeFactor)) 
+#' # dat.out <- dat[rowSums(dat >5)>=0.8*ncol(dat),]
+#' # 
+#' # demo_desq_out <- log(dat.out)
+NULL
+
 
 #' Methyrate Dataset
 #'

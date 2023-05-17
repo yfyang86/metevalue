@@ -2,7 +2,7 @@
 #' @param methyrate metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
 #' For exampe:
 #'
-#' chrom	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
+#' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
 #' chrom and pos are keys;
 #' g1 g1 g2 g2 must be stored in groups.

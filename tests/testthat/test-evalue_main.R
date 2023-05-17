@@ -21,6 +21,12 @@ UNITEST_evalue_main_methylkit <- function() {
 }
 
 
+UNITEST_metevalue_RNA_general <- function() {
+  data("demo_desq_out")
+  result = metevalue.RNA_general(demo_desq_out, 'treated','untreated')[1,]
+  return(sprintf("%0.5f", result[1, "evalue_all"]))
+}
+
 UNITEST_evalue_main_biseq <- function() {
   data("demo_biseq_methyrate")
   data("demo_biseq_DMR")
@@ -43,7 +49,10 @@ UNITEST_evalue_main_biseq <- function() {
   return(sprintf("%0.5f", result[1, "e_adjust"]))
 }
 
+
+
 test_that("Metevalue works", {
   expect_equal(UNITEST_evalue_main_methylkit(), "18.74770")
   expect_equal(UNITEST_evalue_main_biseq(), "28077.12788")
+  expect_equal(UNITEST_metevalue_RNA_general(), "0.87551")
 })
