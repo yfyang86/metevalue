@@ -17,13 +17,17 @@ For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calc
 | BiSeq | `metevalue.biseq` | `data(demo_biseq_methyrate)` | `data(demo_biseq_DMR)` |
 | DMRfinder | `metevalue.DMRfinder`|  `data(demo_DMRfinder_rate_combine)` | `data(demo_DMRfinder_DMRs)` |
 | Metilene | `metevalue.metilene` | `data(demo_metilene_input)` | `data(demo_metilene_out)` |
+| RNAseq | `metevalue.RNA_general` | `data(demo_desq_out)` |  `data(demo_desq_out)` | 
 
 Two routines are supported to calculate the combined e-value:
 
 - Call by **files**: Here the `files` include the outputs of given `DMR` packages and its corresponding e-value of each regions;
 - Call by **R data frames**: Here the `R data frames` are corresponding `data.frame` objects.
 
-Details are as follows.
+
+# Other Demos
+
+Please vist the [metevalue-emo](https://github.com/yfyang86/metevalue-demos/tree/main/simulation) project for more demos.
 
 
 ## Call by files
@@ -62,6 +66,13 @@ result = varevalue.metilene(result$a, result$b, result$a_b)
 ```
 
 Replace `[DMR]` to one of `methylKit`, `biseq`, `DMRfinder` or `metilene` accordingly.
+
+For `RNAseq` user, `metevalue.RNA_general` could be called directly. Example is:
+
+```r
+data("demo_desq_out")
+evalue = metevalue.RNA_general(demo_desq_out, 'treated','untreated')
+```
 
 > Notice: for different `[DMR]`, the `data.frame` schemas are **different**!!! Check the R help document for details. Check the [Demo data](#demo-data) section for details.
 
@@ -457,3 +468,29 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 |:-----|-------:|-------:|--:|--------:|--:|--:|--:|-------:|-------:|
 |chr21 | 9437432| 9437540|  0| 0.610989| 26|  0|  0| 0.73705| 0.12606|
 |chr21 | 9708982| 9709189|  0| 0.475630| 28|  0|  0| 0.58862| 0.11299|
+
+
+### Input Data Examples: metilene
+
+**metilene.input Example**
+
+|chr |     pos|        g1| g1.1|      g1.2| g1.3| g1.4|      g1.5| g1.6|      g1.7|        g2| g2.1| g2.2| g2.3|      g2.4| g2.5| g2.6| g2.7|
+|:-----|-------:|---------:|----:|---------:|----:|----:|---------:|----:|---------:|---------:|----:|----:|----:|---------:|----:|----:|----:|
+|chr21 | 9437433| 0.9285714|   NA| 0.7222222| 0.75|    1| 0.6666667|    1| 0.8695652| 0.0000000|    0|    0|    0| 0.0000000|  0.0|   NA| 0.00|
+|chr21 | 9437445| 1.0000000|   NA| 0.9444444| 0.75|    1| 0.6666667|    0| 0.8695652| 0.6111111|    0|    0|    0| 0.7333333|  0.6|   NA| 0.75|
+
+**metilene.output Example**
+
+| chr  | start  |  end  |  q-value | methyl.diff  |  CpGs  |  p | p2  | m1 | m2 |
+|:-----|-------:|-------:|--:|--------:|--:|--:|--:|-------:|-------:|
+|chr21 | 9437432| 9437540|  0| 0.610989| 26|  0|  0| 0.73705| 0.12606|
+|chr21 | 9708982| 9709189|  0| 0.475630| 28|  0|  0| 0.58862| 0.11299|
+
+### Input Data Examples: RNAseq
+
+**desq_out Example**
+
+| treated1fb| treated2fb| treated3fb| untreated1fb| untreated2fb| untreated3fb| untreated4fb|
+|:----------|:----------|:----------|:------------|:------------|:------------|:------------|
+|   4.449648|   4.750104|   4.431634|     4.392285|     4.497514|     4.762213|     4.533928|
+|   6.090031|   5.973211|   5.913239|     6.238684|     6.050743|     5.932738|     6.022005|
