@@ -2,7 +2,7 @@
 % Please edit documentation in R/evalue_data_methylKit.R
 \name{metevalue.methylKit}
 \alias{metevalue.methylKit}
-\title{Evalue of the methylKit data format}
+\title{Calculate E-value of the methylKit data format}
 \usage{
 metevalue.methylKit(
   methyrate,
@@ -66,9 +66,7 @@ a dataframe, the columns are (in order):
 
     - e_value: The e-value of the corresponding region
 }
-\description{
-Perform the Evaluation for the BiSeq data.
-}
+
 \examples{
 #### methylKit example ####
 data(demo_methylkit_methyrate)
