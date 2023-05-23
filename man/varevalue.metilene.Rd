@@ -2,7 +2,7 @@
 % Please edit documentation in R/evalue_main.R
 \name{varevalue.metilene}
 \alias{varevalue.metilene}
-\title{Evalue of the Metilene data}
+\title{Calculate E-value of the Metilene data}
 \usage{
 varevalue.metilene(
   a,
@@ -76,7 +76,7 @@ a dataframe, the columns are (in order):
     - e_value: The e-value of the corresponding region
 }
 \description{
-Perform the Evaluation for the Metilene data. The data file could be pre-handled by the evalue.metilene.chk function.
+The data file could be pre-handled by the evalue.metilene.chk function.
 }
 \examples{
 #### methylKit example ####
