@@ -1,4 +1,4 @@
-#' Evalue of the methylKit data format
+#' Calculate E-value of the methylKit data format
 #'
 #' Perform the Evaluation for the BiSeq data.
 #' @param methyrate is the data of methylation rates of each sites and group, the columns are (in order):
