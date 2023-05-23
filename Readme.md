@@ -314,6 +314,39 @@ result = varevalue.metilene(result$a, result$b, result$a_b)
 head(result)
 ```
 
+## Example: Other DNA methylation tools
+
+In above examples, we have already provided examples to calculate E-values directly from DMR detection tools including BiSeq, DMRfinder, MethylKit and Metilene. 
+However, users may wonder how to calculate the E-values directly from CpG sites or other DNA methylation tools not presented above.
+We then facilitate the purpose in the following example.
+
+
+-   `metilene.input`: the input file of `Metilene` containing methylation rates at each CpG site
+
+By changing the group name, start site and end site, function `varevalue.signle_general` can calculate e-value of any site or region using a general methylation rates data. Take `metilene.input` as example.
+
+```{r eval=FALSE}
+input <- read.table("metilene.input", header = T)
+e_value <- varevalue.signle_general(methyrate=input, group1_name='g1', group2_name='g2', chr='chr21', start=9439679, end=9439679)
+head(e_value)
+```
+
+## Example: RNA-seq data
+The framework of E-value calculation presented in this project is also able to be extended to other genomic data including RNA-seq. 
+Here is an example to introduce the E-value calculation in RNA-seq. 
+
+
+-   `desq_out`: the RNA data
+
+function `varevalue.signle_general` can provides e-values for each row of the normalized expression level of RNA-seq data.
+
+```{r eval=FALSE}
+input <- read.table("desq_out", header = T)
+data_e <- metevalue.RNA_general(input, group1_name='treated', group2_name='untreated')
+head(data_e)
+```
+
+
 
 # Misc
 
