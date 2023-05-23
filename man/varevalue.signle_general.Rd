@@ -2,7 +2,7 @@
 % Please edit documentation in R/evalue_main.R
 \name{varevalue.signle_general}
 \alias{varevalue.signle_general}
-\title{A general method to calculate the e-value for the Metilene alike gene data with specified start and end sits}
+\title{A general method to calculate the e-value for other DNA methylation tools}
 \usage{
 varevalue.signle_general(
   methyrate,
