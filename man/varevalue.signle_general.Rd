@@ -32,8 +32,8 @@ chr    pos    group1_name group1_name ... group1_name group2_name group2_name}
 evalue
 }
 \description{
-Perform the Evaluation for the Metilene data. The data file could be pre-handled by the metevalue.[types].chk function.
-The  Chromosome name, start and end sits shoule be specified.
+The input data is the DNA methylation rates using the same format with Metilene. The data file could be pre-handled by the metevalue.[types].chk function.
+The  Chromosome name, start and end sites shoule be specified.
 }
 \examples{
 data("demo_metilene_out")
