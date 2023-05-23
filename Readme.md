@@ -421,7 +421,7 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 |chr21 | 9708982| 9709189|  0| 0.475630| 28|  0|  0| 0.58862| 0.11299|
 
 
-### Input Data Examples: metilene
+### Input Data Examples: Metilene
 
 **metilene.input Example**
 
