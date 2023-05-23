@@ -18,7 +18,7 @@ For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calc
 | BiSeq | `metevalue.biseq` | `data(demo_biseq_methyrate)` | `data(demo_biseq_DMR)` |
 | DMRfinder | `metevalue.DMRfinder`|  `data(demo_DMRfinder_rate_combine)` | `data(demo_DMRfinder_DMRs)` |
 | Metilene | `metevalue.metilene` | `data(demo_metilene_input)` | `data(demo_metilene_out)` |
-| Other DNA methylation tools | `varevalue.single_general` | `data(demo_metilene_input)` | | 
+| Other DNA methylation tools | `varevalue.single_general` | `data(demo_metilene_input)` or any data above| | 
 | RNA-seq data | `metevalue.RNA_general` | `data(demo_desq_out)` | | 
 
 Two routines are supported to calculate the combined e-value:
