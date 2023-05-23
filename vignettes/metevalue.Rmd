@@ -39,9 +39,8 @@ In this package, we provide e-value for four DMR (differentially methylated regi
 -   BiSeq
 -   DMRfinder
 -   Metilene
--   General case
--   RNAseq
--   General purpose
+-   General case for Other DNA methylation data
+-   General case for RNA-seq data
 
 For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calculation is conducted by the `metevalue.[DMR]` function.
 
@@ -294,7 +293,7 @@ head(result)
 ## General case for DNA methylation data
 
 In above examples, we have already provided examples to calculate E-values directly from DMR detection tools including BiSeq, DMRfinder, MethylKit and Metilene. 
-However, users may wonder how to calculate the E-values directly from CpG sites or other DMR detection tools not presented above.
+However, users may wonder how to calculate the E-values directly from CpG sites or other DNA methylation tools not presented above.
 We then facilitate the purpose in the following example.
 
 
@@ -397,6 +396,10 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 |:-----|-------:|-------:|--:|--------:|--:|--:|--:|-------:|-------:|
 |chr21 | 9437432| 9437540|  0| 0.610989| 26|  0|  0| 0.73705| 0.12606|
 |chr21 | 9708982| 9709189|  0| 0.475630| 28|  0|  0| 0.58862| 0.11299|
+
+### Input Data Examples: Other DNA methylation tools
+
+?????
 
 ### Input Data Examples: RNAseq
 
