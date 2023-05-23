@@ -411,13 +411,20 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 |chr21 | 9708982| 9709189|  0| 0.475630| 28|  0|  0| 0.58862| 0.11299|
 
 ### Input Data Examples: Other DNA methylation tools
+**input data Example**
+???
+
+**output data Example**
 ???
 
 ### Input Data Examples: RNA-seq data
 
-**desq_out Example**
+**input data Example**
 
 | treated1fb| treated2fb| treated3fb| untreated1fb| untreated2fb| untreated3fb| untreated4fb|
 |:----------|:----------|:----------|:------------|:------------|:------------|:------------|
 |   4.449648|   4.750104|   4.431634|     4.392285|     4.497514|     4.762213|     4.533928|
 |   6.090031|   5.973211|   5.913239|     6.238684|     6.050743|     5.932738|     6.022005|
+
+**output data example**
+???
