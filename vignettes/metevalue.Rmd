@@ -50,7 +50,7 @@ For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calc
 | BiSeq | `metevalue.biseq` | `data(demo_biseq_methyrate)` | `data(demo_biseq_DMR)` |
 | DMRfinder | `metevalue.DMRfinder`|  `data(demo_DMRfinder_rate_combine)` | `data(demo_DMRfinder_DMRs)` |
 | Metilene | `metevalue.metilene` | `data(demo_metilene_input)` | `data(demo_metilene_out)` |
-| Other DNA methylation tools | `varevalue.signle_general` | `data(demo_metilene_input)` or any other data in this column | | 
+| Other DNA methylation tools | `varevalue.single_general` | `data(demo_metilene_input)` or any other data in this column | | 
 | RNA-seq data | `metevalue.RNA_general` | `data(demo_desq_out)` | | 
 
 Two routines are supported to calculate the combined e-value:
@@ -301,11 +301,11 @@ We then facilitate the purpose in the following example.
 
 -   `methyrate`: a file containing methylation rates at each CpG site of 2 different groups
 
-By changing the group name, start site and end site, function `varevalue.signle_general` can calculate e-value of any site or region using a general methylation rates data without using an output file of a specific tool.
+By changing the group name, start site and end site, function `varevalue.single_general` can calculate e-value of any site or region using a general methylation rates data without using an output file of a specific tool.
 
 ```{r eval=FALSE}
 input <- read.table("methyrate", header = T)
-e_value <- varevalue.signle_general(methyrate=input, group1_name='g1', group2_name='g2', chr='chr21', start=9439679, end=9439679)
+e_value <- varevalue.single_general(methyrate=input, group1_name='g1', group2_name='g2', chr='chr21', start=9439679, end=9439679)
 head(e_value)
 ```
 
@@ -316,7 +316,7 @@ Here is an example to introduce the E-value calculation in RNA-seq.
 
 -   `desq_out`: the RNA data
 
-function `varevalue.signle_general` can provides e-values for each row of the normalized expression level of RNA-seq data.
+function `metevalue.RNA_general` can provides e-values for each row of the normalized expression level of RNA-seq data.
 
 ```{r eval=FALSE}
 input <- read.table("desq_out", header = T)
