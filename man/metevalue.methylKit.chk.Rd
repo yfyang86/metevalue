@@ -12,13 +12,13 @@ metevalue.methylKit.chk(
 )
 }
 \arguments{
-\item{input_filename_a}{the combined data of methylation rate file. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
+\item{input_filename_a}{the combined data of methylation rate file. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
 For exampe:
 
 chr    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    g2    g2    g2    g2    g2
 
 chr and pos are keys;
-g1 g1 g2 g2 must be stored in pairs.}
+g1 and g2 are two experimental groups.}
 
 \item{input_filename_b}{the output file of methylKit. a methylDiff or methylDiffDB object containing the differential methylated locations satisfying the criteria.
 The columns are (in order):
