@@ -2,7 +2,7 @@
 % Please edit documentation in R/evalue_data_biseq.R
 \name{metevalue.biseq}
 \alias{metevalue.biseq}
-\title{Evalue of the BiSeq data format}
+\title{Calcuate E-value of the BiSeq data format}
 \usage{
 metevalue.biseq(
   methyrate,
@@ -71,7 +71,7 @@ a dataframe, the columns are (in order):
     - e_value: The e-value of the corresponding region
 }
 \description{
-Perform the Evaluation for the BiSeq data. Please check vignette "metevalue" for details.
+Please check vignette "metevalue" for details.
 }
 \examples{
 \donttest{
