@@ -151,13 +151,13 @@ evalue_buildin_var_fmt_nm <- function(a, b, method="metilene"){
 
 
 #' Check the Metilene data format
-#' @param input_filename_a metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
+#' @param input_filename_a metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
 #' For exampe:
 #'
 #' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
 #' chr and pos are keys;
-#' g1 g1 g2 g2 must be stored in pairs.
+#' g1 and g2 are two experimental groups.
 
 #' @param input_filename_b  metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
 #' The columns are (in order):
@@ -200,13 +200,13 @@ return(list(file_a = re$a, file_b = re$b, file_a_b = evalue_buildin_sql(re$a, re
 }
 
 #' Check the BiSeq data format
-#' @param input_filename_a metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
+#' @param input_filename_a metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
 #' For exampe:
 #'
 #' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
 #' chr and pos are keys;
-#' g1 g1 g2 g2 must be stored in pairs.
+#' g1 and g2 are two experimental groups.
 
 #' @param input_filename_b  metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
 #' The columns are (in order):
@@ -244,13 +244,13 @@ metevalue.biseq.chk <- function(input_filename_a, input_filename_b, sep = "\t", 
 }
 
 #' Check the methylKit data format
-#' @param input_filename_a the combined data of methylation rate file. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
+#' @param input_filename_a the combined data of methylation rate file. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
 #' For exampe:
 #'
 #' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
 #' chr and pos are keys;
-#' g1 g1 g2 g2 must be stored in pairs.
+#' g1 and g2 are two experimental groups.
 #' @param input_filename_b  the output file of methylKit. a methylDiff or methylDiffDB object containing the differential methylated locations satisfying the criteria.
 #' The columns are (in order):
 #'
@@ -284,13 +284,13 @@ metevalue.methylKit.chk <- function(input_filename_a, input_filename_b, sep = "\
 
 
 #' Check the DMRfinder data format
-#' @param input_filename_a the combined data of methylation rate file. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
+#' @param input_filename_a the combined data of methylation rate file. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
 #' For exampe:
 #'
 #' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
 #' chr and pos are keys;
-#' g1 g1 g2 g2 must be stored in pairs.
+#' g1 and g2 are two experimental groups.
 
 #' @param input_filename_b  the output file of DMRfinder.
 #' The columns are (in order):
