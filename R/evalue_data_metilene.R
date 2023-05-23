@@ -1,11 +1,11 @@
-#' Evalue of the Metilene data format
-#' @param methyrate metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns in pairs:
+#' Calculate E-value of the Metilene data format
+#' @param methyrate metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
 #' For exampe:
 #'
 #' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
 #' chrom and pos are keys;
-#' g1 g1 g2 g2 must be stored in groups.
+#' g1 and g2 are two experimental groups.
 #'
 #' @param metilene.output  metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
 #' The columns are (in order):
