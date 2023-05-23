@@ -1,6 +1,5 @@
 #' Calculate E-value of the DMRfinder data format
 #'
-#' Perform the Evaluation for the DMRfinder data.
 #' @param methyrate is the methyrate file.
 #'     - chr: Chromosome
 #'
