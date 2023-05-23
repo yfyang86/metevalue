@@ -139,7 +139,7 @@ varevalue.metilene <- function(a, b, a_b, group1_name = 'g1', group2_name = 'g2'
 #' result = evalue_buildin_var_fmt_nm(demo_metilene_input,
 #'          demo_metilene_out, method="metilene")
 #' a_b = evalue_buildin_sql(result$a, result$b, method = 'metilene')
-#' varevalue.signle_general(a_b, chr = "chr21", start = 9437432, end = 9437540)
+#' varevalue.single_general(a_b, chr = "chr21", start = 9437432, end = 9437540)
 #' # [1] 2.626126e+43
 #' 
 #' #### Compare to `varevalue.metilene`  ####
@@ -149,7 +149,7 @@ varevalue.metilene <- function(a, b, a_b, group1_name = 'g1', group2_name = 'g2'
 #' # result_met = varevalue.metilene(resultx$a, resultx$b, resultx$a_b)
 #' # result_met[with(result_met, chr == 'chr21' & start == '9437432' & end == '9437540'), ]
 #' # [1] 2.626126e+43
-varevalue.signle_general = function(methyrate, group1_name='g1', group2_name='g2', chr, start, end){
+varevalue.single_general = function(methyrate, group1_name='g1', group2_name='g2', chr, start, end){
   innerf = function(x, innermu=0., innersig=1.){
     vector_temp = na.omit(as.numeric(x))
     n = length(vector_temp)
