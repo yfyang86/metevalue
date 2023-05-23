@@ -1,6 +1,6 @@
-#' Evalue of the BiSeq data format
+#'  Calculate E-value of the BiSeq data format
 #'
-#' Perform the Evaluation for the BiSeq data. Please check vignette "metevalue" for details.
+#' Please check vignette "metevalue" for details.
 #' @param methyrate is the methyrate file. The columns are (in order):
 #'     - chr: Chromosome
 #'
