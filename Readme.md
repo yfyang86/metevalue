@@ -1,13 +1,14 @@
 
 # Introductions
 
-In this package, we provide e-value for four DMR (differentially methylated region) detection tools (MethylKit, Metilene, BiSeq and DMRfinder) and general purpose.
+In this package, we provide e-value for four DMR (differentially methylated region) detection tools (MethylKit, Metilene, BiSeq and DMRfinder) and general purposes.
 
 -   MethylKit
 -   BiSeq
 -   DMRfinder
 -   Metilene
--   General purpose
+-   Other DNA methylation tools
+-   RNA-seq data
 
 For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calculation is conducted by the `metevalue.[DMR]` function. 
 
@@ -17,7 +18,8 @@ For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calc
 | BiSeq | `metevalue.biseq` | `data(demo_biseq_methyrate)` | `data(demo_biseq_DMR)` |
 | DMRfinder | `metevalue.DMRfinder`|  `data(demo_DMRfinder_rate_combine)` | `data(demo_DMRfinder_DMRs)` |
 | Metilene | `metevalue.metilene` | `data(demo_metilene_input)` | `data(demo_metilene_out)` |
-| RNAseq | `metevalue.RNA_general` | `data(demo_desq_out)` |  `data(demo_desq_out)` | 
+| Other DNA methylation tools | `???` | `???` | `???` | 
+| RNA-seq data | `metevalue.RNA_general` | `data(demo_desq_out)` |  `data(demo_desq_out)` | 
 
 Two routines are supported to calculate the combined e-value:
 
