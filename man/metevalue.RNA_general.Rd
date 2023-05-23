@@ -2,13 +2,12 @@
 % Please edit documentation in R/evalue_main.R
 \name{metevalue.RNA_general}
 \alias{metevalue.RNA_general}
-\title{A general method to calculate the e-value for RNA data.}
+\title{A general method to calculate the e-value for RNA-seq data.}
 \usage{
 metevalue.RNA_general(rna, group1_name, group2_name)
 }
 \arguments{
-\item{rna}{data.frame: A data.frame object of RNAseq data 
-Notice, this data frame only contains the value in pairs, for example:
+\item{rna}{data.frame: A data.frame object of RNAseq data. For example:
 
 
      treated1fb treated2fb untreated1fb untreated2fb
@@ -28,9 +27,6 @@ Row names (TAG1 and TAG2 in the above example) is also suggested.}
 }
 \value{
 evalue
-}
-\description{
-Perform the Evaluation for the RNA data.
 }
 \examples{
 data("demo_desq_out")
