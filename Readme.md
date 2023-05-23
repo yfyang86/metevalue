@@ -78,7 +78,7 @@ evalue = metevalue.RNA_general(demo_desq_out, 'treated','untreated')
 
 > Notice: for different `[DMR]`, the `data.frame` schemas are **different**!!! Check the R help document for details. Check the [Demo data](#demo-data) section for details.
 
-## MethylKit Example
+## Example: MethylKit
 
 methylKit is a R package for DNA methylation analysis and annotation
 from high-throughput bisulfite sequencing. The package is designed to
@@ -181,7 +181,7 @@ str(result)
 #>  $ e_adjust : num  1.65 1.65 1.65 1.65 1.65 ...
 ```
 
-## BiSeq Example
+## Example: BiSeq
 
 First, we load the methylation data at CpG site levels from ‘BiSeq’
 package. Then we clustered CpG sites into DMRs using ‘BiSeq’.
@@ -241,7 +241,7 @@ result = varevalue.metilene(result$a, result$b, result$a_b)
 str(result)
 ```
 
-## DMRfinder Example
+## Example: DMRfinder
 
 Given the input file
 
@@ -278,7 +278,7 @@ result = varevalue.metilene(result$a, result$b, result$a_b)
 head(result)
 ```
 
-## Metilene Example
+## Example: Metilene
 
 Given
 
@@ -314,89 +314,11 @@ result = varevalue.metilene(result$a, result$b, result$a_b)
 head(result)
 ```
 
-## General purpose
+## Example: Other DNA methylation tools
 
-The following program implement the Figure 1 in
-`Combining e-values and p-values` by Vovk and Wang. We modified the
-original `python` code to reproduce the result. The same vectorization
-is implemented in the R function `varevalue.metilene`. General purpose
-e-value calculation could use this program to archieve better
-performances.
+???
 
-``` r
-#### Initialization ####
-n_seeds = 100  # how many seeds to consider
-N = 10000      # the number of trials
-delta = -0.1   # the parameter of the alternative hypothesis
-# e_x are the e-values and iE are the cumulative e-values
-e_x = rep(0, N)
-# p_x are the p-values and FP are Fisher's overall p-values
-p_x = rep(0, N)
-iE_all   = matrix(1, nrow = N+1, ncol = n_seeds) # product
-uni_all  = iE_all                                # universal
-FP_all   = iE_all                                # Fisher
-F_VS_all = iE_all                                # Fisher-VS
-
-#### Calculation ####
-for(seed in 1:n_seeds){
-  set.seed(seed * 1e3 + 1)
-  x = rnorm(N) + delta
-  e_x = exp(delta * x - delta^2/2)
-  iE_all[, seed] = cumprod(c(1, e_x))
-  S = cumsum(x)
-  nn = 1:N
-  uni_all[-1,seed] = exp(S^2/2/nn) / sqrt(nn)
-  p_x = pnorm(x)
-  FF = -2 * cumsum(log(p_x))
-  FP_all[-1, seed] = exp(pchisq(FF, df=2*nn, lower.tail = F, log.p = T))
-  SELR_ = (FP_all[, seed] < exp(-1))
-  F_VS_all[ SELR_, seed] = 1/(-exp(1)*FP_all[ SELR_, seed]*log(FP_all[ SELR_, seed]))   
-}
-
-iE = apply(iE_all, 1, median)
-uni = apply(uni_all, 1, median)
-FP = apply(FP_all, 1, median)
-F_VS = apply(F_VS_all,1, median)
-
-#### Plot ####
-library(ggplot2)
-#> 
-#> Attaching package: 'ggplot2'
-#> The following objects are masked from 'package:psych':
-#> 
-#>     %+%, alpha
-library(tidyr)
-#> 
-#> Attaching package: 'tidyr'
-#> The following object is masked from 'package:methylKit':
-#> 
-#>     unite
-#> The following object is masked from 'package:S4Vectors':
-#> 
-#>     expand
-library(dplyr)
-
-sim_plots <- data.frame(
-  x = 1:(N+1),
-  product = iE,
-  universal = uni,
-  Fisher = 1/(FP),
-  FisherVS = F_VS
-) %>% 
-  gather(key = "Method", value = "E_value", -x) %>%
-  ggplot(aes(x = x, y = E_value)) + 
-  geom_line(aes(color = Method), size = 1) + 
-  scale_y_continuous(trans='log') +
-  theme_grey() +  # Default
-  theme(legend.position = "top") + 
-  scale_color_brewer(palette="Dark2") +
-  xlab("Numer of Observations") + 
-  ylab("e-Value")
-  
-print(sim_plots)
-```
-
-![evalue](figures/evalue-1.png)
+## Example: RNA-seq data
 
 
 # Misc
@@ -488,7 +410,10 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 |chr21 | 9437432| 9437540|  0| 0.610989| 26|  0|  0| 0.73705| 0.12606|
 |chr21 | 9708982| 9709189|  0| 0.475630| 28|  0|  0| 0.58862| 0.11299|
 
-### Input Data Examples: RNAseq
+### Input Data Examples: Other DNA methylation tools
+???
+
+### Input Data Examples: RNA-seq data
 
 **desq_out Example**
 
