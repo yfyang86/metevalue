@@ -12,14 +12,14 @@ In this package, we provide e-value for four DMR (differentially methylated regi
 
 For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calculation is conducted by the `metevalue.[DMR]` function. 
 
-| DMR | Method | methyrate Example | Method.output Example |
+| DMR | Method | Input.1 Example | Input.2 Example |
 |:-----|:-----|:-----|:-----|
 | MethylKit | `metevalue.methylKit` | `data(demo_methylkit_methyrate)` |  `data(demo_methylkit_met_all)` | 
 | BiSeq | `metevalue.biseq` | `data(demo_biseq_methyrate)` | `data(demo_biseq_DMR)` |
 | DMRfinder | `metevalue.DMRfinder`|  `data(demo_DMRfinder_rate_combine)` | `data(demo_DMRfinder_DMRs)` |
 | Metilene | `metevalue.metilene` | `data(demo_metilene_input)` | `data(demo_metilene_out)` |
-| Other DNA methylation tools | `???` | `???` | `???` | 
-| RNA-seq data | `metevalue.RNA_general` | `data(demo_desq_out)` |  `data(demo_desq_out)` | 
+| Other DNA methylation tools | `varevalue.signle_general` | `data(demo_metilene_input)` or any other data in this column | | 
+| RNA-seq data | `metevalue.RNA_general` | `data(demo_desq_out)` | | 
 
 Two routines are supported to calculate the combined e-value:
 
@@ -38,10 +38,10 @@ We design the `metevalue.[DMR]` function to accept similar parameter patterns:
 
 ``` r
 metevalue.[DMR](
-  methyrate,                # Output file name of [DMR]
+  methyrate,                # methylation rates of each CpG site
   [DMR].output,             # Output file name of [DMR] with e-value of each region
   adjust.methods = "BH",    # Adjust methods of e-value
-  sep = "\t",               # seperator, default is the TAB key.
+  sep = "\t",               # seperator, default is the TAB key
   bheader = FALSE           # A logical value indicating whether the [DMR].output file
                             # contains the names of the variables as its first line
 )
@@ -316,17 +316,17 @@ head(result)
 
 ## Example: Other DNA methylation tools
 
-In above examples, we have already provided examples to calculate E-values directly from DMR detection tools including BiSeq, DMRfinder, MethylKit and Metilene. 
+In above examples, we have already provided examples to calculate E-values directly from DMR detection tools including BiSeq, DMRfinder, MethylKit and Metilene. All of this requires users to prepare an output file of different tools.
 However, users may wonder how to calculate the E-values directly from CpG sites or other DNA methylation tools not presented above.
 We then facilitate the purpose in the following example.
 
 
--   `metilene.input`: the input file of `Metilene` containing methylation rates at each CpG site
+-   `methyrate`: a file containing methylation rates at each CpG site of 2 different group
 
-By changing the group name, start site and end site, function `varevalue.signle_general` can calculate e-value of any site or region using a general methylation rates data. Take `metilene.input` as example.
+By changing the group name, start site and end site, function `varevalue.signle_general` can calculate e-value of any site or region using a general methylation rates data without using an output file of a specific tool.
 
 ```{r eval=FALSE}
-input <- read.table("metilene.input", header = T)
+input <- read.table("methyrate", header = T)
 e_value <- varevalue.signle_general(methyrate=input, group1_name='g1', group2_name='g2', chr='chr21', start=9439679, end=9439679)
 head(e_value)
 ```
@@ -408,7 +408,7 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 
 **methyrate Example**
 
-|chrom |     pos|        g1| g1.1|      g1.2| g1.3| g1.4|      g1.5| g1.6|      g1.7|        g2| g2.1| g2.2| g2.3|      g2.4| g2.5| g2.6| g2.7|
+|chr |     pos|        g1| g1.1|      g1.2| g1.3| g1.4|      g1.5| g1.6|      g1.7|        g2| g2.1| g2.2| g2.3|      g2.4| g2.5| g2.6| g2.7|
 |:-----|-------:|---------:|----:|---------:|----:|----:|---------:|----:|---------:|---------:|----:|----:|----:|---------:|----:|----:|----:|
 |chr21 | 9437433| 0.9285714|   NA| 0.7222222| 0.75|    1| 0.6666667|    1| 0.8695652| 0.0000000|    0|    0|    0| 0.0000000|  0.0|   NA| 0.00|
 |chr21 | 9437445| 1.0000000|   NA| 0.9444444| 0.75|    1| 0.6666667|    0| 0.8695652| 0.6111111|    0|    0|    0| 0.7333333|  0.6|   NA| 0.75|
@@ -438,20 +438,21 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 |chr21 | 9708982| 9709189|  0| 0.475630| 28|  0|  0| 0.58862| 0.11299|
 
 ### Input Data Examples: Other DNA methylation tools
-**？Input data Example**
-???
 
-**？Output data Example**
-???
+**methyrate.input Example**
+
+|chr |     pos|        g1| g1.1|      g1.2| g1.3| g1.4|      g1.5| g1.6|      g1.7|        g2| g2.1| g2.2| g2.3|      g2.4| g2.5| g2.6| g2.7|
+|:-----|-------:|---------:|----:|---------:|----:|----:|---------:|----:|---------:|---------:|----:|----:|----:|---------:|----:|----:|----:|
+|chr21 | 9437433| 0.9285714|   NA| 0.7222222| 0.75|    1| 0.6666667|    1| 0.8695652| 0.0000000|    0|    0|    0| 0.0000000|  0.0|   NA| 0.00|
+|chr21 | 9437445| 1.0000000|   NA| 0.9444444| 0.75|    1| 0.6666667|    0| 0.8695652| 0.6111111|    0|    0|    0| 0.7333333|  0.6|   NA| 0.75|
+
 
 ### Input Data Examples: RNA-seq data
 
-**？Input data Example**
+**desq_out Example**
 
 | treated1fb| treated2fb| treated3fb| untreated1fb| untreated2fb| untreated3fb| untreated4fb|
 |:----------|:----------|:----------|:------------|:------------|:------------|:------------|
 |   4.449648|   4.750104|   4.431634|     4.392285|     4.497514|     4.762213|     4.533928|
 |   6.090031|   5.973211|   5.913239|     6.238684|     6.050743|     5.932738|     6.022005|
 
-**? Output data example**
-???
