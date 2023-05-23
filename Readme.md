@@ -316,12 +316,12 @@ head(result)
 
 ## Example: Other DNA methylation tools
 
-In above examples, we have already provided examples to calculate E-values directly from DMR detection tools including BiSeq, DMRfinder, MethylKit and Metilene. All of this requires users to prepare an output file of different tools.
+In above examples, we have already provided examples to calculate E-values directly from DMR detection tools including BiSeq, DMRfinder, MethylKit and Metilene. All of these require users to prepare an output file of different tools.
 However, users may wonder how to calculate the E-values directly from CpG sites or other DNA methylation tools not presented above.
 We then facilitate the purpose in the following example.
 
 
--   `methyrate`: a file containing methylation rates at each CpG site of 2 different group
+-   `methyrate`: a file containing methylation rates at each CpG site of 2 different groups
 
 By changing the group name, start site and end site, function `varevalue.signle_general` can calculate e-value of any site or region using a general methylation rates data without using an output file of a specific tool.
 
