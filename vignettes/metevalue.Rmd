@@ -33,14 +33,14 @@ knitr::opts_chunk$set(
 
 # Introductions
 
-In this package, we provide e-value for four DMR (differentially methylated region) detection tools (MethylKit, Metilene, BiSeq and DMRfinder) and general purpose.
+In this package, we provide e-value for four DMR (differentially methylated region) detection tools (MethylKit, Metilene, BiSeq and DMRfinder) and general purposes.
 
 -   MethylKit
 -   BiSeq
 -   DMRfinder
 -   Metilene
--   General case for Other DNA methylation data
--   General case for RNA-seq data
+-   Other DNA methylation tools
+-   RNA-seq data
 
 For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calculation is conducted by the `metevalue.[DMR]` function.
 
@@ -50,6 +50,8 @@ For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calc
 | BiSeq     | `metevalue.biseq`     | `data(demo_biseq_methyrate)`        | `data(demo_biseq_DMR)`         |
 | DMRfinder | `metevalue.DMRfinder` | `data(demo_DMRfinder_rate_combine)` | `data(demo_DMRfinder_DMRs)`    |
 | Metilene  | `metevalue.metilene`  | `data(demo_metilene_input)`         | `data(demo_metilene_out)`      |
+| Other DNA methylation tools | `???` | `???` | `???` | 
+| RNA-seq data | `metevalue.RNA_general` | `data(demo_desq_out)` |  `data(demo_desq_out)` | 
 
 Two routines are supported to calculate the combined e-value:
 
@@ -97,7 +99,7 @@ Replace `[DMR]` to one of `methylKit`, `biseq`, `DMRfinder` or `metilene` accord
 
 > Notice: for different `[DMR]`, the `data.frame` schemas are **different**!!! Check the R help document for details. Check the [Demo data](#demo-data) section for details. \# Examples
 
-## MethylKit Example
+## Example: MethylKit
 
 methylKit is a R package for DNA methylation analysis and annotation from high-throughput bisulfite sequencing. The package is designed to deal with sequencing data from RRBS and its variants, but also target-capture methods and whole genome bisulfite sequencing.
 
@@ -165,7 +167,7 @@ result = varevalue.metilene(result$a, result$b, result$a_b)
 str(result)
 ```
 
-## BiSeq Example
+## Example: BiSeq
 
 First, we load the methylation data at CpG site levels from 'BiSeq' package. Then we clustered CpG sites into DMRs using 'BiSeq'.
 
@@ -222,7 +224,7 @@ result = varevalue.metilene(result$a, result$b, result$a_b)
 str(result)
 ```
 
-## DMRfinder Example
+## Example: DMRfinder
 
 Given the input file
 
@@ -257,7 +259,7 @@ result = varevalue.metilene(result$a, result$b, result$a_b)
 head(result)
 ```
 
-## Metilene Example
+## Example: Metilene
 
 Given
 
@@ -290,7 +292,7 @@ result = list(a = result$a,
 result = varevalue.metilene(result$a, result$b, result$a_b)
 head(result)
 ```
-## General case for DNA methylation data
+## Example: Other DNA methylation tools
 
 In above examples, we have already provided examples to calculate E-values directly from DMR detection tools including BiSeq, DMRfinder, MethylKit and Metilene. 
 However, users may wonder how to calculate the E-values directly from CpG sites or other DNA methylation tools not presented above.
@@ -307,7 +309,7 @@ e_value <- varevalue.signle_general(methyrate=input, group1_name='g1', group2_na
 head(e_value)
 ```
 
-## General case for RNA-seq data
+## Example: RNA-seq data
 The framework of E-value calculation presented in this project is also able to be extended to other genomic data including RNA-seq. 
 Here is an example to introduce the E-value calculation in RNA-seq. 
 
