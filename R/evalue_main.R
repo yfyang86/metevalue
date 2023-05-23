@@ -1,7 +1,7 @@
-#' Evalue of the Metilene data
+#' Calculate E-value of the Metilene data
 #'
-#' Perform the Evaluation for the Metilene data. The data file could be pre-handled by the evalue.metilene.chk function.
-#' @param a A data.frame object, the columns should be (in order):
+#' The data file could be pre-handled by the evalue.metilene.chk function.
+#' @param a A data.frame object:
 #'
 #' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
@@ -119,9 +119,9 @@ varevalue.metilene <- function(a, b, a_b, group1_name = 'g1', group2_name = 'g2'
 
 
 
-#' A general method to calculate the e-value for the Metilene alike gene data with specified start and end sits
+#' A general method to calculate the e-value for other DNA methylation tools not described above. The input data is the DNA methylation rates using the same format with Metilene.
 #'
-#' Perform the Evaluation for the Metilene data. The data file could be pre-handled by the metevalue.[types].chk function.
+#' The data file could be pre-handled by the metevalue.[types].chk function.
 #' The  Chromosome name, start and end sits shoule be specified.
 #' @param methyrate data.frame: A data.frame object of methylation rates, the columns should be(name of groups can be self-defined)
 #'
@@ -189,11 +189,9 @@ varevalue.signle_general = function(methyrate, group1_name='g1', group2_name='g2
   return(e_value)
 }
 
-#' A general method to calculate the e-value for RNA data.
+#' A general method to calculate the e-value for RNA-seq data.
 #'
-#' Perform the Evaluation for the RNA data.
-#' @param rna data.frame: A data.frame object of RNAseq data 
-#' Notice, this data frame only contains the value in pairs, for example:
+#' @param rna data.frame: A data.frame object of RNAseq data. For example:
 #' 
 #' 
 #'      treated1fb treated2fb untreated1fb untreated2fb
