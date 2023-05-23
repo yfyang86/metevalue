@@ -439,7 +439,7 @@ Demo data for different `metevalue.[DMR]` functions are listed in the section.
 
 ### Input Data Examples: Other DNA methylation tools
 
-**methyrate.input Example**
+**methyrate Example**
 
 |chr |     pos|        g1| g1.1|      g1.2| g1.3| g1.4|      g1.5| g1.6|      g1.7|        g2| g2.1| g2.2| g2.3|      g2.4| g2.5| g2.6| g2.7|
 |:-----|-------:|---------:|----:|---------:|----:|----:|---------:|----:|---------:|---------:|----:|----:|----:|---------:|----:|----:|----:|
