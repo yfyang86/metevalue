@@ -55,7 +55,6 @@
 #'     - e_value: The e-value of the corresponding region
 #'
 #' @examples
-#' #### DMRfinder example ####'
 #' data(demo_DMRfinder_rate_combine)
 #' data(demo_DMRfinder_DMRs)
 #' #example_tempfiles = tempfile(c("rate_combine", "DMRfinder_out"))
