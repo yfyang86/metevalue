@@ -58,6 +58,15 @@
 #' #### DMRfinder example ####'
 #' data(demo_DMRfinder_rate_combine)
 #' data(demo_DMRfinder_DMRs)
+#' #example_tempfiles = tempfile(c("rate_combine", "DMRfinder_out"))
+#' #tempdir()
+#' #write.table(demo_DMRfinder_rate_combine, file=example_tempfiles[1],
+#' #      row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
+#' #write.table (demo_DMRfinder_DMRs, file=example_tempfiles[2],
+#' #      sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
+#' #result = metevalue._DMRfinder(example_tempfiles[1], example_tempfiles[2],
+#' #      bheader = TRUE)
+#' #head(result)
 metevalue.DMRfinder <- function(methyrate, DMRfinder.output, adjust.methods='BH', sep = "\t", bheader = FALSE){
   re = metevalue.DMRfinder.chk (methyrate, DMRfinder.output, sep, bheader)
   return(varevalue.metilene(re$file_a, re$file_b, re$file_a_b, adjust.methods=adjust.methods));
