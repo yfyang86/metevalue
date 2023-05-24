@@ -1,6 +1,7 @@
 #' Calculate E-value of the methylKit data format
 #'
 #' @param methyrate is the data of methylation rates of each sites and group, the columns are (in order):
+#'
 #'     - chr: Chromosome
 #'
 #'     - pos: int Position
@@ -8,6 +9,7 @@
 #'     - g1~g2: methylation rate data in groups
 #'
 #' @param methylKit.output is the output data with e-value of each region
+#'
 #'     - chr: Chromosome
 #'
 #'     - start: The positions of the start sites of the corresponding region
@@ -48,6 +50,7 @@
 #'     - m2:  The absolute mean methylation level for the corresponding segment of group 2
 #'
 #'     - e_value: The e-value of the corresponding region
+#'
 #' @examples
 #' #### methylKit example ####
 #' data(demo_methylkit_methyrate)
