@@ -80,12 +80,12 @@ evalue = metevalue.RNA_general(demo_desq_out, 'treated','untreated')
 
 ## Example: MethylKit
 
-methylKit is a R package for DNA methylation analysis and annotation
+methylKit is an R package for DNA methylation analysis and annotation
 from high-throughput bisulfite sequencing. The package is designed to
 deal with sequencing data from RRBS and its variants, but also
 target-capture methods and whole genome bisulfite sequencing.
 
-Currently, `metevalue` package supports the e-value analytics of the
+Currently, `metevalue` package supports the e-value calculation using the
 `methylKit` output file.
 
 ``` r
