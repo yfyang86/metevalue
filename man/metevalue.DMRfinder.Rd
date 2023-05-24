@@ -14,6 +14,7 @@ metevalue.DMRfinder(
 }
 \arguments{
 \item{methyrate}{is the methyrate file.
+                 
     - chr: Chromosome
 
     - pos: int Position
@@ -21,6 +22,7 @@ metevalue.DMRfinder(
     - g1~g2: methylation rate data in groups}
 
 \item{DMRfinder.output}{is the output file of DMRfinder.
+                        
     - chr: Chromosome
 
     - start: The positions of the start sites of the corresponding region
