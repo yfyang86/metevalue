@@ -69,15 +69,17 @@ varevalue.metilene <- function(a, b, a_b, group1_name = 'g1', group2_name = 'g2'
 #' #varevalue.single_general(demo_metilene_input, chr = "chr21", start = 9437432, end = 9437540)
 #' # [1] 2.626126e+43
 #' 
-#' #### Compare to `varevalue.metilene`  ####
-#' #data("demo_metilene_out")
-#' #result = evalue_buildin_var_fmt_nm(demo_metilene_input,
-#'          demo_metilene_out, method="metilene")
-#' # resultx = list(a = result$a,
-#' #           b = result$b,
-#' #           a_b = evalue_buildin_sql(result$a, result$b, method = method_in_use))
-#' # result_met = varevalue.metilene(resultx$a, resultx$b, resultx$a_b)
-#' # result_met[with(result_met, chr == 'chr21' & start == '9437432' & end == '9437540'), ]
+#' #### Compare to `metevalue.metilene`  ####
+#' data(demo_metilene_out)
+#' #example_tempfiles = tempfile(c("metilene_input", "metilene_out"))
+#' #tempdir()
+#' #write.table(demo_metilene_input, file=example_tempfiles[1],
+#' #      row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
+#' #write.table (demo_metilene_out, file=example_tempfiles[2],
+#' #      sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
+#' #result = metevalue.metilene(example_tempfiles[1], example_tempfiles[2],
+#' #      bheader = TRUE)
+#' # result[with(result, chr == 'chr21' & start == '9437432' & end == '9437540'), ncol(result)]
 #' # [1] 2.626126e+43
 varevalue.single_general = function(methyrate, group1_name='g1', group2_name='g2', chr, start, end){
   innerf = function(x, innermu=0., innersig=1.){
