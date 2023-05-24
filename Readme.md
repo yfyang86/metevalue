@@ -47,7 +47,7 @@ metevalue.[DMR](
 )
 ```
 
-Here  `[DMR]` coudle be one of `methylKit`, `biseq`, `DMRfinder` or `metilene`.
+Here  `[DMR]` could be one of `methylKit`, `biseq`, `DMRfinder` or `metilene`.
 
 ## Call by R data frames
 
