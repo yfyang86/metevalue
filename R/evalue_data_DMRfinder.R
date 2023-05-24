@@ -1,6 +1,7 @@
 #' Calculate E-value of the DMRfinder data format
 #'
 #' @param methyrate is the methyrate file.
+#'
 #'     - chr: Chromosome
 #'
 #'     - pos: int Position
@@ -8,6 +9,7 @@
 #'     - g1~g2: methylation rate data in groups
 #'
 #' @param DMRfinder.output is the output file of DMRfinder.
+#'
 #'     - chr: Chromosome
 #'
 #'     - start: The positions of the start sites of the corresponding region
@@ -51,6 +53,7 @@
 #'     - m2:  The absolute mean methylation level for the corresponding segment of group 2
 #'
 #'     - e_value: The e-value of the corresponding region
+#'
 #' @examples
 #' #### DMRfinder example ####'
 #' data(demo_DMRfinder_rate_combine)
