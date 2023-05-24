@@ -336,7 +336,7 @@ Here is an example to introduce the E-value calculation in RNA-seq.
 
 -   `desq_out`: the RNA data
 
-function `metevalue.RNA_general` can provides e-values for each row of the normalized expression level of RNA-seq data.
+function `metevalue.RNA_general` can provide e-values for each row of the normalized expression level of RNA-seq data.
 
 ```{r eval=FALSE}
 input <- read.table("desq_out", header = T)
