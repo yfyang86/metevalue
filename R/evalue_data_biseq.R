@@ -2,12 +2,14 @@
 #'
 #' Please check vignette "metevalue" for details.
 #' @param methyrate is the methyrate file. The columns are (in order):
+#'
 #'     - chr: Chromosome
 #'
 #'     - pos: int Position
 #'
 #'     - g1~g2: methylation rate data in groups
 #' @param BiSeq.output is the output file of BiSeq. The columns are (in order):
+#'
 #'     - seqnames: Chromosome
 #'
 #'     - start: The positions of the start sites of the corresponding region
@@ -25,6 +27,7 @@
 #'     - median.meth.group2: The median methylation rate in the second group among CpG sites within the corresponding region
 #'
 #'     - median.meth.diff: The median methylation difference between groups among CpG sites within the corresponding region
+#'
 #' @param adjust.methods is the adjust methods of e-value. It can be 'bonferroni', 'hochberg', 'holm', 'hommel', 'BH', 'BY'
 #' @param sep seperator, default is the TAB key.
 #' @param bheader a logical value indicating whether the BiSeq.output file contains the names of the variables as its first line. By default, bheader = FALSE.
@@ -51,6 +54,7 @@
 #'     - m2:  The absolute mean methylation level for the corresponding segment of group 2
 #'
 #'     - e_value: The e-value of the corresponding region
+#'
 #' @examples
 #' \donttest{
 #' data("demo_biseq_methyrate")
