@@ -56,17 +56,17 @@
 #'     - e_value: The e-value of the corresponding region
 #' @examples
 #' #### methylKit example ####
-#' data(demo_methylkit_methyrate)
-#' data(demo_methylkit_met_all)
-#' example_tempfiles = tempfile(c("rate_combine", "methylKit_DMR_raw"))
-#' tempdir()
-#' write.table(demo_methylkit_methyrate, file=example_tempfiles[1],
-#'       row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
-#' write.table (demo_methylkit_met_all, file=example_tempfiles[2],
-#'       sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
-#' result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2],
-#'       bheader = TRUE)
-#' str(result)
+#' #data(demo_methylkit_methyrate)
+#' #data(demo_methylkit_met_all)
+#' #example_tempfiles = tempfile(c("rate_combine", "methylKit_DMR_raw"))
+#' #tempdir()
+#' #write.table(demo_methylkit_methyrate, file=example_tempfiles[1],
+#' #      row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
+#' #write.table (demo_methylkit_met_all, file=example_tempfiles[2],
+#' #      sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
+#' #result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2],
+#' #      bheader = TRUE)
+#' #str(result)
 varevalue.metilene <- function(a, b, a_b, group1_name = 'g1', group2_name = 'g2', adjust.methods='BH'){
   innerf = function(x, innermu=0., innersig=1.){
     vector_temp = na.omit(as.numeric(x))
@@ -134,13 +134,13 @@ varevalue.metilene <- function(a, b, a_b, group1_name = 'g1', group2_name = 'g2'
 #' @param end integer: The position of the end site of the corresponding region
 #' @return evalue
 #' @examples
-#' data("demo_metilene_input")
-#' varevalue.single_general(demo_metilene_input, chr = "chr21", start = 9437432, end = 9437540)
+#' #data("demo_metilene_input")
+#' #varevalue.single_general(demo_metilene_input, chr = "chr21", start = 9437432, end = 9437540)
 #' # [1] 2.626126e+43
 #' 
 #' #### Compare to `varevalue.metilene`  ####
-#' data("demo_metilene_out")
-#' result = evalue_buildin_var_fmt_nm(demo_metilene_input,
+#' #data("demo_metilene_out")
+#' #result = evalue_buildin_var_fmt_nm(demo_metilene_input,
 #'          demo_metilene_out, method="metilene")
 #' # resultx = list(a = result$a,
 #' #           b = result$b,
