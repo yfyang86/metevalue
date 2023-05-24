@@ -8,6 +8,7 @@
 #'     - pos: int Position
 #'
 #'     - g1~g2: methylation rate data in groups
+#'
 #' @param BiSeq.output is the output file of BiSeq. The columns are (in order):
 #'
 #'     - seqnames: Chromosome
