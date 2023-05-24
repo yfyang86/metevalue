@@ -290,31 +290,31 @@ NULL
 #' @keywords metevalue
 NULL
 
-#' DMR BiSeq Demo Dataset
-#'
-#' The BiSeq dataset for demo purpose. The data are dummy data. It includes 8 columns:
-#'
-#'
-#' - seqnames: Chromosome
-#'
-#'  - start: The positions of the start sites of the corresponding region
-#'
-#'  - end: The positions of the end sites of the corresponding region
-#'
-#'  - strand: Strand
-#'
-#'  - median.p
-#'
-#'  - median.meth.group1
-#'
-#'  - median.meth.group2
-#'
-#'  - median.meth.diff
-#'
-#' @name demo_biseq_DMR
-#' @docType data
-#' @keywords metevalue
-NULL
+##' DMR BiSeq Demo Dataset
+##'
+##' The BiSeq dataset for demo purpose. The data are dummy data. It includes 8 columns:
+##'
+##'
+##' - seqnames: Chromosome
+##'
+##'  - start: The positions of the start sites of the corresponding region
+##'
+##'  - end: The positions of the end sites of the corresponding region
+##'
+##'  - strand: Strand
+##'
+##'  - median.p
+##'
+##'  - median.meth.group1
+##'
+##'  - median.meth.group2
+##'
+##'  - median.meth.diff
+##'
+##' @name demo_biseq_DMR
+##' @docType data
+##' @keywords metevalue
+##NULL
 
 #' BiSeq Methyrate Demo Dataset
 #'
