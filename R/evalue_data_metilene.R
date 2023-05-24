@@ -62,6 +62,15 @@
 #' #### metilene example ####'
 #' data(demo_metilene_input)
 #' data(demo_metilene_out)
+#' #example_tempfiles = tempfile(c("metilene_input", "metilene_out"))
+#' #tempdir()
+#' #write.table(demo_metilene_input, file=example_tempfiles[1],
+#' #      row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
+#' #write.table (demo_metilene_out, file=example_tempfiles[2],
+#' #      sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
+#' #result = metevalue.metilene(example_tempfiles[1], example_tempfiles[2],
+#' #      bheader = TRUE)
+#' #head(result)
 metevalue.metilene <- function(methyrate, metilene.output, adjust.methods='BH', sep = "\t", bheader = FALSE){
     re = metevalue.metilene.chk (methyrate, metilene.output, sep, bheader)
 return(varevalue.metilene(re$file_a, re$file_b, re$file_a_b, adjust.methods=adjust.methods));
