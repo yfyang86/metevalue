@@ -481,7 +481,7 @@ NULL
 #'
 #' - pos: int Position
 #'
-#' - g1~g2: methylation rate data in groups, repeat 8 times.
+#' - g1~g2: methylation rate data in groups.
 #'
 #' Notice that there are "NaN" within the feature columns.
 #'
