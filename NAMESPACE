@@ -15,6 +15,6 @@ export(
 ,"metevalue.DMRfinder.chk"
 ,"metevalue.biseq"
 ,"metevalue.DMRfinder"
-,"varevalue.signle_general"
+,"varevalue.single_general"
 ,"metevalue.RNA_general"
 )

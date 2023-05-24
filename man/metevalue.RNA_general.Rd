@@ -28,6 +28,9 @@ Row names (TAG1 and TAG2 in the above example) is also suggested.}
 \value{
 evalue
 }
+\description{
+A general method to calculate the e-value for RNA-seq data.
+}
 \examples{
 data("demo_desq_out")
 evalue = metevalue.RNA_general(demo_desq_out, 'treated','untreated')
