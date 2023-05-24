@@ -184,7 +184,7 @@ str(result)
 ## Example: BiSeq
 
 First, we load the methylation data at CpG site levels from ‘BiSeq’
-package. Then we clustered CpG sites into DMRs using ‘BiSeq’.
+package. Then we cluster CpG sites into DMRs using ‘BiSeq’.
 
 ``` r
 library(BiSeq)
@@ -245,8 +245,7 @@ str(result)
 
 Given the input file
 
--   `rate_combine_DMRfinder`: a file containing methylation rates at
-    each CpG site
+-   `rate_combine_DMRfinder`: a file containing methylation rates at each CpG site
 
 -   `DMRfinder_DMR`: the output file from ‘DMRfinder’
 
@@ -266,7 +265,7 @@ result <- evalue.DMRfinder('rate_combine_DMRfinder', 'DMRfinder_DMR')
 head(result)
 ```
 
-Alternatively, function `varevalue.metilene` can also provides e-value
+Alternatively, function `varevalue.metilene` can also provide e-value
 and adjusted e-value.
 
 ``` r
@@ -282,8 +281,7 @@ head(result)
 
 Given
 
--   `metilene.input`: the input file of `Metilene` containing
-    methylation rates at each CpG site
+-   `metilene.input`: the input file of `Metilene` containing methylation rates at each CpG site
 -   `metilene.out`: the output file of `Metilene`
 
 ``` r
@@ -302,7 +300,7 @@ result <- evalue.metilene('metilene.input', 'metilene.out')
 head(result)
 ```
 
-Alternatively, function `varevalue.metilene` can also provides e-value
+Alternatively, function `varevalue.metilene` can also provide e-value
 and adjusted e-value.
 
 ``` r
