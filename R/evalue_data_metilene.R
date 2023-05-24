@@ -6,7 +6,7 @@
 #'
 #'      - chr and pos are keys;
 #'
-#'      - g1 and g2 are two experimental groups.
+#'      - g1~g2: methylation rate data in groups.
 #'
 #' @param metilene.output  metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
 #' The columns are (in order):
