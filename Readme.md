@@ -23,7 +23,7 @@ For `DMR` (`methylKit`, `biseq`, `DMRfinder` or `metilene`), the met-evalue calc
 
 Two routines are supported to calculate the combined e-value:
 
-- Call by **files**: Here the `files` include the outputs of given `DMR` packages and its corresponding e-value of each regions;
+- Call by **files**: Here the `files` include the outputs of given `DMR` packages and its corresponding e-value of each region;
 - Call by **R data frames**: Here the `R data frames` are corresponding `data.frame` objects.
 
 
