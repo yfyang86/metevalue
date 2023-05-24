@@ -66,7 +66,7 @@
 #' #tempdir()
 #' #write.table(demo_metilene_input, file=example_tempfiles[1],
 #' #      row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
-#' #write.table (demo_metilene_out, file=example_tempfiles[2],
+#' #write.table(demo_metilene_out, file=example_tempfiles[2],
 #' #      sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
 #' #result = metevalue.metilene(example_tempfiles[1], example_tempfiles[2],
 #' #      bheader = TRUE)
