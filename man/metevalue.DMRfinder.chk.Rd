@@ -19,7 +19,7 @@ chr    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    
 
     - chr and pos are keys;
                         
-    - g1 and g2 are two experimental groups.}
+    - g1~g2: methylation rate data in groups.}
 
 \item{input_filename_b}{the output file of DMRfinder.
 The columns are (in order):
