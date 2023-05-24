@@ -10,7 +10,6 @@ The BiSeq dataset for demo purpose. The data are dummy data. It includes 9 colum
 The dummy output for BiSeq illustrating purpose. It is dummy.
 }
 \details{
- 
 - seqnames: Chromosome
 
  - start: The positions of the start sites of the corresponding region

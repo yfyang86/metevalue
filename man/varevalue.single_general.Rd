@@ -36,18 +36,20 @@ The data file could be pre-handled by the metevalue.[types].chk function.
 The  Chromosome name, start and end sits shoule be specified.
 }
 \examples{
-data("demo_metilene_input")
-varevalue.single_general(demo_metilene_input, chr = "chr21", start = 9437432, end = 9437540)
+#data("demo_metilene_input")
+#varevalue.single_general(demo_metilene_input, chr = "chr21", start = 9437432, end = 9437540)
 # [1] 2.626126e+43
 
-#### Compare to `varevalue.metilene`  ####
-data("demo_metilene_out")
-result = evalue_buildin_var_fmt_nm(demo_metilene_input,
-         demo_metilene_out, method="metilene")
-# resultx = list(a = result$a,
-#           b = result$b,
-#           a_b = evalue_buildin_sql(result$a, result$b, method = method_in_use))
-# result_met = varevalue.metilene(resultx$a, resultx$b, resultx$a_b)
-# result_met[with(result_met, chr == 'chr21' & start == '9437432' & end == '9437540'), ]
+#### Compare to `metevalue.metilene`  ####
+data(demo_metilene_out)
+#example_tempfiles = tempfile(c("metilene_input", "metilene_out"))
+#tempdir()
+#write.table(demo_metilene_input, file=example_tempfiles[1],
+#      row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
+#write.table (demo_metilene_out, file=example_tempfiles[2],
+#      sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
+#result = metevalue.metilene(example_tempfiles[1], example_tempfiles[2],
+#      bheader = TRUE)
+# result[with(result, chr == 'chr21' & start == '9437432' & end == '9437540'), ncol(result)]
 # [1] 2.626126e+43
 }
