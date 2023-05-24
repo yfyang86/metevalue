@@ -228,7 +228,7 @@ write.table(methyrate, example_tempfiles[1], row.names=F, col.names=T, quote=F, 
 write.table(DMRs, example_tempfiles[2], quote=F, row.names = F,col.names = F, sep = '\t')
 ```
 
-Finally, we added E-values and adjusted E-values as additional columns
+Finally, we add E-values and adjusted E-values as additional columns
 to the output file of ‘BiSeq’.`BiSeq_evalue` function could be used to
 tackle the problem.
 
