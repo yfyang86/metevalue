@@ -52,14 +52,13 @@
 #'     - e_value: The e-value of the corresponding region
 #'
 #' @examples
-#' #### methylKit example ####
 #' data(demo_methylkit_methyrate)
 #' data(demo_methylkit_met_all)
 #' example_tempfiles = tempfile(c("rate_combine", "methylKit_DMR_raw"))
 #' tempdir()
 #' write.table(demo_methylkit_methyrate, file=example_tempfiles[1],
 #'       row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
-#' write.table (demo_methylkit_met_all, file=example_tempfiles[2],
+#' write.table(demo_methylkit_met_all, file=example_tempfiles[2],
 #'       sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
 #' result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2],
 #'       bheader = TRUE)
