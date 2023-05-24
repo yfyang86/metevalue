@@ -4,8 +4,9 @@
 #'
 #' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
 #'
-#' chrom and pos are keys;
-#' g1 and g2 are two experimental groups.
+#'      - chr and pos are keys;
+#'
+#'      - g1 and g2 are two experimental groups.
 #'
 #' @param metilene.output  metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
 #' The columns are (in order):
@@ -56,6 +57,7 @@
 #'     - m2:  The absolute mean methylation level for the corresponding segment of group 2
 #'
 #'     - e_value: The e-value of the corresponding region
+#'
 #' @examples
 #' #### metilene example ####'
 #' data(demo_metilene_input)
