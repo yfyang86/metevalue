@@ -310,6 +310,7 @@ NULL
 #'  - median.meth.group2
 #'
 #'  - median.meth.diff
+#'
 #' @name demo_biseq_DMR
 #' @docType data
 #' @keywords metevalue
@@ -338,17 +339,17 @@ NULL
 #'
 #' The dummy output for BiSeq illustrating purpose. It is dummy.
 #'
-#' - seqnames
+#' - seqnames: Chromosome
 #'
-#' - start
+#'  - start: The positions of the start sites of the corresponding region
 #'
-#' - end
+#'  - end: The positions of the end sites of the corresponding region
 #'
 #' - width
 #'
-#' - strand
+#'  - strand: Strand
 #'
-#' - median.p
+#'  - median.p
 #'
 #' - median.meth.group1
 #'
