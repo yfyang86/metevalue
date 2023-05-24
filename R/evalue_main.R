@@ -292,7 +292,7 @@ NULL
 
 #' DMR BiSeq Demo Dataset
 #'
-#' The BiSeq dataset for demo purpose. The data are dummy data. It includes 9 columns:
+#' The BiSeq dataset for demo purpose. The data are dummy data. It includes 8 columns:
 #'
 #'
 #' - seqnames: Chromosome
