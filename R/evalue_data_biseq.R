@@ -65,7 +65,7 @@
 #' #### write to temp file ####
 #' #write.table(demo_biseq_methyrate, file=example_tempfiles[1],row.names=FALSE,
 #' #            col.names=TRUE, quote=FALSE, sep='\t')
-#' #write.table (demo_biseq_DMR, file=example_tempfiles[2],
+#' #write.table(demo_biseq_DMR, file=example_tempfiles[2],
 #' #             sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
 #' #### compute e-value and its adjustment ####
 #' #result = metevalue.biseq(example_tempfiles[1],
