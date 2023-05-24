@@ -27,6 +27,7 @@
 #'     - m1:  The absolute mean methylation level for the corresponding segment of group 1
 #'
 #'     - m2:  The absolute mean methylation level for the corresponding segment of group 2
+#'
 #' @param a_b A data.frame object of a join b with particular data clean processes. Check the function [evalue.methylKit.chk()] for more details.
 #' @param group1_name charactor: The name of the first group. For example, "g1" in the above example.
 #' @param group2_name charactor: The name of the second group. For example, "g2" in the above example.
@@ -54,6 +55,7 @@
 #'     - m2:  The absolute mean methylation level for the corresponding segment of group 2
 #'
 #'     - e_value: The e-value of the corresponding region
+#'
 #' @examples
 #' #### methylKit example ####
 #' #data(demo_methylkit_methyrate)
@@ -480,6 +482,7 @@ NULL
 #' - pos: int Position
 #'
 #' - g1~g2: methylation rate data in groups, repeat 8 times.
+#'
 #' Notice that there are "NaN" within the feature columns.
 #'
 #' Please check the vignette "metevalue" for details.
