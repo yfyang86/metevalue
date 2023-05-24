@@ -158,7 +158,7 @@ evalue_buildin_var_fmt_nm <- function(a, b, method="metilene"){
 #'
 #'      - chr and pos are keys;
 #'
-#'      - g1 and g2 are two experimental groups.
+#'      - g1~g2: methylation rate data in groups.
 #'
 #' @param input_filename_b  metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
 #' The columns are (in order):
