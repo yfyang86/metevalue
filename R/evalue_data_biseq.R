@@ -57,20 +57,20 @@
 #'     - e_value: The e-value of the corresponding region
 #'
 #' @examples
-#' \donttest{
-#' data("demo_biseq_methyrate")
-#' data("demo_biseq_DMR")
-#' example_tempfiles = tempfile(c("demo_biseq_methyrate", "demo_biseq_DMR"))
-#' tempdir()
+#' #\donttest{
+#' #data("demo_biseq_methyrate")
+#' #data("demo_biseq_DMR")
+#' #example_tempfiles = tempfile(c("demo_biseq_methyrate", "demo_biseq_DMR"))
+#' #tempdir()
 #' #### write to temp file ####
-#' write.table(demo_biseq_methyrate, file=example_tempfiles[1],row.names=FALSE,
-#'             col.names=TRUE, quote=FALSE, sep='\t')
-#' write.table (demo_biseq_DMR, file=example_tempfiles[2],
-#'              sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
+#' #write.table(demo_biseq_methyrate, file=example_tempfiles[1],row.names=FALSE,
+#' #            col.names=TRUE, quote=FALSE, sep='\t')
+#' #write.table (demo_biseq_DMR, file=example_tempfiles[2],
+#' #             sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
 #' #### compute e-value and its adjustment ####
-#' result = metevalue.biseq(example_tempfiles[1],
-#'                          example_tempfiles[2], bheader = TRUE)
-#' }
+#' #result = metevalue.biseq(example_tempfiles[1],
+#' #                         example_tempfiles[2], bheader = TRUE)
+#' #}
 metevalue.biseq <- function(methyrate, BiSeq.output, adjust.methods='BH', sep = "\t", bheader = FALSE){
   re = metevalue.biseq.chk (methyrate, BiSeq.output, sep, bheader)
   return(varevalue.metilene(re$file_a, re$file_b, re$file_a_b, adjust.methods=adjust.methods));
