@@ -17,9 +17,9 @@ For exampe:
 
 chr    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    g2    g2    g2    g2    g2
 
-    - chr and pos are keys;
-                        
-    - g1~g2: methylation rate data in groups.}
+     - chr and pos are keys;
+
+     - g1~g2: methylation rate data in groups.}
 
 \item{input_filename_b}{metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
 The columns are (in order):
@@ -53,6 +53,15 @@ list(file_a, file_b, file_a_b) returns a list with three pr-handled data.frames 
 Check the BiSeq data format
 }
 \examples{
-data("demo_biseq_DMR")
-data("demo_biseq_methyrate")
+#data("demo_biseq_methyrate")
+#data("demo_biseq_DMR")
+#example_tempfiles = tempfile(c("demo_biseq_methyrate", "demo_biseq_DMR"))
+#tempdir()
+#write.table(demo_biseq_methyrate, file=example_tempfiles[1],row.names=FALSE,
+#            col.names=TRUE, quote=FALSE, sep='\t')
+#write.table(demo_biseq_DMR, file=example_tempfiles[2],
+#             sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
+#### compute e-value and its adjustment ####
+#result = metevalue.biseq.chk(example_tempfiles[1],
+#                         example_tempfiles[2], bheader = TRUE)
 }

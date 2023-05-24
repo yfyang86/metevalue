@@ -14,7 +14,7 @@ metevalue.biseq(
 }
 \arguments{
 \item{methyrate}{is the methyrate file. The columns are (in order):
-                 
+
     - chr: Chromosome
 
     - pos: int Position
@@ -22,7 +22,7 @@ metevalue.biseq(
     - g1~g2: methylation rate data in groups}
 
 \item{BiSeq.output}{is the output file of BiSeq. The columns are (in order):
-                    
+
     - seqnames: Chromosome
 
     - start: The positions of the start sites of the corresponding region
@@ -76,18 +76,18 @@ a dataframe, the columns are (in order):
 Please check vignette "metevalue" for details.
 }
 \examples{
-\donttest{
-data("demo_biseq_methyrate")
-data("demo_biseq_DMR")
-example_tempfiles = tempfile(c("demo_biseq_methyrate", "demo_biseq_DMR"))
-tempdir()
+#\donttest{
+#data("demo_biseq_methyrate")
+#data("demo_biseq_DMR")
+#example_tempfiles = tempfile(c("demo_biseq_methyrate", "demo_biseq_DMR"))
+#tempdir()
 #### write to temp file ####
-write.table(demo_biseq_methyrate, file=example_tempfiles[1],row.names=FALSE,
-            col.names=TRUE, quote=FALSE, sep='\t')
-write.table (demo_biseq_DMR, file=example_tempfiles[2],
-             sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
+#write.table(demo_biseq_methyrate, file=example_tempfiles[1],row.names=FALSE,
+#            col.names=TRUE, quote=FALSE, sep='\t')
+#write.table(demo_biseq_DMR, file=example_tempfiles[2],
+#             sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
 #### compute e-value and its adjustment ####
-result = metevalue.biseq(example_tempfiles[1],
-                         example_tempfiles[2], bheader = TRUE)
-}
+#result = metevalue.biseq(example_tempfiles[1],
+#                         example_tempfiles[2], bheader = TRUE)
+#}
 }

@@ -14,7 +14,7 @@ metevalue.methylKit(
 }
 \arguments{
 \item{methyrate}{is the data of methylation rates of each sites and group, the columns are (in order):
-                 
+
     - chr: Chromosome
 
     - pos: int Position
@@ -22,7 +22,7 @@ metevalue.methylKit(
     - g1~g2: methylation rate data in groups}
 
 \item{methylKit.output}{is the output data with e-value of each region
-                        
+
     - chr: Chromosome
 
     - start: The positions of the start sites of the corresponding region
@@ -72,14 +72,13 @@ a dataframe, the columns are (in order):
 Calculate E-value of the methylKit data format
 }
 \examples{
-#### methylKit example ####
 data(demo_methylkit_methyrate)
 data(demo_methylkit_met_all)
 example_tempfiles = tempfile(c("rate_combine", "methylKit_DMR_raw"))
 tempdir()
 write.table(demo_methylkit_methyrate, file=example_tempfiles[1],
       row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
-write.table (demo_methylkit_met_all, file=example_tempfiles[2],
+write.table(demo_methylkit_met_all, file=example_tempfiles[2],
       sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
 result = metevalue.methylKit(example_tempfiles[1], example_tempfiles[2],
       bheader = TRUE)

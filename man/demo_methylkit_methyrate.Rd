@@ -14,7 +14,7 @@ The data includes 6 columns.
 
 - pos: int Position
 
-- g1~g2: methylation rate data in groups
+- g1~g2: methylation rate data in groups (4 columns)
 
 Please check the vignette "metevalue" for details.
 }

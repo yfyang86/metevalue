@@ -17,9 +17,9 @@ For exampe:
 
 chr    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    g2    g2    g2    g2    g2
 
-    - chr and pos are keys;
-                        
-    - g1~g2: methylation rate data in groups.}
+     - chr and pos are keys;
+
+     - g1~g2: methylation rate data in groups.}
 
 \item{input_filename_b}{the output file of DMRfinder.
 The columns are (in order):
@@ -51,6 +51,14 @@ list(file_a, file_b, file_a_b) returns a list with three pr-handled data.frames 
 Check the DMRfinder data format
 }
 \examples{
-data("demo_DMRfinder_rate_combine")
-data("demo_DMRfinder_DMRs")
+data(demo_DMRfinder_rate_combine)
+data(demo_DMRfinder_DMRs)
+#example_tempfiles = tempfile(c("rate_combine", "DMRfinder_out"))
+#tempdir()
+#write.table(demo_DMRfinder_rate_combine, file=example_tempfiles[1],
+#      row.names=FALSE, col.names=TRUE, quote=FALSE, sep='\t')
+#write.table(demo_DMRfinder_DMRs, file=example_tempfiles[2],
+#      sep ="\t", row.names =FALSE, col.names =TRUE, quote =FALSE)
+#result = metevalue.DMRfinder.chk(example_tempfiles[1], example_tempfiles[2],
+#      bheader = TRUE)
 }
