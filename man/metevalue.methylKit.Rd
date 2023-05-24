@@ -66,7 +66,9 @@ a dataframe, the columns are (in order):
 
     - e_value: The e-value of the corresponding region
 }
-
+\description{
+Calculate E-value of the methylKit data format
+}
 \examples{
 #### methylKit example ####
 data(demo_methylkit_methyrate)

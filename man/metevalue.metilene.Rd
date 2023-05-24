@@ -2,7 +2,7 @@
 % Please edit documentation in R/evalue_data_metilene.R
 \name{metevalue.metilene}
 \alias{metevalue.metilene}
-\title{Evalue of the Metilene data format}
+\title{Calculate E-value of the Metilene data format}
 \usage{
 metevalue.metilene(
   methyrate,
@@ -19,7 +19,7 @@ For exampe:
 chr    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    g2    g2    g2    g2    g2
 
 chrom and pos are keys;
-gg1 and g2 are two experimental groups.}
+g1 and g2 are two experimental groups.}
 
 \item{metilene.output}{metilene input file path. This file should stored as a sep(e.g. TAB) separated file with two key columns and several value columns:
 The columns are (in order):

@@ -1,8 +1,8 @@
 Package: metevalue
 Type: Package
 Title: E-Value in the Omics Data Association Studies
-Version: 0.2.1
-Date: 2023-05-17
+Version: 0.2.3
+Date: 2023-05-24
 Authors@R: c(person("Yifan", "Yang",  role = c("aut", "cre","cph"),
                     email = "yfyang.86@hotmail.com"),
             person("Xiaoqing", "Pan",  role = "aut"),

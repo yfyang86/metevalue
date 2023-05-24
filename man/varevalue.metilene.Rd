@@ -14,7 +14,7 @@ varevalue.metilene(
 )
 }
 \arguments{
-\item{a}{A data.frame object, the columns should be (in order):
+\item{a}{A data.frame object:
 
 chr    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    g2    g2    g2    g2    g2
 

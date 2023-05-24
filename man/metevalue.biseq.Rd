@@ -2,7 +2,7 @@
 % Please edit documentation in R/evalue_data_biseq.R
 \name{metevalue.biseq}
 \alias{metevalue.biseq}
-\title{Calcuate E-value of the BiSeq data format}
+\title{Calculate E-value of the BiSeq data format}
 \usage{
 metevalue.biseq(
   methyrate,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/evalue_data_DMRfinder.R
 \name{metevalue.DMRfinder}
 \alias{metevalue.DMRfinder}
-\title{Evalue of the DMRfinder data format}
+\title{Calculate E-value of the DMRfinder data format}
 \usage{
 metevalue.DMRfinder(
   methyrate,
@@ -69,7 +69,7 @@ a dataframe, the columns are (in order):
     - e_value: The e-value of the corresponding region
 }
 \description{
-Perform the Evaluation for the DMRfinder data.
+Calculate E-value of the DMRfinder data format
 }
 \examples{
 #### DMRfinder example ####'
