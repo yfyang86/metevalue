@@ -14,6 +14,7 @@ metevalue.methylKit(
 }
 \arguments{
 \item{methyrate}{is the data of methylation rates of each sites and group, the columns are (in order):
+                 
     - chr: Chromosome
 
     - pos: int Position
@@ -21,6 +22,7 @@ metevalue.methylKit(
     - g1~g2: methylation rate data in groups}
 
 \item{methylKit.output}{is the output data with e-value of each region
+                        
     - chr: Chromosome
 
     - start: The positions of the start sites of the corresponding region
