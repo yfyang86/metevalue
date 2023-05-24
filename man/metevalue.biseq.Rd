@@ -14,6 +14,7 @@ metevalue.biseq(
 }
 \arguments{
 \item{methyrate}{is the methyrate file. The columns are (in order):
+                 
     - chr: Chromosome
 
     - pos: int Position
@@ -21,6 +22,7 @@ metevalue.biseq(
     - g1~g2: methylation rate data in groups}
 
 \item{BiSeq.output}{is the output file of BiSeq. The columns are (in order):
+                    
     - seqnames: Chromosome
 
     - start: The positions of the start sites of the corresponding region
