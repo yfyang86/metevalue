@@ -3,10 +3,8 @@
 \docType{data}
 \name{demo_biseq_DMR}
 \alias{demo_biseq_DMR}
-\title{DMR BiSeq Demo Dataset}
+\title{BiSeq Output Demo Dataset}
 \description{
-The BiSeq dataset for demo purpose. The data are dummy data. It includes 9 columns:
-
 The dummy output for BiSeq illustrating purpose. It is dummy.
 }
 \details{
@@ -16,27 +14,11 @@ The dummy output for BiSeq illustrating purpose. It is dummy.
 
  - end: The positions of the end sites of the corresponding region
 
+- width
+
  - strand: Strand
 
  - median.p
-
- - median.meth.group1
-
- - median.meth.group2
-
- - median.meth.diff
-
-- seqnames
-
-- start
-
-- end
-
-- width
-
-- strand
-
-- median.p
 
 - median.meth.group1
 
