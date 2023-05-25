@@ -2,7 +2,7 @@
 % Please edit documentation in R/evalue_main.R
 \name{varevalue.single_general}
 \alias{varevalue.single_general}
-\title{A general method to calculate the e-value for other DNA methylation tools not described above. The input data is the DNA methylation rates using the same format with Metilene.}
+\title{A general method to calculate the e-value for other DNA methylation tools not described above. The input data is the DNA methylation rates using the similar format with Metilene.}
 \usage{
 varevalue.single_general(
   methyrate,
@@ -14,13 +14,17 @@ varevalue.single_general(
 )
 }
 \arguments{
-\item{methyrate}{data.frame: A data.frame object of methylation rates, the columns should be(name of groups can be self-defined)
+\item{methyrate}{data.frame: A data.frame object of methylation rates, the columns should be (name of groups can be self-defined)
+\tabular{rrrrrrrr}{
+ chr    \tab  pos     \tab   g1    \tab ...  \tab  g1 \tab  g2 \tab ... \tab g2 \cr
+chr1 \tab  1    \tab  0.1 \tab  ... \tab   0.1\tab  0.2\tab ... \tab 0.2\cr
+}}
 
-chr    pos    group1_name group1_name ... group1_name group2_name group2_name}
+\item{group1_name}{charactor: The name (pattern) of the first group. For example, "g1" in the above example.
+For example `g1_abc` and `g1` will be considered as the same group if `group1_name = "g1"`.  Use this with care in practice.}
 
-\item{group1_name}{charactor: The name of the first group. For example, "treated" in the above example.}
-
-\item{group2_name}{charactor: The name of the second group. For example, "untreated" in the above example.}
+\item{group2_name}{charactor: The name (pattern) of the second group. For example, "g2" in the above example.
+For example `g2_abc` and `g2` will be considered as the same group if `group2_name = "g2"`.  Use this with care in practice.}
 
 \item{chr}{charactor: The Chromosome name. Typically, it is a string like "chr21" and so on.}
 
@@ -32,8 +36,8 @@ chr    pos    group1_name group1_name ... group1_name group2_name group2_name}
 evalue
 }
 \description{
-The data file could be pre-handled by the metevalue.[types].chk function.
-The  Chromosome name, start and end sits shoule be specified.
+The input data file is just the DNA methylation rates using the similar format above, with no need for another data file output by different tools.
+The Chromosome name, start and end sites shoule be specified in the function.
 }
 \examples{
 #data("demo_metilene_input")

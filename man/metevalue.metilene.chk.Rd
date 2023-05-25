@@ -12,10 +12,13 @@ metevalue.metilene.chk(
 )
 }
 \arguments{
-\item{input_filename_a}{metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
+\item{input_filename_a}{metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns.
 For exampe:
-
-chr    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    g2    g2    g2    g2    g2
+\tabular{rrrrrrrr}{
+ chr    \tab  pos     \tab   g1    \tab ...  \tab  g1 \tab  g2 \tab ... \tab g2 \cr
+chr1 \tab  1    \tab  0.1 \tab  ... \tab   0.1\tab  0.2\tab ... \tab 0.2\cr
+}
+The columns are (in order):
 
      - chr and pos are keys;
 
