@@ -13,7 +13,11 @@ metevalue.biseq(
 )
 }
 \arguments{
-\item{methyrate}{is the methyrate file. The columns are (in order):
+\item{methyrate}{is the methyrate file.  For example: 
+\tabular{rrrrrrrr}{
+chr    \tab  pos     \tab   g1    \tab ...  \tab  g1 \tab  g2 \tab ... \tab g2 \cr
+chr1 \tab  1    \tab  0.1 \tab  ... \tab   0.1\tab  0.2\tab ... \tab 0.2\cr
+}The columns are (in order):
 
     - chr: Chromosome
 

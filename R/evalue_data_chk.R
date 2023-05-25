@@ -151,11 +151,14 @@ evalue_buildin_var_fmt_nm <- function(a, b, method="metilene"){
 
 
 #' Check the Metilene data format
-#' @param input_filename_a metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
+#' @param input_filename_a metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns.
 #' For exampe:
-#'
-#' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
-#'
+#' \tabular{rrrrrrrr}{
+#'  chr	\tab  pos	 \tab   g1	\tab ...  \tab  g1 \tab  g2 \tab ... \tab g2 \cr
+#' chr1 \tab  1    \tab  0.1 \tab  ... \tab   0.1\tab  0.2\tab ... \tab 0.2\cr
+#' }
+#' The columns are (in order):
+#' 
 #'      - chr and pos are keys;
 #'
 #'      - g1~g2: methylation rate data in groups.
@@ -211,8 +214,10 @@ return(list(file_a = re$a, file_b = re$b, file_a_b = evalue_buildin_sql(re$a, re
 #' Check the BiSeq data format
 #' @param input_filename_a metilene input file path. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
 #' For exampe:
-#'
-#' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
+#' \tabular{rrrrrrrr}{
+#' chr	\tab  pos	 \tab   g1	\tab ...  \tab  g1 \tab  g2 \tab ... \tab g2 \cr
+#' chr1 \tab  1    \tab  0.1 \tab  ... \tab   0.1\tab  0.2\tab ... \tab 0.2\cr
+#' }
 #'
 #'      - chr and pos are keys;
 #'
@@ -267,7 +272,10 @@ metevalue.biseq.chk <- function(input_filename_a, input_filename_b, sep = "\t", 
 #' @param input_filename_a the combined data of methylation rate file. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
 #' For exampe:
 #'
-#' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
+#' \tabular{rrrrrrrr}{
+#' chr	\tab  pos	 \tab   g1	\tab ...  \tab  g1 \tab  g2 \tab ... \tab g2 \cr
+#' chr1 \tab  1    \tab  0.1 \tab  ... \tab   0.1\tab  0.2\tab ... \tab 0.2\cr
+#' }
 #'
 #'      - chr and pos are keys;
 #'
@@ -313,11 +321,16 @@ metevalue.methylKit.chk <- function(input_filename_a, input_filename_b, sep = "\
 
 
 #' Check the DMRfinder data format
-#' @param input_filename_a the combined data of methylation rate file. This file is a sep (e.g. TAB) separated file with two key columns and several value columns:
+#' @param input_filename_a the combined data of methylation rate file. This file is a sep (e.g. TAB) separated file with two key columns and several value columns.
 #' For exampe:
 #'
-#' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
+#' \tabular{rrrrrrrr}{
+#' chr	\tab  pos	 \tab   g1	\tab ...  \tab  g1 \tab  g2 \tab ... \tab g2 \cr
+#' chr1 \tab  1    \tab  0.1 \tab  ... \tab   0.1\tab  0.2\tab ... \tab 0.2\cr
+#' }
 #'
+#' The columns are (in order):
+#' 
 #'      - chr and pos are keys;
 #' 
 #'      - g1~g2: methylation rate data in groups.

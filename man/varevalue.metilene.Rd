@@ -15,9 +15,10 @@ varevalue.metilene(
 }
 \arguments{
 \item{a}{A data.frame object:
-
-chr    pos    g1    g1    g1    g1    g1    g1    g1    g1    g2    g2    g2    g2    g2    g2    g2    g2
-
+\tabular{rrrrrrrr}{
+ chr    \tab  pos     \tab   g1    \tab ...  \tab  g1 \tab  g2 \tab ... \tab g2 \cr
+chr1 \tab  1    \tab  0.1 \tab  ... \tab   0.1\tab  0.2\tab ... \tab 0.2\cr
+}
 i.e two key columns (chrom, pos) with several value columns in groups.}
 
 \item{b}{A data.frame object stores the data, the columns are (in order):
@@ -79,11 +80,11 @@ a dataframe, the columns are (in order):
 The data file could be pre-handled by the evalue.metilene.chk function.
 }
 \examples{
-data(demo_metilene_input)
-data(demo_metilene_out)
-result = evalue_buildin_var_fmt_nm(demo_metilene_input, demo_metilene_out, method="metilene")
-result = list(a = result$a, 
-              b = result$b, 
-              a_b = evalue_buildin_sql(result$a, result$b, method="metilene"))
-result = varevalue.metilene(result$a, result$b, result$a_b)
+#data(demo_metilene_input)
+#data(demo_metilene_out)
+#result = evalue_buildin_var_fmt_nm(demo_metilene_input, demo_metilene_out, method="metilene")
+#result = list(a = result$a, 
+#              b = result$b, 
+#              a_b = evalue_buildin_sql(result$a, result$b, method="metilene"))
+#result = varevalue.metilene(result$a, result$b, result$a_b)
 }

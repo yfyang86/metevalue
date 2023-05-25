@@ -2,9 +2,10 @@
 #'
 #' The data file could be pre-handled by the evalue.metilene.chk function.
 #' @param a A data.frame object:
-#'
-#' chr	pos	g1	g1	g1	g1	g1	g1	g1	g1	g2	g2	g2	g2	g2	g2	g2	g2
-#'
+#' \tabular{rrrrrrrr}{
+#'  chr	\tab  pos	 \tab   g1	\tab ...  \tab  g1 \tab  g2 \tab ... \tab g2 \cr
+#' chr1 \tab  1    \tab  0.1 \tab  ... \tab   0.1\tab  0.2\tab ... \tab 0.2\cr
+#' }
 #' i.e two key columns (chrom, pos) with several value columns in groups.
 #' @param b A data.frame object stores the data, the columns are (in order):
 #'
@@ -120,12 +121,15 @@ varevalue.metilene <- function(a, b, a_b, group1_name = 'g1', group2_name = 'g2'
 #'
 #' The input data file is just the DNA methylation rates using the similar format above, with no need for another data file output by different tools.
 #' The Chromosome name, start and end sites shoule be specified in the function.
-#' @param methyrate data.frame: A data.frame object of methylation rates, the columns should be(name of groups can be self-defined)
-#'
-#' chr	pos	group1_name group1_name ... group1_name group2_name group2_name
-#' 
-#' @param group1_name charactor: The name of the first group. For example, "g1" in the above example.
-#' @param group2_name charactor: The name of the second group. For example, "g2" in the above example.
+#' @param methyrate data.frame: A data.frame object of methylation rates, the columns should be (name of groups can be self-defined)
+#' \tabular{rrrrrrrr}{
+#'  chr	\tab  pos	 \tab   g1	\tab ...  \tab  g1 \tab  g2 \tab ... \tab g2 \cr
+#' chr1 \tab  1    \tab  0.1 \tab  ... \tab   0.1\tab  0.2\tab ... \tab 0.2\cr
+#' }
+#' @param group1_name charactor: The name (pattern) of the first group. For example, "g1" in the above example.
+#' For example `g1_abc` and `g1` will be considered as the same group if `group1_name = "g1"`.  Use this with care in practice.
+#' @param group2_name charactor: The name (pattern) of the second group. For example, "g2" in the above example.
+#' For example `g2_abc` and `g2` will be considered as the same group if `group2_name = "g2"`.  Use this with care in practice.
 #' @param chr charactor: The Chromosome name. Typically, it is a string like "chr21" and so on.
 #' @param start integer:  The position of the start site of the corresponding region
 #' @param end integer: The position of the end site of the corresponding region
@@ -191,19 +195,18 @@ varevalue.single_general = function(methyrate, group1_name='g1', group2_name='g2
 #'
 #' @param rna data.frame: A data.frame object of RNAseq data. For example:
 #' 
-#' 
-#'      treated1fb treated2fb untreated1fb untreated2fb
-#' 
-#' TAG1   4.449648   4.750104     4.392285     4.497514
-#' 
-#' TAG2   8.241116   8.302852     8.318125     8.488796
-#' 
-#' ...
-#' 
+#' \tabular{rrrrr}{
+#' TAG   \tab  treated1fb \tab treated2fb  \tab untreated1fb \tab untreated2fb \cr
+#' TAG1  \tab 4.449648    \tab 4.750104    \tab   4.392285   \tab   4.497514 \cr
+#' TAG2  \tab 8.241116    \tab 8.302852    \tab  8.318125    \tab  8.488796 \cr
+#' ...   \tab ...         \tab ...         \tab  ...         \tab  ...      \cr
+#' }
 #' 
 #' Row names (TAG1 and TAG2 in the above example) is also suggested.
-#' @param group1_name charactor: The name of the first group. For example, "treated" in the example.
-#' @param group2_name charactor: The name of the second group. For example, "untreated" in the example.
+#' @param group1_name charactor: The name (pattern) of the first group. For example, "treated" in the above example.
+#' For example `treated_abc` and `treated` will be considered as the same group if `group1_name = "treated"`.  Use this with care in practice.
+#' @param group2_name charactor: The name (pattern) of the second group. For example, "untreated" in the above example.
+#' For example `untreated_abc` and `untreated` will be considered as the same group if `group2_name = "untreated"`.  Use this with care in practice.
 #' @return evalue 
 #' @examples
 #' data("demo_desq_out")
