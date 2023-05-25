@@ -329,7 +329,7 @@ Adding E-values and adjusted E-values as additional columns to
 `metilene.out`
 
 ``` r
-result <- evalue.metilene('metilene.input', 'metilene.out')
+result <- metevalue.metilene('metilene.input', 'metilene.out')
 head(result)
 ```
 
