@@ -229,15 +229,11 @@ write.table(DMRs, example_tempfiles[2], quote=F, row.names = F,col.names = F, se
 ```
 
 Finally, we add E-values and adjusted E-values as additional columns
-to the output file of ‘BiSeq’.`BiSeq_evalue` function could be used to
+to the output file of ‘BiSeq’.`metevalue.biseq` function could be used to
 tackle the problem.
 
 ``` r
-hh <- data.frame(DMRs)
-result = evalue_buildin_var_fmt_nm(rate_combine, hh, method="biseq")
-result = list(a = result$a,  b = result$b, 
-              a_b = evalue_buildin_sql(result$a, result$b,method="biseq"))
-result = varevalue.metilene(result$a, result$b, result$a_b)
+result = metevalue.biseq(example_tempfiles[1], example_tempfiles[2])
 str(result)
 ```
 
@@ -261,7 +257,7 @@ Adding E-values and adjusted E-values as additional columns to file
 ‘DMRfinder_DMR’
 
 ``` r
-result <- evalue.DMRfinder('rate_combine_DMRfinder', 'DMRfinder_DMR')
+result <- metevalue.DMRfinder('rate_combine_DMRfinder', 'DMRfinder_DMR', bheader=T)
 head(result)
 ```
 
@@ -296,7 +292,7 @@ Adding E-values and adjusted E-values as additional columns to
 `metilene.out`
 
 ``` r
-result <- evalue.metilene('metilene.input', 'metilene.out')
+result <- metevalue.metilene('metilene.input', 'metilene.out')
 head(result)
 ```
 
