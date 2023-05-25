@@ -57,13 +57,13 @@
 #'     - e_value: The e-value of the corresponding region
 #'
 #' @examples
-#' data(demo_metilene_input)
-#' data(demo_metilene_out)
-#' result = evalue_buildin_var_fmt_nm(demo_metilene_input, demo_metilene_out, method="metilene")
-#' result = list(a = result$a, 
-#'               b = result$b, 
-#'               a_b = evalue_buildin_sql(result$a, result$b, method="metilene"))
-#' result = varevalue.metilene(result$a, result$b, result$a_b)
+#' #data(demo_metilene_input)
+#' #data(demo_metilene_out)
+#' #result = evalue_buildin_var_fmt_nm(demo_metilene_input, demo_metilene_out, method="metilene")
+#' #result = list(a = result$a, 
+#' #              b = result$b, 
+#' #              a_b = evalue_buildin_sql(result$a, result$b, method="metilene"))
+#' #result = varevalue.metilene(result$a, result$b, result$a_b)
 varevalue.metilene <- function(a, b, a_b, group1_name = 'g1', group2_name = 'g2', adjust.methods='BH'){
   innerf = function(x, innermu=0., innersig=1.){
     vector_temp = na.omit(as.numeric(x))
@@ -116,16 +116,16 @@ varevalue.metilene <- function(a, b, a_b, group1_name = 'g1', group2_name = 'g2'
 
 
 
-#' A general method to calculate the e-value for other DNA methylation tools not described above. The input data is the DNA methylation rates using the same format with Metilene.
+#' A general method to calculate the e-value for other DNA methylation tools not described above. The input data is the DNA methylation rates using the similar format with Metilene.
 #'
-#' The data file could be pre-handled by the metevalue.[types].chk function.
-#' The  Chromosome name, start and end sits shoule be specified.
+#' The input data file is just the DNA methylation rates using the similar format above, with no need for another data file output by different tools.
+#' The Chromosome name, start and end sites shoule be specified in the function.
 #' @param methyrate data.frame: A data.frame object of methylation rates, the columns should be(name of groups can be self-defined)
 #'
 #' chr	pos	group1_name group1_name ... group1_name group2_name group2_name
 #' 
-#' @param group1_name charactor: The name of the first group. For example, "treated" in the above example.
-#' @param group2_name charactor: The name of the second group. For example, "untreated" in the above example.
+#' @param group1_name charactor: The name of the first group. For example, "g1" in the above example.
+#' @param group2_name charactor: The name of the second group. For example, "g2" in the above example.
 #' @param chr charactor: The Chromosome name. Typically, it is a string like "chr21" and so on.
 #' @param start integer:  The position of the start site of the corresponding region
 #' @param end integer: The position of the end site of the corresponding region
